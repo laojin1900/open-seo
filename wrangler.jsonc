@@ -58,6 +58,13 @@
       "new_sqlite_classes": ["SamChatAgent"],
     },
   ],
+  "routes": [
+    {
+      "pattern": "seo.365loopa.com/*",
+      "zone_name": "365loopa.com",
+      "custom_domain": true,
+    },
+  ],
   "triggers": {
     "crons": ["*/15 * * * *"],
   },
@@ -73,18 +80,18 @@
   "kv_namespaces": [
     {
       "binding": "KV",
-      "id": "4abd52f3f2c549ac83cc2cb4ceec8620",
+      "id": "33cb0d9eb9684bea8e9c3e2e9ddbe251",
     },
     {
       "binding": "OAUTH_KV",
-      "id": "bd1759494309474a9b423b029967b0db",
+      "id": "9383060fae16440898d0696cbd7aac19",
     },
   ],
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "open-seo",
-      "database_id": "37bee90a-e1aa-404f-b01e-b0d1d479bda1",
+      "database_name": "open-seo-laojin",
+      "database_id": "3bbb3b44-c6ff-455d-84c9-1475c58b9f68",
       "migrations_dir": "drizzle",
     },
   ],
@@ -107,7 +114,7 @@
   // ],
   "r2_buckets": [
     {
-      "bucket_name": "open-seo",
+      "bucket_name": "open-seo-laojin",
       "binding": "R2",
     },
   ],
