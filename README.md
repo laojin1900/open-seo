@@ -16,6 +16,8 @@ Try OpenSEO for free on our website. If you want to support the project, a hoste
 
 [openseo.so](https://openseo.so)
 
+Built and maintained by [Laojin Chuhai](https://www.laojinchuhai.com) — a practical-AI brand for cross-border teams. We use OpenSEO daily for our own content operations, and we open-source the tools that actually work.
+
 ## Why use OpenSEO?
 
 - Best in class MCP and AI Skills.
