@@ -71,13 +71,6 @@
       "new_sqlite_classes": ["AuditScratchpad"],
     },
   ],
-  "routes": [
-    {
-      "pattern": "seo.365loopa.com/*",
-      "zone_name": "365loopa.com",
-      "custom_domain": true,
-    },
-  ],
   "triggers": {
     // Every 5 min: rank checks + stale-audit reconcile. Daily: OAuth KV GC.
     // Dispatched on controller.cron in src/server.ts `scheduled`.
