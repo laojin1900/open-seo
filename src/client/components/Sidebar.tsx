@@ -18,6 +18,8 @@ import {
 import { ProjectSwitcher } from "@/client/features/projects/ProjectSwitcher";
 import { SamSidebarPanel } from "@/client/features/sam/SamSidebarPanel";
 import { ThemePreferenceMenuItems } from "@/client/components/ThemePreferenceMenuItems";
+import { LanguagePreferenceMenuItems } from "@/client/features/laojin/i18n/LanguagePreferenceMenuItems";
+import { t, useT } from "@/client/features/laojin/i18n";
 import { closeDropdown } from "@/client/lib/dropdown";
 import { signOutAndRedirect, useSession } from "@/lib/auth-client";
 import { isHostedClientAuthMode } from "@/lib/auth-mode";
@@ -77,6 +79,8 @@ function SidebarNavLink({
 }
 
 export function Sidebar({ projectId, onNavigate, onClose }: SidebarProps) {
+  // 老金定制：订阅 UI 语言，菜单 labels 经 t() 翻译
+  useT();
   const navGroups = [
     ...(projectId ? getProjectNavGroups(projectId) : []),
     connectNavGroup,
@@ -154,13 +158,13 @@ export function Sidebar({ projectId, onNavigate, onClose }: SidebarProps) {
           <div role="tablist" className="tabs tabs-border w-full">
             <SidebarViewTab
               icon={LayoutGrid}
-              label="Browse"
+              label={t("nav.browse")}
               active={view === "browse"}
               onClick={openBrowse}
             />
             <SidebarViewTab
               icon={MessageCircle}
-              label="Chat"
+              label={t("nav.chat")}
               active={view === "chat"}
               onClick={openChat}
             />
@@ -175,7 +179,7 @@ export function Sidebar({ projectId, onNavigate, onClose }: SidebarProps) {
           {navGroups.map((group) => (
             <div key={group.label} className="mb-1">
               <div className="px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-wider text-base-content/40">
-                {group.label}
+                {t(group.label)}
               </div>
               {group.items.map((item) => {
                 const { icon, label, ...linkProps } = item;
@@ -183,7 +187,7 @@ export function Sidebar({ projectId, onNavigate, onClose }: SidebarProps) {
                   <SidebarNavLink
                     key={linkProps.to}
                     icon={icon}
-                    label={label}
+                    label={t(label)}
                     onNavigate={onNavigate}
                     linkProps={linkProps}
                   />
@@ -238,7 +242,7 @@ function SidebarFooter({ onNavigate }: { onNavigate?: () => void }) {
     <div className="shrink-0 border-t border-base-300 px-2 py-2 pb-safe">
       <SidebarNavLink
         icon={CircleHelp}
-        label="Help & Community"
+        label={t("nav.help")}
         onNavigate={onNavigate}
         linkProps={{ to: "/support" }}
       />
@@ -263,7 +267,7 @@ function SidebarFooter({ onNavigate }: { onNavigate?: () => void }) {
             <li>
               <Link to="/settings" onClick={closeMenu}>
                 <Settings className="h-4 w-4" />
-                Settings
+                {t("nav.settings")}
               </Link>
             </li>
             {isHostedMode ? (
@@ -275,6 +279,7 @@ function SidebarFooter({ onNavigate }: { onNavigate?: () => void }) {
               </li>
             ) : null}
             <ThemePreferenceMenuItems />
+            <LanguagePreferenceMenuItems />
             {isHostedMode ? (
               <>
                 <li

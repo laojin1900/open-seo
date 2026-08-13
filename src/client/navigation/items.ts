@@ -17,7 +17,7 @@ import { GoogleGlyphMuted } from "@/client/features/gsc/GoogleGlyph";
 const projectNavItems = [
   {
     to: "/p/$projectId" as const,
-    label: "Dashboard",
+    label: "nav.dashboard",
     icon: LayoutDashboard,
     // Without exact matching, the index path is a prefix of every project
     // route and the Dashboard item would render active everywhere.
@@ -25,66 +25,66 @@ const projectNavItems = [
   },
   {
     to: "/p/$projectId/keywords" as const,
-    label: "Keyword Research",
+    label: "nav.keywords",
     icon: Search,
   },
   {
     to: "/p/$projectId/saved" as const,
-    label: "Saved Keywords",
+    label: "nav.saved",
     icon: Bookmark,
   },
   {
     to: "/p/$projectId/rank-tracking" as const,
-    label: "Rank Tracking",
+    label: "nav.rankTracking",
     icon: TrendingUp,
   },
   {
     to: "/p/$projectId/search-performance" as const,
-    label: "GSC Insights",
+    label: "nav.gsc",
     icon: GoogleGlyphMuted,
   },
   // 老金定制：AI 可见度（GEO-ROADMAP.md P0）
   {
     to: "/p/$projectId/ai-visibility" as const,
-    label: "AI Visibility",
+    label: "nav.aiVisibility",
     icon: Radar,
   },
   {
     to: "/p/$projectId/domain" as const,
-    label: "Domain Overview",
+    label: "nav.domain",
     icon: Globe,
   },
   {
     to: "/p/$projectId/backlinks" as const,
-    label: "Backlinks",
+    label: "nav.backlinks",
     icon: Link2,
   },
   {
     to: "/p/$projectId/audit" as const,
-    label: "Site Audit",
+    label: "nav.audit",
     icon: ClipboardCheck,
   },
   {
     to: "/p/$projectId/brand-lookup" as const,
-    label: "Brand Lookup",
+    label: "nav.brandLookup",
     icon: Sparkles,
   },
   {
     to: "/p/$projectId/prompt-explorer" as const,
-    label: "Prompt Explorer",
+    label: "nav.promptExplorer",
     icon: MessageSquare,
   },
 ] as const;
 
 const aiNavItem = linkOptions({
   to: "/ai" as const,
-  label: "AI & MCP",
+  label: "nav.aiMcp",
   icon: Bot,
 });
 
 // Always-visible sidebar group (not project-scoped, unlike the groups below).
 export const connectNavGroup = {
-  label: "Connect",
+  label: "group.connect",
   items: [aiNavItem],
 };
 
@@ -107,11 +107,11 @@ export function getProjectNavGroups(projectId: string) {
 
   return [
     {
-      label: "Overview",
+      label: "group.overview",
       items: [byPath("/p/$projectId")],
     },
     {
-      label: "Research",
+      label: "group.research",
       items: [
         byPath("/p/$projectId/keywords"),
         byPath("/p/$projectId/domain"),
@@ -121,7 +121,7 @@ export function getProjectNavGroups(projectId: string) {
       ],
     },
     {
-      label: "My Site",
+      label: "group.mySite",
       items: [
         byPath("/p/$projectId/search-performance"),
         // 老金定制：AI Visibility（GEO-ROADMAP.md P0）

@@ -13,6 +13,7 @@ import {
   deleteQuerySet,
 } from "@/serverFunctions/laojin-ai-visibility";
 import { toast } from "sonner";
+import { t, useT } from "@/client/features/laojin/i18n";
 
 function pct(r: { rate: number; lower: number; upper: number } | null | undefined) {
   if (!r) return "—";
@@ -57,6 +58,7 @@ function StatCard({
 }
 
 export function AiVisibilityPage({ projectId }: { projectId: string }) {
+  useT();
   const qc = useQueryClient();
   const [selectedSet, setSelectedSet] = React.useState<string | null>(null);
   const [showRecord, setShowRecord] = React.useState(false);
@@ -120,15 +122,15 @@ export function AiVisibilityPage({ projectId }: { projectId: string }) {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-semibold flex items-center gap-2">
-              <Radar className="size-6 text-primary" /> AI Visibility
+              <Radar className="size-6 text-primary" /> {t("nav.aiVisibility")}
             </h1>
             <p className="text-sm text-base-content/70">
-              Measure how AI engines answer, mention, and cite your brand — fixed query set, weekly sampling.
+              {t("aiVis.subtitle")}
             </p>
           </div>
           <div className="flex gap-2">
             <button className="btn btn-outline btn-sm" onClick={() => setShowCreate(true)}>
-              <Plus className="size-4" /> New query set
+              <Plus className="size-4" /> {t("aiVis.newSet")}
             </button>
             {activeSet && (
               <button
@@ -142,7 +144,7 @@ export function AiVisibilityPage({ projectId }: { projectId: string }) {
             )}
             {activeSet && (
               <button className="btn btn-primary btn-sm" onClick={() => setShowRecord(true)}>
-                <PlusCircle className="size-4" /> Record trial
+                <PlusCircle className="size-4" /> {t("aiVis.recordTrial")}
               </button>
             )}
           </div>
@@ -150,7 +152,7 @@ export function AiVisibilityPage({ projectId }: { projectId: string }) {
 
         {sets.length > 0 && (
           <div className="flex items-center gap-2">
-            <span className="text-xs text-base-content/50">Query set:</span>
+            <span className="text-xs text-base-content/50">{t("aiVis.querySet")}</span>
             <select
               className="select select-bordered select-sm max-w-xs"
               value={activeSet ?? ""}
@@ -164,7 +166,7 @@ export function AiVisibilityPage({ projectId }: { projectId: string }) {
             </select>
             {queriesQuery.data?.set && (
               <span className="text-xs text-base-content/40">
-                {queriesQuery.data.queries.length} queries · {queriesQuery.data.set.language}/{queriesQuery.data.set.locale}
+                {queriesQuery.data.queries.length} {t("aiVis.queries")} · {queriesQuery.data.set.language}/{queriesQuery.data.set.locale}
               </span>
             )}
           </div>
@@ -174,37 +176,37 @@ export function AiVisibilityPage({ projectId }: { projectId: string }) {
           <>
             <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
               <StatCard
-                label="Answer rate"
+                label={t("aiVis.answerRate")}
                 value={pct(overall.answerRate)}
                 intervalText={interval(overall.answerRate)}
                 deltaText={delta(overall.weekOverWeek.answerDeltaPp)}
                 sub={`n=${overall.n}`}
               />
               <StatCard
-                label="Brand mention rate"
+                label={t("aiVis.mentionRate")}
                 value={pct(overall.mentionRate)}
                 intervalText={interval(overall.mentionRate)}
                 deltaText={delta(overall.weekOverWeek.mentionDeltaPp)}
-                sub="mentions / eligible"
+                sub={t("aiVis.mentionSub")}
               />
               <StatCard
-                label="Brand cite rate"
+                label={t("aiVis.citeRate")}
                 value={pct(overall.citeRate)}
                 intervalText={interval(overall.citeRate)}
                 deltaText={delta(overall.weekOverWeek.citeDeltaPp)}
-                sub="URL cited / eligible"
+                sub={t("aiVis.citeSub")}
               />
               <StatCard
-                label="Conditional mention"
+                label={t("aiVis.conditional")}
                 value={pct(overall.conditionalRate)}
                 intervalText={interval(overall.conditionalRate)}
                 deltaText=""
-                sub="mentions / answered"
+                sub={t("aiVis.conditionalSub")}
               />
             </div>
             {overall.excluded > 0 && (
               <p className="text-xs text-base-content/40">
-                {overall.excluded} excluded trial(s) kept out of denominators (see details).
+                {overall.excluded} {t("aiVis.excludedNote")}
               </p>
             )}
 
@@ -213,11 +215,11 @@ export function AiVisibilityPage({ projectId }: { projectId: string }) {
                 <table className="table table-sm">
                   <thead>
                     <tr>
-                      <th>Week of</th>
+                      <th>{t("aiVis.weekOf")}</th>
                       <th className="text-right">n</th>
-                      <th className="text-right">Answer</th>
-                      <th className="text-right">Mention</th>
-                      <th className="text-right">Cite</th>
+                      <th className="text-right">{t("aiVis.answer")}</th>
+                      <th className="text-right">{t("aiVis.mention")}</th>
+                      <th className="text-right">{t("aiVis.cite")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -238,8 +240,8 @@ export function AiVisibilityPage({ projectId }: { projectId: string }) {
         ) : (
           <div className="rounded-2xl border border-dashed border-base-300 p-8 text-center text-sm text-base-content/50">
             {sets.length === 0
-              ? "No query sets yet. Create one with your fixed question list to start measuring."
-              : "No trials recorded yet. Click “Record trial” after your first sampling session."}
+              ? t("aiVis.noSets")
+              : t("aiVis.noTrials")}
           </div>
         )}
 
@@ -248,13 +250,13 @@ export function AiVisibilityPage({ projectId }: { projectId: string }) {
             <table className="table table-sm">
               <thead>
                 <tr>
-                  <th>Collected</th>
-                  <th>Query</th>
-                  <th>Engine</th>
-                  <th className="text-center">Answer</th>
-                  <th className="text-center">Mention</th>
-                  <th className="text-center">Cite</th>
-                  <th>Notes</th>
+                  <th>{t("aiVis.collected")}</th>
+                  <th>{t("aiVis.query")}</th>
+                  <th>{t("aiVis.engine")}</th>
+                  <th className="text-center">{t("aiVis.answer")}</th>
+                  <th className="text-center">{t("aiVis.mention")}</th>
+                  <th className="text-center">{t("aiVis.cite")}</th>
+                  <th>{t("aiVis.notes")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -375,7 +377,7 @@ function RecordTrialModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={onClose}>
       <div className="w-full max-w-lg rounded-2xl border border-base-300 bg-base-100 p-5" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Record trial</h2>
+          <h2 className="text-lg font-semibold">{t("aiVis.recordTitle")}</h2>
           <button className="btn btn-ghost btn-xs" onClick={onClose}>
             <X className="size-4" />
           </button>
@@ -394,41 +396,41 @@ function RecordTrialModal({
           <div className="flex items-center gap-3">
             <label className="flex items-center gap-1 text-xs">
               <input type="checkbox" className="checkbox checkbox-xs" checked={eligible} onChange={(e) => setEligible(e.target.checked)} />
-              Eligible
+              {t("aiVis.eligible")}
             </label>
             <input
               className="input input-bordered input-sm flex-1"
-              placeholder="Model (optional)"
+              placeholder={t("aiVis.modelPlaceholder")}
               value={model}
               onChange={(e) => setModel(e.target.value)}
             />
           </div>
           {eligible ? (
             <>
-              {tri("Answered", answered, setAnswered)}
-              {tri("Brand mentioned", mentioned, setMentioned)}
-              {tri("Brand URL cited", cited, setCited)}
+              {tri(t("aiVis.answered"), answered, setAnswered)}
+              {tri(t("aiVis.brandMentioned"), mentioned, setMentioned)}
+              {tri(t("aiVis.brandCited"), cited, setCited)}
             </>
           ) : (
             <input
               className="input input-bordered input-sm w-full"
-              placeholder="Exclusion reason (engine error, retry failed…)"
+              placeholder={t("aiVis.exclusionPlaceholder")}
               value={exclusionReason}
               onChange={(e) => setExclusionReason(e.target.value)}
             />
           )}
           <textarea
             className="textarea textarea-bordered textarea-sm w-full"
-            placeholder="Notes (what the answer said, URLs cited…)"
+            placeholder={t("aiVis.notesPlaceholder")}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
           />
           <div className="flex justify-end gap-2">
             <button className="btn btn-ghost btn-sm" onClick={onClose}>
-              Cancel
+              {t("common.cancel")}
             </button>
             <button className="btn btn-primary btn-sm" disabled={mut.isPending || (!eligible && !exclusionReason)} onClick={() => mut.mutate()}>
-              Save
+              {t("common.save")}
             </button>
           </div>
         </div>
@@ -484,24 +486,24 @@ function CreateSetModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={onClose}>
       <div className="w-full max-w-lg rounded-2xl border border-base-300 bg-base-100 p-5" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">New query set</h2>
+          <h2 className="text-lg font-semibold">{t("aiVis.createTitle")}</h2>
           <button className="btn btn-ghost btn-xs" onClick={onClose}>
             <X className="size-4" />
           </button>
         </div>
         <div className="mt-4 space-y-3">
-          <input className="input input-bordered input-sm w-full" placeholder="Set name (e.g. Laojinchuhai EN baseline)" value={name} onChange={(e) => setName(e.target.value)} />
-          <input className="input input-bordered input-sm w-full" placeholder="Engine (chatgpt-ai-search / perplexity)" value={engine} onChange={(e) => setEngine(e.target.value)} />
+          <input className="input input-bordered input-sm w-full" placeholder={t("aiVis.setNamePlaceholder")} value={name} onChange={(e) => setName(e.target.value)} />
+          <input className="input input-bordered input-sm w-full" placeholder={t("aiVis.enginePlaceholder")} value={engine} onChange={(e) => setEngine(e.target.value)} />
           <div>
-            <p className="text-xs text-base-content/60">Queries — one per line: <code>query_id|question text</code> (wording is locked for replay)</p>
+            <p className="text-xs text-base-content/60">{t("aiVis.queriesHint")}</p>
             <textarea className="textarea textarea-bordered textarea-sm w-full font-mono text-xs" rows={8} value={lines} onChange={(e) => setLines(e.target.value)} />
           </div>
           <div className="flex justify-end gap-2">
             <button className="btn btn-ghost btn-sm" onClick={onClose}>
-              Cancel
+              {t("common.cancel")}
             </button>
             <button className="btn btn-primary btn-sm" disabled={mut.isPending || !name.trim()} onClick={() => mut.mutate()}>
-              Create
+              {t("common.create")}
             </button>
           </div>
         </div>
