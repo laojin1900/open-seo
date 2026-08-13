@@ -124,6 +124,8 @@ export function getProjectNavGroups(projectId: string) {
       label: "My Site",
       items: [
         byPath("/p/$projectId/search-performance"),
+        // 老金定制：AI Visibility（GEO-ROADMAP.md P0）
+        byPath("/p/$projectId/ai-visibility"),
         byPath("/p/$projectId/rank-tracking"),
         byPath("/p/$projectId/saved"),
         byPath("/p/$projectId/audit"),
