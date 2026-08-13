@@ -4,6 +4,7 @@ import { useEffect, useState, type ComponentType } from "react";
 import {
   CircleHelp,
   CreditCard,
+  Languages as LanguagesIcon,
   LayoutGrid,
   LogOut,
   MessageCircle,
@@ -245,6 +246,25 @@ function SidebarFooter({ onNavigate }: { onNavigate?: () => void }) {
         onNavigate={onNavigate}
         linkProps={{ to: "/support" }}
       />
+
+      {/* 老金定制：语言切换入口（始终可见，不依赖 email 会话） */}
+      <div className="dropdown dropdown-top w-full">
+        <button
+          type="button"
+          tabIndex={0}
+          className={`${navItemClass} w-full`}
+          aria-label="Open language menu"
+        >
+          <LanguagesIcon className="h-4 w-4 shrink-0" />
+          {useT().lang === "zh" ? "语言 / Language" : "Language / 语言"}
+        </button>
+        <ul
+          tabIndex={0}
+          className="dropdown-content z-30 menu mb-1 w-56 rounded-box border border-base-300 bg-base-100 p-2 shadow-lg"
+        >
+          <LanguagePreferenceMenuItems />
+        </ul>
+      </div>
 
       {email ? (
         <div className="dropdown dropdown-top w-full">
