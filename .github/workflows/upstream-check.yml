@@ -1,0 +1,43 @@
+name: Upstream Sync Check
+
+# 每周检查上游（every-app/open-seo）领先多少 commit。
+# 落后超过阈值 → workflow failed → GitHub 邮件提醒；流程见 FORK-STRATEGY.md。
+on:
+  schedule:
+    # 每周日 22:00 UTC = 北京时间周一 06:00
+    - cron: "0 22 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add upstream remote
+        run: git remote add upstream https://github.com/every-app/open-seo.git
+
+      - name: Fetch upstream
+        run: git fetch upstream main
+
+      - name: Check drift and alert
+        run: |
+          BEHIND=$(git rev-list --count HEAD..upstream/main)
+          AHEAD=$(git rev-list --count upstream/main..HEAD)
+          echo "上游领先：$BEHIND commits"
+          echo "我们领先（本地定制提交）：$AHEAD commits"
+          echo ""
+          echo "上游最近 5 条提交："
+          git log --oneline HEAD..upstream/main -5
+          echo ""
+          echo "::notice::上游领先 $BEHIND 个 commit（阈值 30）。合并流程见 FORK-STRATEGY.md"
+          if [ "$BEHIND" -gt 30 ]; then
+            echo "::error::上游积压超过 30 个 commit，建议尽快安排合并（FORK-STRATEGY.md §3）"
+            exit 1
+          fi
+          echo "积压量在安全阈值内，暂不强制合并。"
