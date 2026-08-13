@@ -303,7 +303,7 @@ function SidebarFooter({ onNavigate }: { onNavigate?: () => void }) {
       ) : (
         <SidebarNavLink
           icon={Settings}
-          label="Settings"
+          label={t("nav.settings")}
           onNavigate={onNavigate}
           linkProps={{ to: "/settings" }}
         />
