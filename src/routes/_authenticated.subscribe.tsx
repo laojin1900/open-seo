@@ -10,6 +10,7 @@ import { getStandardErrorMessage } from "@/client/lib/error-messages";
 import { getSubscribeRouteState } from "@/client/features/billing/route-state";
 import { getCustomerPlanStatus } from "@/client/features/billing/plan-detection";
 import { normalizeAuthRedirect } from "@/lib/auth-redirect";
+import { t } from "@/client/features/laojin/i18n";
 import {
   AUTUMN_MANAGED_ACCESS_FEATURE_ID,
   AUTUMN_PAID_PLAN_ID,
@@ -134,16 +135,14 @@ function SubscribePage() {
           className="mx-auto size-10 rounded-lg"
         />
         <h1 className="text-xl font-semibold">
-          Finalizing your subscription&hellip;
-        </h1>
+          {t("Finalizing your subscription&hellip;")}</h1>
         <span className="loading loading-spinner loading-md" />
         <p className="text-sm text-base-content/60">
-          This usually takes a few seconds.
-        </p>
+          {t("This usually takes a few seconds.")}</p>
         <p className="text-xs text-base-content/50">
-          Taking longer?{" "}
+          {t("Taking longer?")}{" "}
           <a className="link" href={`mailto:${SUPPORT_EMAIL}`}>
-            Email {SUPPORT_EMAIL}
+            {t("Email")}{SUPPORT_EMAIL}
           </a>
           .
         </p>
@@ -160,7 +159,7 @@ function SubscribePage() {
             alt="OpenSEO"
             className="mx-auto size-10 rounded-lg"
           />
-          <h1 className="text-xl font-semibold">Billing unavailable</h1>
+          <h1 className="text-xl font-semibold">{t("Billing unavailable")}</h1>
         </div>
 
         <p className="text-sm text-center text-base-content/70">
@@ -177,8 +176,7 @@ function SubscribePage() {
             void customerQuery.refetch();
           }}
         >
-          Try again
-        </button>
+          {t("Try again")}</button>
       </div>
     );
   }
@@ -227,13 +225,12 @@ function SubscribePage() {
               : "Welcome to OpenSEO!"}
         </h1>
         <p className="text-sm text-base-content/60">
-          SEO on your terms. All your SEO tools in one place at a fair price.
-        </p>
+          {t("SEO on your terms. All your SEO tools in one place at a fair price.")}</p>
       </div>
 
       <div className="rounded-lg border border-base-300 p-5 space-y-4">
         <div className="flex items-baseline justify-between gap-4">
-          <span className="font-semibold">Base Plan</span>
+          <span className="font-semibold">{t("Base Plan")}</span>
           <span className="text-lg font-semibold tabular-nums">$10/month</span>
         </div>
 
@@ -260,7 +257,7 @@ function SubscribePage() {
                 captureClientEvent("billing:pricing_estimator_click")
               }
             >
-              How far do usage credits go?{" "}
+              {t("How far do usage credits go?")}{" "}
               <span aria-hidden="true">&#8599;</span>
             </a>
           </li>
@@ -291,7 +288,7 @@ function SubscribePage() {
 
       <div className="text-center space-y-2">
         <p className="text-sm text-base-content/60">
-          Questions? Email {SUPPORT_EMAIL}.
+          {t("Questions? Email")}{SUPPORT_EMAIL}.
         </p>
         {isUpgradeFlow ? (
           <button
@@ -300,8 +297,7 @@ function SubscribePage() {
             onClick={() => void navigate({ to: "/", replace: true })}
           >
             <ArrowRight className="size-3.5 rotate-180" />
-            Back to app
-          </button>
+            {t("Back to app")}</button>
         ) : null}
       </div>
     </div>
@@ -320,7 +316,7 @@ function SubscribePageAccountMenu({ email }: { email: string | undefined }) {
           type="button"
           tabIndex={0}
           className="btn btn-ghost btn-circle"
-          aria-label="Open account menu"
+          aria-label={t("Open account menu")}
         >
           <User className="h-5 w-5" />
         </button>
@@ -336,8 +332,7 @@ function SubscribePageAccountMenu({ email }: { email: string | undefined }) {
           <li>
             <Link to="/settings" className="flex items-center gap-2">
               <Settings className="h-4 w-4" />
-              Settings
-            </Link>
+              {t("Settings")}</Link>
           </li>
           <ThemePreferenceMenuItems />
           <li>
@@ -346,8 +341,7 @@ function SubscribePageAccountMenu({ email }: { email: string | undefined }) {
               className="text-error"
               onClick={handleSignOut}
             >
-              Sign out
-            </button>
+              {t("Sign out")}</button>
           </li>
         </ul>
       </div>

@@ -15,6 +15,7 @@ import {
 import type { SavedKeywordTagSummary } from "@/types/keywords";
 import { ManageTagRow } from "./ManageTagRow";
 import { TagChip } from "./TagChip";
+import { t } from "@/client/features/laojin/i18n";
 
 export function SavedKeywordsTagFilter({
   availableTags,
@@ -93,7 +94,7 @@ export function SavedKeywordsTagFilter({
         onClick={() => setOpen((v) => !v)}
       >
         <TagIcon className="size-3.5 opacity-70" />
-        <span className="font-medium">Tags</span>
+        <span className="font-medium">{t("Tags")}</span>
         {hasSelection ? (
           <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 text-[11px] font-semibold text-primary-content">
             {selectedTags.length}
@@ -112,7 +113,7 @@ export function SavedKeywordsTagFilter({
               selected
               onClick={() => onToggleTagFilter(tag.id)}
               trailing={<X className="size-3 opacity-70" />}
-              title="Remove filter"
+              title={t("Remove filter")}
             />
           ))}
           <button
@@ -120,8 +121,7 @@ export function SavedKeywordsTagFilter({
             className="text-xs text-base-content/60 underline-offset-2 hover:text-base-content hover:underline"
             onClick={onClearSelection}
           >
-            Clear
-          </button>
+            {t("Clear")}</button>
         </div>
       ) : null}
 
@@ -190,7 +190,7 @@ function TagFilterPopover({
             autoFocus
             value={query}
             onChange={(event) => onQueryChange(event.target.value)}
-            placeholder="Search tags…"
+            placeholder={t("Search tags…")}
             className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-base-content/40"
           />
           {query ? (
@@ -239,8 +239,7 @@ function TagFilterPopover({
             className="rounded px-2 py-1 text-base-content/70 hover:bg-base-200"
             onClick={onClearSelection}
           >
-            Clear all
-          </button>
+            {t("Clear all")}</button>
         </div>
       ) : null}
     </div>

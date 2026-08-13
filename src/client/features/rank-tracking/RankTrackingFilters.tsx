@@ -1,5 +1,6 @@
 import { RotateCcw } from "lucide-react";
 import type { DomainListFilters, Filters } from "./RankTrackingFilters.logic";
+import { t } from "@/client/features/laojin/i18n";
 
 export * from "./RankTrackingFilters.logic";
 
@@ -26,7 +27,7 @@ export function FilterPanel({
     <div className="shrink-0 border-b border-base-300 bg-gradient-to-b from-base-100 to-base-200/30 px-4 py-3 space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <p className="text-sm font-semibold">Refine results</p>
+          <p className="text-sm font-semibold">{t("Refine results")}</p>
           {activeFilterCount > 0 && (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {activeFilterCount} active
@@ -39,14 +40,12 @@ export function FilterPanel({
           disabled={activeFilterCount === 0}
         >
           <RotateCcw className="size-3" />
-          Clear all
-        </button>
+          {t("Clear all")}</button>
       </div>
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
         <div className="space-y-1.5">
           <p className="text-[11px] font-semibold uppercase tracking-wide text-base-content/60">
-            Include
-          </p>
+            {t("Include")}</p>
           <input
             className="input input-bordered input-sm w-full bg-base-100"
             placeholder="e.g. seo, tool"
@@ -56,8 +55,7 @@ export function FilterPanel({
         </div>
         <div className="space-y-1.5">
           <p className="text-[11px] font-semibold uppercase tracking-wide text-base-content/60">
-            Exclude
-          </p>
+            {t("Exclude")}</p>
           <input
             className="input input-bordered input-sm w-full bg-base-100"
             placeholder="e.g. free, cheap"
@@ -68,14 +66,14 @@ export function FilterPanel({
       </div>
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
         <RangeFilter
-          title="Desktop position"
+          title={t("Desktop position")}
           minValue={filters.minDesktopPos}
           maxValue={filters.maxDesktopPos}
           onMinChange={(v) => update("minDesktopPos", v)}
           onMaxChange={(v) => update("maxDesktopPos", v)}
         />
         <RangeFilter
-          title="Mobile position"
+          title={t("Mobile position")}
           minValue={filters.minMobilePos}
           maxValue={filters.maxMobilePos}
           onMinChange={(v) => update("minMobilePos", v)}
@@ -84,21 +82,21 @@ export function FilterPanel({
       </div>
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
         <RangeFilter
-          title="Volume"
+          title={t("Volume")}
           minValue={filters.minVolume}
           maxValue={filters.maxVolume}
           onMinChange={(v) => update("minVolume", v)}
           onMaxChange={(v) => update("maxVolume", v)}
         />
         <RangeFilter
-          title="Keyword difficulty"
+          title={t("Keyword difficulty")}
           minValue={filters.minKd}
           maxValue={filters.maxKd}
           onMinChange={(v) => update("minKd", v)}
           onMaxChange={(v) => update("maxKd", v)}
         />
         <RangeFilter
-          title="CPC"
+          title={t("CPC")}
           minValue={filters.minCpc}
           maxValue={filters.maxCpc}
           onMinChange={(v) => update("minCpc", v)}
@@ -130,11 +128,10 @@ export function DomainListFilterBar({
       <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
         <label className="form-control flex-1 gap-1.5">
           <span className="text-[11px] font-semibold uppercase tracking-wide text-base-content/60">
-            Search
-          </span>
+            {t("Search")}</span>
           <input
             className="input input-bordered input-sm w-full bg-base-100"
-            placeholder="Domain or website"
+            placeholder={t("Domain or website")}
             value={filters.query}
             onChange={(event) =>
               onChange({ ...filters, query: event.target.value })
@@ -143,8 +140,7 @@ export function DomainListFilterBar({
         </label>
         <label className="form-control gap-1.5 lg:w-44">
           <span className="text-[11px] font-semibold uppercase tracking-wide text-base-content/60">
-            Device
-          </span>
+            {t("Device")}</span>
           <select
             className="select select-bordered select-sm w-full bg-base-100"
             value={filters.device}
@@ -160,7 +156,7 @@ export function DomainListFilterBar({
               }
             }}
           >
-            <option value="all">All devices</option>
+            <option value="all">{t("All devices")}</option>
             {options.devices.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -170,8 +166,7 @@ export function DomainListFilterBar({
         </label>
         <label className="form-control gap-1.5 lg:w-52">
           <span className="text-[11px] font-semibold uppercase tracking-wide text-base-content/60">
-            Country
-          </span>
+            {t("Country")}</span>
           <select
             className="select select-bordered select-sm w-full bg-base-100"
             value={filters.locationCode}
@@ -179,7 +174,7 @@ export function DomainListFilterBar({
               onChange({ ...filters, locationCode: event.target.value })
             }
           >
-            <option value="all">All countries</option>
+            <option value="all">{t("All countries")}</option>
             {options.locations.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -193,8 +188,7 @@ export function DomainListFilterBar({
             onClick={onReset}
           >
             <RotateCcw className="size-3" />
-            Clear
-            <span className="badge badge-xs badge-primary border-0 text-primary-content">
+            {t("Clear")}<span className="badge badge-xs badge-primary border-0 text-primary-content">
               {activeFilterCount}
             </span>
           </button>
@@ -225,14 +219,14 @@ function RangeFilter({
       <div className="grid grid-cols-2 gap-2">
         <input
           className="input input-bordered input-xs bg-base-100"
-          placeholder="Min"
+          placeholder={t("Min")}
           type="number"
           value={minValue}
           onChange={(e) => onMinChange(e.target.value)}
         />
         <input
           className="input input-bordered input-xs bg-base-100"
-          placeholder="Max"
+          placeholder={t("Max")}
           type="number"
           value={maxValue}
           onChange={(e) => onMaxChange(e.target.value)}

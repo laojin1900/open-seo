@@ -4,6 +4,7 @@ import { CopyButton } from "@/client/features/ai-mcp/SetupControls";
 import { captureClientEvent } from "@/client/lib/posthog";
 import type { DashboardActivation } from "@/server/features/dashboard/services/DashboardService";
 import { dismissDashboardMcpCard } from "@/serverFunctions/dashboard";
+import { t } from "@/client/features/laojin/i18n";
 
 function firstPrompts(domain: string | null): string[] {
   const site = domain ?? "my site";
@@ -44,13 +45,11 @@ export function McpConnectCard({
     <div className="overflow-hidden rounded-xl border border-base-300 bg-base-100 shadow-sm">
       <div className="flex items-center justify-between gap-4 px-5 py-4">
         <h2 className="text-base font-semibold leading-tight">
-          Connect your AI agent
-        </h2>
+          {t("Connect your AI agent")}</h2>
         <div className="flex items-center gap-2">
           {connected ? (
             <span className="badge badge-success badge-outline badge-sm">
-              Connected
-            </span>
+              {t("Connected")}</span>
           ) : null}
           <button
             type="button"
@@ -61,16 +60,14 @@ export function McpConnectCard({
               dismissMutation.mutate();
             }}
           >
-            I already connected
-          </button>
+            {t("I already connected")}</button>
         </div>
       </div>
       <div className="space-y-3 border-t border-base-300 p-5">
         {connected ? (
           <>
             <p className="text-sm text-base-content/70">
-              Your agent is connected. Try asking it:
-            </p>
+              {t("Your agent is connected. Try asking it:")}</p>
             <ul className="space-y-2">
               {firstPrompts(activation.domain).map((prompt) => (
                 <li
@@ -92,32 +89,24 @@ export function McpConnectCard({
               ))}
             </ul>
             <p className="text-xs text-base-content/50">
-              Waiting for your first call — this card disappears once your agent
-              talks to OpenSEO.
-            </p>
+              {t("Waiting for your first call — this card disappears once your agent\n              talks to OpenSEO.")}</p>
           </>
         ) : (
           <>
             <div className="space-y-2 text-sm text-base-content/70">
               <p>
-                OpenSEO is designed to give your AI agent the data it needs to
-                build a great SEO strategy and help you execute it.
-              </p>
+                {t("OpenSEO is designed to give your AI agent the data it needs to\n                build a great SEO strategy and help you execute it.")}</p>
               <p>
-                This way you aren&rsquo;t limited on &ldquo;AI credits&rdquo;.
-              </p>
+                {t("This way you aren&rsquo;t limited on &ldquo;AI credits&rdquo;.")}</p>
               <p>
-                You can work with your agent to figure out what automations make
-                sense for you and it can help you write content too.
-              </p>
+                {t("You can work with your agent to figure out what automations make\n                sense for you and it can help you write content too.")}</p>
             </div>
             <Link
               to="/ai"
               className="link link-primary text-sm font-medium"
               onClick={() => captureClientEvent("dashboard:mcp_setup_open")}
             >
-              Set up in AI &amp; MCP →
-            </Link>
+              {t("Set up in AI &amp; MCP →")}</Link>
           </>
         )}
       </div>

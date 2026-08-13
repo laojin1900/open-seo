@@ -7,6 +7,7 @@ import { CopyButton } from "@/client/features/ai-mcp/SetupControls";
 import { getStandardErrorMessage } from "@/client/lib/error-messages";
 import { captureClientEvent } from "@/client/lib/posthog";
 import { authClient } from "@/lib/auth-client";
+import { t } from "@/client/features/laojin/i18n";
 
 // Better Auth rejects longer names with INVALID_NAME_LENGTH.
 const MAX_KEY_NAME_LENGTH = 32;
@@ -85,16 +86,13 @@ export function ApiKeySettings() {
 
   return (
     <section className="space-y-3">
-      <h2 className="text-sm font-medium text-base-content/50">API keys</h2>
+      <h2 className="text-sm font-medium text-base-content/50">{t("API keys")}</h2>
       <div className="flex items-start justify-between gap-6">
         <div>
           <p className="text-sm">
-            Authenticate MCP clients when OAuth doesn't work
-          </p>
+            {t("Authenticate MCP clients when OAuth doesn't work")}</p>
           <p className="mt-1 text-sm text-base-content/60">
-            Use this for remote agents like Hermes where the normal login flow
-            doesn't work.
-          </p>
+            {t("Use this for remote agents like Hermes where the normal login flow\n            doesn't work.")}</p>
           <p className="mt-1 text-sm">
             <a
               className="link link-primary"
@@ -102,8 +100,7 @@ export function ApiKeySettings() {
               target="_blank"
               rel="noreferrer"
             >
-              Setup guide
-            </a>
+              {t("Setup guide")}</a>
           </p>
         </div>
         <button
@@ -111,21 +108,20 @@ export function ApiKeySettings() {
           className="btn btn-primary btn-sm"
           onClick={() => setIsCreateOpen(true)}
         >
-          Create API key
-        </button>
+          {t("Create API key")}</button>
       </div>
 
       {apiKeysQuery.isError ? (
-        <p className="text-sm text-error">We couldn't load your API keys.</p>
+        <p className="text-sm text-error">{t("We couldn't load your API keys.")}</p>
       ) : apiKeys.length > 0 ? (
         <div className="overflow-x-auto rounded-lg border border-base-300">
           <table className="table table-sm">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Key</th>
-                <th>Created</th>
-                <th>Last used</th>
+                <th>{t("Name")}</th>
+                <th>{t("Key")}</th>
+                <th>{t("Created")}</th>
+                <th>{t("Last used")}</th>
                 <th className="w-10"></th>
               </tr>
             </thead>
@@ -170,8 +166,7 @@ export function ApiKeySettings() {
                             }}
                           >
                             <Trash2 className="size-3.5" />
-                            Revoke key
-                          </button>
+                            {t("Revoke key")}</button>
                         </li>
                       )}
                     </PortalMenu>
@@ -188,12 +183,11 @@ export function ApiKeySettings() {
           <div className="modal-box max-w-md">
             {createdKey ? (
               <>
-                <h3 className="text-lg font-bold">Copy your new API key</h3>
+                <h3 className="text-lg font-bold">{t("Copy your new API key")}</h3>
                 <p className="mt-2 text-sm text-base-content/60">
-                  It won't be shown again. Send it as{" "}
+                  {t("It won't be shown again. Send it as")}{" "}
                   <span className="font-mono text-xs">
-                    Authorization: Bearer
-                  </span>{" "}
+                    {t("Authorization: Bearer")}</span>{" "}
                   to <span className="font-mono text-xs">{mcpUrl}</span>.
                 </p>
                 <div className="mt-4 flex items-center gap-2">
@@ -212,8 +206,7 @@ export function ApiKeySettings() {
                     className="btn btn-primary btn-sm"
                     onClick={closeCreateModal}
                   >
-                    Done
-                  </button>
+                    {t("Done")}</button>
                 </div>
               </>
             ) : (
@@ -223,14 +216,13 @@ export function ApiKeySettings() {
                   if (name.trim()) createMutation.mutate(name.trim());
                 }}
               >
-                <h3 className="text-lg font-bold">Create API key</h3>
+                <h3 className="text-lg font-bold">{t("Create API key")}</h3>
                 <label className="form-control mt-4 w-full">
                   <span className="label-text pb-1 text-xs text-base-content/60">
-                    Name
-                  </span>
+                    {t("Name")}</span>
                   <input
                     className="input input-sm input-bordered w-full"
-                    placeholder="Claude Code on laptop"
+                    placeholder={t("Claude Code on laptop")}
                     value={name}
                     maxLength={MAX_KEY_NAME_LENGTH}
                     onChange={(event) => setName(event.currentTarget.value)}
@@ -244,8 +236,7 @@ export function ApiKeySettings() {
                     className="btn btn-ghost btn-sm"
                     onClick={closeCreateModal}
                   >
-                    Cancel
-                  </button>
+                    {t("Cancel")}</button>
                   <button
                     type="submit"
                     className="btn btn-primary btn-sm"

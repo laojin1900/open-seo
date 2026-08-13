@@ -1,6 +1,7 @@
 import { Check, ChevronDown, Copy } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { t } from "@/client/features/laojin/i18n";
 
 export function Collapsible({
   id,
@@ -115,7 +116,7 @@ export function CopyButton({
       <button
         type="button"
         onClick={handleCopy}
-        aria-label="Copy"
+        aria-label={t("Copy")}
         className="flex size-7 items-center justify-center rounded-md text-base-content/60 transition-colors hover:bg-base-200 hover:text-base-content"
       >
         {copied ? (
@@ -138,7 +139,6 @@ export function CopyButton({
       ) : (
         <Copy className="size-3" />
       )}
-      Copy
-    </button>
+      {t("Copy")}</button>
   );
 }

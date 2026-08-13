@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Clock, Globe, History, Search, X } from "lucide-react";
 import { LOCATIONS } from "@/client/features/keywords/utils";
 import type { KeywordResearchControllerState } from "./types";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   controller: KeywordResearchControllerState;
@@ -31,11 +32,9 @@ function NoResultsState({
         <Globe className="size-10 mx-auto text-base-content/40" />
         <div className="space-y-2">
           <p className="text-lg font-semibold text-base-content">
-            Not enough keyword data for this query yet
-          </p>
+            {t("Not enough keyword data for this query yet")}</p>
           <p className="text-sm text-base-content/70">
-            We could not find keyword opportunities for
-            <span className="font-medium text-base-content">
+            {t("We could not find keyword opportunities for")}<span className="font-medium text-base-content">
               {` "${lastSearchKeyword}" `}
             </span>
             in
@@ -126,12 +125,9 @@ function SearchHistoryState({
         <section className="rounded-2xl border border-dashed border-base-300 bg-base-100/70 p-6 text-center text-base-content/50 space-y-3">
           <Search className="size-10 mx-auto opacity-40" />
           <p className="text-lg font-medium text-base-content/80">
-            Enter a keyword to get started
-          </p>
+            {t("Enter a keyword to get started")}</p>
           <p className="text-sm max-w-md mx-auto">
-            Search for any keyword to see volume, difficulty, CPC, and related
-            keyword ideas.
-          </p>
+            {t("Search for any keyword to see volume, difficulty, CPC, and related\n            keyword ideas.")}</p>
         </section>
       )}
     </div>

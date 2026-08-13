@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import { isHostedClientAuthMode } from "@/lib/auth-mode";
 import { applyBillingMarkupUsd } from "@/shared/billing";
 import { BRAND_LOOKUP_MAX_INPUT_LENGTH } from "@/types/schemas/ai-search";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   query: string;
@@ -65,7 +66,7 @@ export function BrandLookupSearchCard({
               <Search className="size-4 text-base-content/60" />
               <input
                 type="text"
-                placeholder="Enter a brand name or domain"
+                placeholder={t("Enter a brand name or domain")}
                 value={query}
                 maxLength={BRAND_LOOKUP_MAX_INPUT_LENGTH}
                 onChange={(event) => onQueryChange(event.target.value)}
@@ -91,7 +92,7 @@ export function BrandLookupSearchCard({
           <div className="flex flex-col gap-1">
             <input
               type="text"
-              placeholder="Add competitors (comma-separated)"
+              placeholder={t("Add competitors (comma-separated)")}
               value={competitors}
               onChange={(event) => onCompetitorsChange(event.target.value)}
               autoComplete="off"
@@ -99,16 +100,14 @@ export function BrandLookupSearchCard({
               className={`input input-bordered w-full ${
                 competitorsError ? "input-error" : ""
               }`}
-              aria-label="Competitors"
+              aria-label={t("Competitors")}
               aria-invalid={competitorsError || undefined}
               aria-describedby={
                 competitorsError ? "brand-lookup-input-error" : undefined
               }
             />
             <p className="text-xs text-base-content/60">
-              Add up to 5 competitor brands or domains to see your Share of
-              Voice.
-            </p>
+              {t("Add up to 5 competitor brands or domains to see your Share of\n              Voice.")}</p>
           </div>
         </form>
 
@@ -120,7 +119,7 @@ export function BrandLookupSearchCard({
 
         <div className="flex flex-wrap items-center gap-3 text-xs text-base-content/60">
           <p className="tabular-nums">
-            Est.{" "}
+            {t("Est.")}{" "}
             <span className="font-medium text-base-content/80">
               ${BRAND_LOOKUP_DISPLAYED_COST_USD.toFixed(2)}
             </span>

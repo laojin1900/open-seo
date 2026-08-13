@@ -14,6 +14,7 @@ import {
 } from "@/lib/auth-mode";
 import { getSignInSearch, normalizeAuthRedirect } from "@/lib/auth-redirect";
 import { z } from "zod";
+import { t } from "@/client/features/laojin/i18n";
 
 const verificationIssueSchema = z
   .enum(["invalid_token", "token_expired", "user_not_found", "unknown"])
@@ -213,8 +214,7 @@ function VerifyEmailPage() {
               search={getSignInSearch(redirectTo)}
               className="btn btn-soft w-full"
             >
-              Back to sign in
-            </Link>
+              {t("Back to sign in")}</Link>
           </div>
         ) : isPending || isRedirecting ? (
           <div className="flex justify-center py-4">

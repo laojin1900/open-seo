@@ -35,6 +35,7 @@ import {
   type SearchPerformanceTableDimension,
 } from "@/types/schemas/search-performance";
 import { saveKeywords } from "@/serverFunctions/keywords";
+import { t } from "@/client/features/laojin/i18n";
 
 export type Tab = "striking" | "queries" | "pages";
 export type ExportTarget = "csv" | "sheets";
@@ -160,25 +161,25 @@ export function TotalsCards({ report }: { report: Report }) {
   return (
     <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
       <TotalCard
-        label="Clicks"
+        label={t("Clicks")}
         value={formatCount(totals.clicks)}
         delta={percentDelta(totals.clicks, prevTotals.clicks)}
         deltaTitle={deltaTitle}
       />
       <TotalCard
-        label="Impressions"
+        label={t("Impressions")}
         value={formatCount(totals.impressions)}
         delta={percentDelta(totals.impressions, prevTotals.impressions)}
         deltaTitle={deltaTitle}
       />
       <TotalCard
-        label="CTR"
+        label={t("CTR")}
         value={formatCtr(totals.ctr)}
         delta={percentDelta(totals.ctr, prevTotals.ctr)}
         deltaTitle={deltaTitle}
       />
       <TotalCard
-        label="Avg position"
+        label={t("Avg position")}
         value={formatPosition(totals.position)}
         delta={positionDelta(totals.position, prevTotals.position)}
         deltaTitle={deltaTitle}
@@ -331,9 +332,7 @@ export function StrikingDistanceTable({
     <>
       <div className="p-4">
         <p className="mb-3 text-sm text-base-content/60">
-          Queries ranking at positions 5 to 20, sorted by impressions. Improve
-          the listed page to move them into the top results.
-        </p>
+          {t("Queries ranking at positions 5 to 20, sorted by impressions. Improve\n          the listed page to move them into the top results.")}</p>
         <AppDataTable
           table={table}
           className="table table-zebra table-sm"

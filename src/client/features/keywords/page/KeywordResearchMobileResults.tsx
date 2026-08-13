@@ -22,6 +22,7 @@ import {
   useKeywordResearchPagination,
 } from "./KeywordResearchPagination";
 import type { KeywordResearchControllerState } from "./types";
+import { t } from "@/client/features/laojin/i18n";
 import {
   TableBulkActionBar,
   TableBulkActionButton,
@@ -56,8 +57,7 @@ export function KeywordResearchMobileResults({ controller }: Props) {
           }`}
           onClick={() => controller.setMobileTab("serp")}
         >
-          SERP Analysis
-        </button>
+          {t("SERP Analysis")}</button>
       </div>
 
       {mobileTab === "keywords" ? (
@@ -133,7 +133,7 @@ function MobileKeywordResults({ controller }: Props) {
           className="mx-4 mt-2 rounded-lg border border-warning/40 bg-warning/15 px-3 py-2 text-xs text-base-content"
           role="status"
         >
-          No exact match for{" "}
+          {t("No exact match for")}{" "}
           <span className="font-medium">"{controller.searchedKeyword}"</span>.
           Showing closest related keywords.
         </div>
@@ -145,8 +145,7 @@ function MobileKeywordResults({ controller }: Props) {
           onClick={() => controller.setShowFilters((current) => !current)}
         >
           <SlidersHorizontal className="size-3.5" />
-          Filters
-          {activeFilterCount > 0 ? (
+          {t("Filters")}{activeFilterCount > 0 ? (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {activeFilterCount}
             </span>
@@ -161,7 +160,7 @@ function MobileKeywordResults({ controller }: Props) {
             tabIndex={0}
             role="button"
             className={`btn btn-ghost btn-xs gap-1 ${!canExport ? "btn-disabled" : ""}`}
-            aria-label="Export"
+            aria-label={t("Export")}
           >
             <Download className="size-3.5" />
             <ChevronDown className="size-3 opacity-60" />
@@ -173,14 +172,12 @@ function MobileKeywordResults({ controller }: Props) {
             <li>
               <button onClick={handleExportToSheets} disabled={!canExport}>
                 <Sheet className="size-4" />
-                Export to Sheets
-              </button>
+                {t("Export to Sheets")}</button>
             </li>
             <li>
               <button onClick={controller.exportCsv} disabled={!canExport}>
                 <FileDown className="size-4" />
-                Export CSV
-              </button>
+                {t("Export CSV")}</button>
             </li>
           </ul>
         </div>
@@ -249,7 +246,7 @@ function MobileFilters({ controller }: Props) {
     <div className="shrink-0 border-b border-base-300 bg-gradient-to-b from-base-100 to-base-200/30 px-4 py-3 space-y-3">
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <p className="text-xs font-semibold">Refine table results</p>
+          <p className="text-xs font-semibold">{t("Refine table results")}</p>
           {activeFilterCount > 0 ? (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {activeFilterCount}
@@ -262,8 +259,7 @@ function MobileFilters({ controller }: Props) {
           disabled={activeFilterCount === 0}
         >
           <RotateCcw className="size-3" />
-          Clear
-        </button>
+          {t("Clear")}</button>
       </div>
 
       <div className="grid grid-cols-1 gap-2">
@@ -271,7 +267,7 @@ function MobileFilters({ controller }: Props) {
           {(field) => (
             <input
               className="input input-bordered input-sm bg-base-100"
-              placeholder="Include terms (audit, checker)"
+              placeholder={t("Include terms (audit, checker)")}
               value={field.state.value}
               onChange={(event) => field.handleChange(event.target.value)}
             />
@@ -281,7 +277,7 @@ function MobileFilters({ controller }: Props) {
           {(field) => (
             <input
               className="input input-bordered input-sm bg-base-100"
-              placeholder="Exclude terms (jobs, course)"
+              placeholder={t("Exclude terms (jobs, course)")}
               value={field.state.value}
               onChange={(event) => field.handleChange(event.target.value)}
             />
@@ -293,34 +289,34 @@ function MobileFilters({ controller }: Props) {
         <MobileRangeInput
           form={filtersForm}
           name="minVol"
-          placeholder="Min volume"
+          placeholder={t("Min volume")}
         />
         <MobileRangeInput
           form={filtersForm}
           name="maxVol"
-          placeholder="Max volume"
+          placeholder={t("Max volume")}
         />
         <MobileRangeInput
           form={filtersForm}
           name="minCpc"
-          placeholder="Min CPC"
+          placeholder={t("Min CPC")}
           step="0.01"
         />
         <MobileRangeInput
           form={filtersForm}
           name="maxCpc"
-          placeholder="Max CPC"
+          placeholder={t("Max CPC")}
           step="0.01"
         />
         <MobileRangeInput
           form={filtersForm}
           name="minKd"
-          placeholder="Min difficulty"
+          placeholder={t("Min difficulty")}
         />
         <MobileRangeInput
           form={filtersForm}
           name="maxKd"
-          placeholder="Max difficulty"
+          placeholder={t("Max difficulty")}
         />
       </div>
 

@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { KeywordResearchRow } from "@/types/keywords";
+import { t } from "@/client/features/laojin/i18n";
 
 const KEYWORD_RESEARCH_PAGE_SIZES = [50, 100, 300, 500] as const;
 const DEFAULT_KEYWORD_RESEARCH_PAGE_SIZE = 50;
@@ -36,7 +37,7 @@ export function KeywordResearchPagination({
       </div>
       <div className="flex items-center gap-6">
         <label className="flex items-center gap-2 text-sm text-base-content/70">
-          <span className="whitespace-nowrap">Rows per page</span>
+          <span className="whitespace-nowrap">{t("Rows per page")}</span>
           <select
             className="select select-bordered select-sm w-20"
             value={pageSize}
@@ -53,7 +54,7 @@ export function KeywordResearchPagination({
         </label>
         <div className="flex items-center gap-2">
           <span className="whitespace-nowrap text-sm tabular-nums text-base-content/70">
-            Page {page.toLocaleString()} of {totalPages.toLocaleString()}
+            {t("Page")}{page.toLocaleString()} of {totalPages.toLocaleString()}
           </span>
           <div className="flex items-center gap-1">
             <button
@@ -61,7 +62,7 @@ export function KeywordResearchPagination({
               className="btn btn-ghost btn-sm btn-square"
               disabled={page <= 1}
               onClick={() => onPageChange(page - 1)}
-              aria-label="Previous page"
+              aria-label={t("Previous page")}
             >
               <ChevronLeft className="size-4" />
             </button>
@@ -70,7 +71,7 @@ export function KeywordResearchPagination({
               className="btn btn-ghost btn-sm btn-square"
               disabled={page >= totalPages}
               onClick={() => onPageChange(page + 1)}
-              aria-label="Next page"
+              aria-label={t("Next page")}
             >
               <ChevronRight className="size-4" />
             </button>

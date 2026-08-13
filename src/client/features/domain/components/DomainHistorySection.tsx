@@ -1,6 +1,7 @@
 import { Clock, History, X } from "lucide-react";
 import { Globe } from "lucide-react";
 import type { DomainHistoryItem } from "@/client/features/domain/types";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   history: DomainHistoryItem[];
@@ -24,8 +25,7 @@ export function DomainHistorySection({
       <section className="rounded-2xl border border-dashed border-base-300 bg-base-100/70 p-6 text-center text-base-content/55 space-y-2">
         <Globe className="size-9 mx-auto opacity-35" />
         <p className="text-base font-medium text-base-content/80">
-          Enter a domain to get started
-        </p>
+          {t("Enter a domain to get started")}</p>
       </section>
     );
   }

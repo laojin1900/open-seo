@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import type { TooltipContentProps } from "recharts";
 import { getRankConfigTrend } from "@/serverFunctions/rank-tracking";
+import { t } from "@/client/features/laojin/i18n";
 import {
   formatDateTick,
   TrendRangeToggle,
@@ -67,7 +68,7 @@ export function RankTrackingOverview({
     <div className="px-4 pt-4 pb-4">
       <div className="rounded-lg border border-base-300 p-3 space-y-2">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-sm font-medium">Position distribution</span>
+          <span className="text-sm font-medium">{t("Position distribution")}</span>
           <TrendRangeToggle value={sinceDays} onChange={setSinceDays} />
         </div>
 

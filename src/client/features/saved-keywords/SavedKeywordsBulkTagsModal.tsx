@@ -4,6 +4,7 @@ import { Modal } from "@/client/components/Modal";
 import { resolveTagColor, tagDotClass } from "@/shared/tag-colors";
 import type { SavedKeywordTag, SavedKeywordTagSummary } from "@/types/keywords";
 import { TagChip } from "./TagChip";
+import { t } from "@/client/features/laojin/i18n";
 
 type Mode = "add" | "remove";
 
@@ -97,10 +98,9 @@ export function SavedKeywordsBulkTagsModal({
       <div className="space-y-4">
         <div>
           <h3 id="bulk-tags-title" className="text-lg font-semibold">
-            Update tags
-          </h3>
+            {t("Update tags")}</h3>
           <p className="text-sm text-base-content/65">
-            Apply or remove tags across {selectedCount} selected keyword
+            {t("Apply or remove tags across")}{selectedCount} selected keyword
             {selectedCount !== 1 ? "s" : ""}.
           </p>
         </div>
@@ -109,13 +109,13 @@ export function SavedKeywordsBulkTagsModal({
           <SegmentButton
             active={mode === "add"}
             onClick={() => setMode("add")}
-            label="Add tags"
+            label={t("Add tags")}
             count={addNames.length}
           />
           <SegmentButton
             active={mode === "remove"}
             onClick={() => setMode("remove")}
-            label="Remove tags"
+            label={t("Remove tags")}
             count={removeIds.length}
             disabled={selectedRowTags.length === 0}
           />
@@ -148,7 +148,7 @@ export function SavedKeywordsBulkTagsModal({
                         )
                       }
                       trailing={<X className="size-3 opacity-70" />}
-                      title="Remove from selection"
+                      title={t("Remove from selection")}
                     />
                   );
                 })}
@@ -167,7 +167,7 @@ export function SavedKeywordsBulkTagsModal({
                     handleCreate();
                   }
                 }}
-                placeholder="Search or create…"
+                placeholder={t("Search or create…")}
                 className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-base-content/40"
               />
             </label>
@@ -180,7 +180,7 @@ export function SavedKeywordsBulkTagsModal({
                   className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm hover:bg-base-200"
                 >
                   <Plus className="size-3.5 text-primary" />
-                  <span className="text-base-content/70">Create</span>
+                  <span className="text-base-content/70">{t("Create")}</span>
                   <span className="font-medium">
                     &ldquo;{trimmedQuery}&rdquo;
                   </span>
@@ -230,8 +230,7 @@ export function SavedKeywordsBulkTagsModal({
           <div className="space-y-2">
             {selectedRowTags.length === 0 ? (
               <div className="rounded-md border border-base-300 bg-base-200/40 px-3 py-6 text-center text-xs text-base-content/55">
-                The selected keywords don&apos;t have any tags to remove.
-              </div>
+                {t("The selected keywords don&apos;t have any tags to remove.")}</div>
             ) : (
               <div className="flex flex-wrap gap-1.5 rounded-md border border-base-300 p-3">
                 {selectedRowTags.map((tag) => {
@@ -265,8 +264,7 @@ export function SavedKeywordsBulkTagsModal({
             className="rounded-md px-3 py-1.5 text-sm text-base-content/70 hover:bg-base-200"
             onClick={onClose}
           >
-            Cancel
-          </button>
+            {t("Cancel")}</button>
           <button
             type="button"
             className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-content disabled:opacity-50"
@@ -279,8 +277,7 @@ export function SavedKeywordsBulkTagsModal({
             }
           >
             {isPending ? <Loader2 className="size-3.5 animate-spin" /> : null}
-            Apply
-          </button>
+            {t("Apply")}</button>
         </div>
       </div>
     </Modal>

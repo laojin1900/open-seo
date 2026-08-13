@@ -20,6 +20,7 @@ import { DifficultyBadge } from "@/client/features/domain/components/DifficultyB
 import { formatNumber } from "@/client/features/keywords/utils";
 import type { KeywordResearchRow } from "@/types/keywords";
 import { EmptyFilterResults } from "./keywordResearchFilters";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   activeFilterCount: number;
@@ -62,7 +63,7 @@ export function KeywordResearchDesktopTable({
       keywordColumnHelper.accessor("keyword", {
         header: () => (
           <SortHeader
-            label="Keyword"
+            label={t("Keyword")}
             field="keyword"
             current={sortField}
             dir={sortDir}
@@ -86,7 +87,7 @@ export function KeywordResearchDesktopTable({
       keywordColumnHelper.accessor("searchVolume", {
         header: () => (
           <SortHeader
-            label="Volume"
+            label={t("Volume")}
             field="searchVolume"
             current={sortField}
             dir={sortDir}
@@ -104,7 +105,7 @@ export function KeywordResearchDesktopTable({
       keywordColumnHelper.accessor("cpc", {
         header: () => (
           <SortHeader
-            label="CPC"
+            label={t("CPC")}
             helpText="Cost per click in USD."
             field="cpc"
             current={sortField}
@@ -126,7 +127,7 @@ export function KeywordResearchDesktopTable({
       keywordColumnHelper.accessor("competition", {
         header: () => (
           <SortHeader
-            label="Comp."
+            label={t("Comp.")}
             helpText="Paid-search competition from Google Ads (0-1): higher means more advertisers bidding."
             field="competition"
             current={sortField}
@@ -148,7 +149,7 @@ export function KeywordResearchDesktopTable({
       keywordColumnHelper.accessor("keywordDifficulty", {
         header: () => (
           <SortHeader
-            label="Score"
+            label={t("Score")}
             helpText="Organic ranking difficulty (0-100): higher means harder to reach Google's top 10."
             field="keywordDifficulty"
             current={sortField}

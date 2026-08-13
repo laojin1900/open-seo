@@ -7,6 +7,7 @@ import {
   type TagColorKey,
 } from "@/shared/tag-colors";
 import type { SavedKeywordTagSummary } from "@/types/keywords";
+import { t } from "@/client/features/laojin/i18n";
 
 export function ManageTagRow({
   tag,
@@ -32,8 +33,7 @@ export function ManageTagRow({
     <div className="space-y-2 border-y border-base-300 bg-base-200/40 px-3 py-2.5">
       <div className="space-y-1">
         <label className="text-[11px] font-semibold uppercase tracking-wide text-base-content/55">
-          Rename
-        </label>
+          {t("Rename")}</label>
         <div className="flex items-center gap-1.5">
           <Pencil className="size-3 opacity-50" />
           <input
@@ -46,8 +46,7 @@ export function ManageTagRow({
 
       <div className="space-y-1">
         <label className="text-[11px] font-semibold uppercase tracking-wide text-base-content/55">
-          Color
-        </label>
+          {t("Color")}</label>
         <div className="flex flex-wrap items-center gap-1.5">
           {TAG_COLOR_KEYS.map((key) => (
             <button
@@ -73,16 +72,14 @@ export function ManageTagRow({
           disabled={isBusy}
         >
           <Trash2 className="size-3" />
-          Delete
-        </button>
+          {t("Delete")}</button>
         <div className="flex items-center gap-1.5">
           <button
             type="button"
             className="rounded px-2 py-1 text-xs text-base-content/70 hover:bg-base-300"
             onClick={onCancel}
           >
-            Cancel
-          </button>
+            {t("Cancel")}</button>
           <button
             type="button"
             className="rounded bg-primary px-2 py-1 text-xs font-medium text-primary-content disabled:opacity-50"
@@ -94,8 +91,7 @@ export function ManageTagRow({
               })
             }
           >
-            Save
-          </button>
+            {t("Save")}</button>
         </div>
       </div>
     </div>

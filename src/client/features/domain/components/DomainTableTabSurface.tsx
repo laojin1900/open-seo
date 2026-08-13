@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { SlidersHorizontal } from "lucide-react";
 import { TableExportMenu } from "@/client/components/table/TableBulkActionBar";
 import { TableLoadingRows } from "@/client/features/domain/components/TableLoadingRows";
+import { t } from "@/client/features/laojin/i18n";
 
 type DomainTableExportAction = {
   label: string;
@@ -44,12 +45,11 @@ export function DomainTableTabSurface({
         <button
           className={`btn btn-ghost btn-sm gap-1.5 ${showFilters ? "btn-active" : ""}`}
           onClick={onToggleFilters}
-          title="Toggle filters"
+          title={t("Toggle filters")}
           type="button"
         >
           <SlidersHorizontal className="size-3.5" />
-          Filters
-          {activeFilterCount > 0 ? (
+          {t("Filters")}{activeFilterCount > 0 ? (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {activeFilterCount}
             </span>

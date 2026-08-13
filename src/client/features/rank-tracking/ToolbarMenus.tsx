@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from "react";
+import { t } from "@/client/features/laojin/i18n";
 import {
   ChevronDown,
   Copy,
@@ -103,13 +104,13 @@ export function MoreMenu({
   return (
     <ToolbarMenu
       icon={<MoreHorizontal className="size-4" />}
-      title="More actions"
+      title={t("More actions")}
     >
       {!checkDisabled && (
         <MenuItem
           icon={<Play className="size-3.5" />}
           label={checkBusy ? "Running..." : "Check rankings"}
-          description="Fetch current Google positions"
+          description={t("Fetch current Google positions")}
           onClick={onCheckNow}
           disabled={checkBusy}
         />
@@ -121,7 +122,7 @@ export function MoreMenu({
           />
         }
         label={metricsRefreshing ? "Refreshing..." : "Update keyword stats"}
-        description="Volume, difficulty & CPC — not rankings"
+        description={t("Volume, difficulty & CPC — not rankings")}
         onClick={onRefreshMetrics}
         disabled={metricsRefreshing || !hasData}
       />
@@ -141,22 +142,22 @@ export function ExportMenu({
   hasData: boolean;
 }) {
   return (
-    <ToolbarMenu label="Export" icon={<Download className="size-3.5" />}>
+    <ToolbarMenu label={t("Export")} icon={<Download className="size-3.5" />}>
       <MenuItem
         icon={<Sheet className="size-3.5" />}
-        label="Export to Sheets"
+        label={t("Export to Sheets")}
         onClick={onExportToSheets}
         disabled={!hasData}
       />
       <MenuItem
         icon={<FileDown className="size-3.5" />}
-        label="Export CSV"
+        label={t("Export CSV")}
         onClick={onExport}
         disabled={!hasData}
       />
       <MenuItem
         icon={<Copy className="size-3.5" />}
-        label="Copy keywords"
+        label={t("Copy keywords")}
         onClick={onCopyKeywords}
         disabled={!hasData}
       />

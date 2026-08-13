@@ -7,6 +7,7 @@ import {
 import { ExternalUrlCell } from "@/client/components/table/url";
 import { SortableHeader } from "@/client/features/domain/components/SortableHeader";
 import { useDomainRenderDebug } from "@/client/features/domain/domainDebug";
+import { t } from "@/client/features/laojin/i18n";
 import {
   formatNumber,
   formatRounded,
@@ -56,7 +57,7 @@ function DomainPagesTableComponent({
       pageColumnHelper.accessor("organicTraffic", {
         header: () => (
           <SortableHeader
-            label="Organic Traffic"
+            label={t("Organic Traffic")}
             isActive={toPageSortMode(sortMode) === "traffic"}
             order={currentSortOrder}
             onClick={() => onSortClick("traffic")}
@@ -67,7 +68,7 @@ function DomainPagesTableComponent({
       pageColumnHelper.accessor("keywords", {
         header: () => (
           <SortableHeader
-            label="Keywords"
+            label={t("Keywords")}
             isActive={toPageSortMode(sortMode) === "keywords"}
             order={currentSortOrder}
             onClick={() => onSortClick("volume")}

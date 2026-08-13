@@ -25,6 +25,7 @@ import { KeywordResearchLoadingState } from "./KeywordResearchLoadingState";
 import { KeywordResearchResults } from "./KeywordResearchResults";
 import { KeywordResearchSearchBar } from "./KeywordResearchSearchBar";
 import type { KeywordResearchControllerState } from "./types";
+import { t } from "@/client/features/laojin/i18n";
 
 type ControllerProps = Omit<KeywordResearchControllerInput, "onFormSubmit">;
 type Props = Omit<
@@ -180,10 +181,9 @@ export function KeywordResearchPage(input: Props) {
     <div className="px-4 py-4 md:px-6 md:py-6 pb-24 md:pb-8 overflow-auto">
       <div className="mx-auto flex max-w-7xl flex-col gap-5">
         <div>
-          <h1 className="text-2xl font-semibold">Keyword Research</h1>
+          <h1 className="text-2xl font-semibold">{t("Keyword Research")}</h1>
           <p className="text-sm text-base-content/70">
-            Discover keyword ideas, search demand, and ranking opportunities.
-          </p>
+            {t("Discover keyword ideas, search demand, and ranking opportunities.")}</p>
         </div>
 
         <KeywordResearchSearchBar controller={controller} />
@@ -196,8 +196,7 @@ export function KeywordResearchPage(input: Props) {
               onClick={showRecentSearches}
             >
               <ArrowLeft className="size-4" />
-              Recent searches
-            </button>
+              {t("Recent searches")}</button>
             <SearchTabStrip
               projectId={projectId}
               tabs={searchTabs.tabs}
@@ -242,12 +241,10 @@ function KeywordResearchContent({
           </div>
           {isCreditsError ? (
             <Link to={BILLING_ROUTE} className="btn btn-sm">
-              Go to Billing
-            </Link>
+              {t("Go to Billing")}</Link>
           ) : (
             <button className="btn btn-sm" onClick={controller.retrySearch}>
-              Try again
-            </button>
+              {t("Try again")}</button>
           )}
         </div>
       </div>
@@ -277,23 +274,19 @@ function KeywordSaveDialog({
     <div className="modal modal-open">
       <div className="modal-box">
         <h3 className="font-bold text-lg">
-          Save {controller.selectedRows.size} Keywords
-        </h3>
+          {t("Save")}{controller.selectedRows.size} {t("Keywords")}</h3>
         <div className="py-4">
           <p className="text-base-content/70 text-sm">
-            These keywords will be saved to your current project.
-          </p>
+            {t("These keywords will be saved to your current project.")}</p>
         </div>
         <div className="modal-action">
           <button
             className="btn"
             onClick={() => controller.setShowSaveDialog(false)}
           >
-            Cancel
-          </button>
+            {t("Cancel")}</button>
           <button className="btn btn-primary" onClick={controller.confirmSave}>
-            Save
-          </button>
+            {t("Save")}</button>
         </div>
       </div>
       <div

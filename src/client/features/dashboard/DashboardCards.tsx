@@ -10,6 +10,7 @@ import {
   formatPosition,
 } from "@/client/features/search-performance/SearchPerformanceColumns";
 import { getSearchPerformanceReport } from "@/serverFunctions/searchPerformance";
+import { t } from "@/client/features/laojin/i18n";
 import {
   CardShell,
   EmptyCardBody,
@@ -60,7 +61,7 @@ export function GscCard({
 
   return (
     <CardShell
-      title="Search performance"
+      title={t("Search performance")}
       stamp="Google Search Console · last 28 days"
       action={
         <Link
@@ -80,12 +81,11 @@ export function GscCard({
         </div>
       ) : reportQuery.isError ? (
         <p className="text-sm text-base-content/60">
-          Couldn&rsquo;t load Search Console data. Try again shortly.
-        </p>
+          {t("Couldn&rsquo;t load Search Console data. Try again shortly.")}</p>
       ) : report?.connected ? (
         <div className="grid grid-cols-2 gap-3">
           <Stat
-            label="Clicks"
+            label={t("Clicks")}
             value={formatCount(report.totals.clicks)}
             sub={
               <PercentDelta
@@ -95,7 +95,7 @@ export function GscCard({
             }
           />
           <Stat
-            label="Impressions"
+            label={t("Impressions")}
             value={formatCount(report.totals.impressions)}
             sub={
               <PercentDelta
@@ -104,9 +104,9 @@ export function GscCard({
               />
             }
           />
-          <Stat label="CTR" value={formatCtr(report.totals.ctr)} />
+          <Stat label={t("CTR")} value={formatCtr(report.totals.ctr)} />
           <Stat
-            label="Avg position"
+            label={t("Avg position")}
             value={formatPosition(report.totals.position)}
           />
         </div>
@@ -124,7 +124,7 @@ export function AuditHealthCard({
 }) {
   if (!audit) {
     return (
-      <CardShell title="Site audit">
+      <CardShell title={t("Site audit")}>
         <EmptyCardBody
           message="Crawl your site for broken links, missing tags and indexability problems."
           cta={
@@ -143,7 +143,7 @@ export function AuditHealthCard({
 
   return (
     <CardShell
-      title="Site audit"
+      title={t("Site audit")}
       stamp={`Site audit · ${
         audit.status === "completed"
           ? `crawled ${audit.pagesCrawled} pages · ${formatDay(audit.startedAt)}`
@@ -164,8 +164,7 @@ export function AuditHealthCard({
       {audit.topIssues.length === 0 ? (
         <div className="flex items-center gap-2 text-sm text-base-content/70">
           <Check className="size-4 text-success" />
-          No issues found — your site looks healthy.
-        </div>
+          {t("No issues found — your site looks healthy.")}</div>
       ) : (
         <ul className="space-y-2">
           {audit.topIssues.map((issue) => (
@@ -215,7 +214,7 @@ export function BacklinkPulseCard({
 }) {
   if (!backlinks && refreshing) {
     return (
-      <CardShell title="Backlink pulse" stamp="Taking your first snapshot…">
+      <CardShell title={t("Backlink pulse")} stamp="Taking your first snapshot…">
         <div className="grid grid-cols-2 gap-3" aria-busy>
           {Array.from({ length: 4 }, (_, i) => (
             <div key={i} className="skeleton h-20" />
@@ -227,17 +226,16 @@ export function BacklinkPulseCard({
 
   if (!backlinks) {
     return (
-      <CardShell title="Backlink pulse">
+      <CardShell title={t("Backlink pulse")}>
         <p className="text-sm text-base-content/60">
-          We&rsquo;ll snapshot who links to your domain — nothing to set up.
-        </p>
+          {t("We&rsquo;ll snapshot who links to your domain — nothing to set up.")}</p>
       </CardShell>
     );
   }
 
   return (
     <CardShell
-      title="Backlink pulse"
+      title={t("Backlink pulse")}
       stamp={`Backlinks · snapshot ${formatDay(backlinks.capturedAt)}${
         refreshing ? " · refreshing…" : ""
       }`}
@@ -254,7 +252,7 @@ export function BacklinkPulseCard({
     >
       <div className="grid grid-cols-2 gap-3">
         <Stat
-          label="Ref. domains"
+          label={t("Ref. domains")}
           value={
             backlinks.referringDomains === null
               ? "—"
@@ -262,7 +260,7 @@ export function BacklinkPulseCard({
           }
         />
         <Stat
-          label="Backlinks"
+          label={t("Backlinks")}
           value={
             backlinks.backlinks === null
               ? "—"
@@ -270,7 +268,7 @@ export function BacklinkPulseCard({
           }
         />
         <Stat
-          label="New links"
+          label={t("New links")}
           value={`▲ ${newLost(backlinks.newBacklinks)}`}
           tone={
             backlinks.newBacklinks && backlinks.newBacklinks > 0
@@ -279,7 +277,7 @@ export function BacklinkPulseCard({
           }
         />
         <Stat
-          label="Lost links"
+          label={t("Lost links")}
           value={`▼ ${newLost(backlinks.lostBacklinks)}`}
           tone={
             backlinks.lostBacklinks && backlinks.lostBacklinks > 0

@@ -10,6 +10,7 @@ import {
   Undo2,
 } from "lucide-react";
 import { Markdown } from "@/client/components/Markdown";
+import { t } from "@/client/features/laojin/i18n";
 
 // Shared rendering for the chat agents (onboarding + SAM). The chats differ
 // only in which tools are available and how tool names become labels
@@ -62,8 +63,8 @@ function CopyButton({ message }: { message: UIMessage }) {
   return (
     <button
       type="button"
-      aria-label="Copy message"
-      title="Copy"
+      aria-label={t("Copy message")}
+      title={t("Copy")}
       className="btn btn-ghost btn-xs btn-square text-base-content/40 hover:text-base-content"
       onClick={() => {
         void navigator.clipboard.writeText(messageText(message));
@@ -98,8 +99,8 @@ function MessageActions({
       {onStartEdit ? (
         <button
           type="button"
-          aria-label="Edit message"
-          title="Edit and resend"
+          aria-label={t("Edit message")}
+          title={t("Edit and resend")}
           className="btn btn-ghost btn-xs btn-square text-base-content/40 hover:text-base-content"
           onClick={onStartEdit}
         >
@@ -109,8 +110,8 @@ function MessageActions({
       {onUndo ? (
         <button
           type="button"
-          aria-label="Undo from this message"
-          title="Undo — remove this message and everything after it"
+          aria-label={t("Undo from this message")}
+          title={t("Undo — remove this message and everything after it")}
           className="btn btn-ghost btn-xs btn-square text-base-content/40 hover:text-base-content"
           onClick={onUndo}
         >
@@ -256,15 +257,13 @@ export function ChatMessage({
               className="btn btn-ghost btn-xs"
               onClick={() => setEditing(false)}
             >
-              Cancel
-            </button>
+              {t("Cancel")}</button>
             <button
               type="button"
               className="btn btn-primary btn-xs"
               onClick={submit}
             >
-              Save & resend
-            </button>
+              {t("Save & resend")}</button>
           </div>
         </div>
       );

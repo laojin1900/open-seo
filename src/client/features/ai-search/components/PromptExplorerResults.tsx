@@ -12,6 +12,7 @@ import {
   getModelAccent,
 } from "@/client/features/ai-search/platformLabels";
 import { formatUrlForDisplay } from "@/client/components/table/url";
+import { t } from "@/client/features/laojin/i18n";
 import type {
   PromptExplorerCitation,
   PromptExplorerModelResult,
@@ -95,8 +96,7 @@ function ModelResultCard({
       {modelResult.fanOutQueries.length > 0 ? (
         <div className="border-t border-base-200 px-5 py-3">
           <p className="mb-2 text-xs font-medium uppercase tracking-wider text-base-content/50">
-            Related queries the model considered
-          </p>
+            {t("Related queries the model considered")}</p>
           <div className="flex flex-wrap gap-1.5">
             {modelResult.fanOutQueries.map((query, index) => (
               <span
@@ -198,7 +198,7 @@ function ModelHeader({
           <code className="text-xs text-base-content/50">{modelName}</code>
         ) : null}
         {status === "error" ? (
-          <span className="badge badge-error badge-sm">Error</span>
+          <span className="badge badge-error badge-sm">{t("Error")}</span>
         ) : null}
         <BrandMentionBadge
           mentioned={brandMentioned}

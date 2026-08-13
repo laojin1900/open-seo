@@ -23,6 +23,7 @@ import {
   type Tab,
 } from "@/client/features/search-performance/SearchPerformanceParts";
 import { getStandardErrorMessage } from "@/client/lib/error-messages";
+import { t } from "@/client/features/laojin/i18n";
 import {
   exportSearchPerformanceTable,
   getSearchPerformanceReport,
@@ -193,11 +194,9 @@ export function SearchPerformancePage({ projectId }: { projectId: string }) {
       <div className="mx-auto max-w-7xl space-y-4">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="text-2xl font-semibold">Search Performance</h1>
+            <h1 className="text-2xl font-semibold">{t("Search Performance")}</h1>
             <p className="text-sm text-base-content/70">
-              See your site&apos;s clicks, impressions, CTR, and position from
-              Google Search Console.
-            </p>
+              {t("See your site&apos;s clicks, impressions, CTR, and position from\n              Google Search Console.")}</p>
           </div>
           {report?.connected ? (
             <Link
@@ -206,8 +205,7 @@ export function SearchPerformancePage({ projectId }: { projectId: string }) {
               hash="search-console"
               className="link link-hover shrink-0 self-start text-sm font-medium text-base-content/60 transition-colors hover:text-base-content sm:mt-1"
             >
-              Change property
-            </Link>
+              {t("Change property")}</Link>
           ) : null}
         </div>
 
@@ -237,12 +235,12 @@ export function SearchPerformancePage({ projectId }: { projectId: string }) {
                   <TabButton
                     active={tab === "queries"}
                     onClick={() => setTab("queries")}
-                    label="Queries"
+                    label={t("Queries")}
                   />
                   <TabButton
                     active={tab === "pages"}
                     onClick={() => setTab("pages")}
-                    label="Pages"
+                    label={t("Pages")}
                   />
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -257,9 +255,9 @@ export function SearchPerformancePage({ projectId }: { projectId: string }) {
                         isDevice(event.target.value) ? event.target.value : ALL,
                       );
                     }}
-                    aria-label="Device filter"
+                    aria-label={t("Device filter")}
                   >
-                    <option value={ALL}>All devices</option>
+                    <option value={ALL}>{t("All devices")}</option>
                     {DEVICE_OPTIONS.map((option) => (
                       <option key={option.value} value={option.value}>
                         {option.label}
@@ -270,9 +268,9 @@ export function SearchPerformancePage({ projectId }: { projectId: string }) {
                     className="select select-bordered select-sm w-36"
                     value={country}
                     onChange={(event) => setCountry(event.target.value)}
-                    aria-label="Country filter"
+                    aria-label={t("Country filter")}
                   >
-                    <option value={ALL}>All countries</option>
+                    <option value={ALL}>{t("All countries")}</option>
                     {report.countries.map((row) => (
                       <option key={row.key} value={row.key}>
                         {row.key.toUpperCase()}
@@ -287,7 +285,7 @@ export function SearchPerformancePage({ projectId }: { projectId: string }) {
                         setRange(event.target.value);
                       }
                     }}
-                    aria-label="Date range"
+                    aria-label={t("Date range")}
                   >
                     {RANGE_OPTIONS.map((option) => (
                       <option key={option.value} value={option.value}>
@@ -320,8 +318,7 @@ export function SearchPerformancePage({ projectId }: { projectId: string }) {
                 />
               ) : tableQuery.isPending ? (
                 <div className="flex items-center gap-2 p-8 text-sm text-base-content/60">
-                  <Loader2 className="size-4 animate-spin" /> Loading…
-                </div>
+                  <Loader2 className="size-4 animate-spin" /> {t("Loading…")}</div>
               ) : tableQuery.isError ? (
                 <div className="p-4">
                   <div className="alert alert-error">

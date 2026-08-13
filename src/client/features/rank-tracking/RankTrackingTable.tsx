@@ -26,6 +26,7 @@ import {
   type KeywordTrendTarget,
 } from "./KeywordTrendModal";
 import type { SelectionAnchor } from "@/client/components/table/tableSelection";
+import { t } from "@/client/features/laojin/i18n";
 
 export function RankTrackingTable({
   totalCount,
@@ -204,10 +205,9 @@ export function RankTrackingTable({
           labelledBy="remove-keywords-title"
         >
           <h3 id="remove-keywords-title" className="text-lg font-semibold">
-            Remove keywords?
-          </h3>
+            {t("Remove keywords?")}</h3>
           <p className="text-sm text-base-content/70">
-            This will stop tracking {selectedCount} keyword
+            {t("This will stop tracking")}{selectedCount} keyword
             {selectedCount !== 1 ? "s" : ""}. Historical ranking data is
             preserved but won't appear in the table.
           </p>
@@ -216,8 +216,7 @@ export function RankTrackingTable({
               className="btn btn-ghost btn-sm"
               onClick={() => setShowConfirm(false)}
             >
-              Cancel
-            </button>
+              {t("Cancel")}</button>
             <button
               className="btn btn-error btn-sm gap-1"
               onClick={() =>
@@ -228,7 +227,7 @@ export function RankTrackingTable({
               {removeMutation.isPending && (
                 <Loader2 className="size-3 animate-spin" />
               )}
-              Remove {selectedCount} keyword
+              {t("Remove")}{selectedCount} keyword
               {selectedCount !== 1 ? "s" : ""}
             </button>
           </div>

@@ -16,6 +16,7 @@ import type {
   SearchTabInput,
 } from "@/client/features/search-tabs/types";
 import { useSearchTabNavigation } from "@/client/features/search-tabs/useSearchTabNavigation";
+import { t } from "@/client/features/laojin/i18n";
 import {
   BACKLINKS_DEFAULT_SORT,
   DEFAULT_BACKLINKS_PAGE_SIZE,
@@ -183,11 +184,9 @@ export function BacklinksPage({
     <div className="px-4 py-4 pb-24 overflow-auto md:px-6 md:py-6 md:pb-8">
       <div className="mx-auto max-w-7xl space-y-4">
         <div>
-          <h1 className="text-2xl font-semibold">Backlinks</h1>
+          <h1 className="text-2xl font-semibold">{t("Backlinks")}</h1>
           <p className="text-sm text-base-content/70">
-            Understand who links to a site, what changed recently, and which
-            pages attract links.
-          </p>
+            {t("Understand who links to a site, what changed recently, and which\n            pages attract links.")}</p>
         </div>
 
         <BacklinksSearchCard

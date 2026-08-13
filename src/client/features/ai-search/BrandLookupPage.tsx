@@ -25,6 +25,7 @@ import {
   parseCompetitorList,
 } from "@/types/schemas/ai-search";
 import { detectTarget } from "@/shared/targetDetection";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   projectId: string;
@@ -202,16 +203,15 @@ function BrandLookupPageInner({
     <div className="px-4 py-4 pb-24 overflow-auto md:px-6 md:py-6 md:pb-8">
       <div className="mx-auto max-w-7xl space-y-4">
         <div>
-          <h1 className="text-2xl font-semibold">Brand Lookup</h1>
+          <h1 className="text-2xl font-semibold">{t("Brand Lookup")}</h1>
           <p className="text-sm text-base-content/70">
-            See how AI search cites any brand name or domain.
-          </p>
+            {t("See how AI search cites any brand name or domain.")}</p>
         </div>
 
         {planGate.isFreePlan ? (
           <AiSearchPaidPlanGate
             feature="Brand Lookup"
-            description="See how ChatGPT and Google AI Overview cite any brand or domain — total mentions, sample prompts where it appears, and the pages cited alongside it."
+            description={t("See how ChatGPT and Google AI Overview cite any brand or domain — total mentions, sample prompts where it appears, and the pages cited alongside it.")}
             bullets={BRAND_LOOKUP_BULLETS}
           />
         ) : (
@@ -256,8 +256,7 @@ function BrandLookupPageInner({
                     className="btn btn-ghost btn-sm gap-2 px-0 text-base-content/70 hover:bg-transparent"
                   >
                     <ArrowLeft className="size-4" />
-                    Recent searches
-                  </Link>
+                    {t("Recent searches")}</Link>
                 </div>
                 <BrandLookupResults result={resultData} projectId={projectId} />
               </>

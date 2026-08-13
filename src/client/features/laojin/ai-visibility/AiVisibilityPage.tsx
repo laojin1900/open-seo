@@ -360,8 +360,7 @@ function RecordTrialModal({
         className={`btn btn-xs ${v === true ? "btn-primary" : "btn-ghost"}`}
         onClick={() => set(v === true ? null : true)}
       >
-        {v === true ? "✅" : "○"} Yes
-      </button>
+        {v === true ? "✅" : "○"} {t("Yes")}</button>
       <button
         type="button"
         className={`btn btn-xs ${v === false ? "btn-primary" : "btn-ghost"}`}
@@ -384,7 +383,7 @@ function RecordTrialModal({
         </div>
         <div className="mt-4 space-y-3">
           <div>
-            <label className="text-xs text-base-content/60">Query</label>
+            <label className="text-xs text-base-content/60">{t("Query")}</label>
             <select className="select select-bordered select-sm w-full" value={queryId} onChange={(e) => setQueryId(e.target.value)}>
               {queries.map((q) => (
                 <option key={q.queryId} value={q.queryId}>

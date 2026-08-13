@@ -1,4 +1,5 @@
 import { AlertCircle, CheckCircle, Loader2 } from "lucide-react";
+import { t } from "@/client/features/laojin/i18n";
 
 export const SUPPORT_EMAIL = "ben@openseo.so";
 
@@ -39,23 +40,20 @@ export function StatusBadge({ status }: { status: string }) {
   if (status === "running") {
     return (
       <span className="badge badge-info badge-sm gap-1">
-        <Loader2 className="size-3 animate-spin" /> Running
-      </span>
+        <Loader2 className="size-3 animate-spin" /> {t("Running")}</span>
     );
   }
 
   if (status === "completed") {
     return (
       <span className="badge badge-outline badge-sm gap-1 text-success/80 border-success/30 bg-success/5">
-        <CheckCircle className="size-3" /> Done
-      </span>
+        <CheckCircle className="size-3" /> {t("Done")}</span>
     );
   }
 
   return (
     <span className="badge badge-error badge-sm gap-1">
-      <AlertCircle className="size-3" /> Failed
-    </span>
+      <AlertCircle className="size-3" /> {t("Failed")}</span>
   );
 }
 

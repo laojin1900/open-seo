@@ -6,6 +6,7 @@ import { toSortMode } from "@/client/features/domain/utils";
 import type { DomainSortMode } from "@/client/features/domain/types";
 import { LABS_LOCATION_OPTIONS } from "@/client/features/keywords/locations";
 import { LocationSelect } from "@/client/components/LocationSelect";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   controlsForm: DomainOverviewControlsForm;
@@ -40,7 +41,7 @@ export function DomainSearchCard({
                   <Search className="size-4 text-base-content/60" />
                   <input
                     className="grow min-w-0"
-                    placeholder="Enter a domain"
+                    placeholder={t("Enter a domain")}
                     value={field.state.value}
                     onChange={(event) => field.handleChange(event.target.value)}
                     aria-invalid={domainError ? true : undefined}
@@ -78,11 +79,11 @@ export function DomainSearchCard({
                   onSortChange(next);
                 }}
               >
-                <option value="rank">By Rank</option>
-                <option value="traffic">By Traffic</option>
-                <option value="volume">By Volume</option>
-                <option value="score">By Score</option>
-                <option value="cpc">By CPC</option>
+                <option value="rank">{t("By Rank")}</option>
+                <option value="traffic">{t("By Traffic")}</option>
+                <option value="volume">{t("By Volume")}</option>
+                <option value="score">{t("By Score")}</option>
+                <option value="cpc">{t("By CPC")}</option>
               </select>
             )}
           </controlsForm.Field>
@@ -137,7 +138,7 @@ export function DomainSearchCard({
                 />
               )}
             </controlsForm.Field>
-            <span className="label-text">Include subdomains</span>
+            <span className="label-text">{t("Include subdomains")}</span>
           </label>
         </div>
       </div>

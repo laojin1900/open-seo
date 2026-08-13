@@ -11,6 +11,7 @@ import { EmptyTableState } from "./BacklinksPageEmptyTableState";
 import type { TopPageRow } from "./backlinksPageTypes";
 import type { TopPagesSortField } from "@/types/schemas/backlinks";
 import { formatNumber } from "./backlinksPageUtils";
+import { t } from "@/client/features/laojin/i18n";
 
 const columnHelper = createColumnHelper<TopPageRow>();
 
@@ -22,7 +23,7 @@ const columns = [
     enableSorting: false,
     header: () => (
       <HeaderHelpLabel
-        label="Page"
+        label={t("Page")}
         helpText="Page on the target site receiving backlinks."
       />
     ),
@@ -44,7 +45,7 @@ const columns = [
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label="Backlinks"
+        label={t("Backlinks")}
         helpText="Total backlinks pointing to this page."
       />
     ),
@@ -56,7 +57,7 @@ const columns = [
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label="Referring Domains"
+        label={t("Referring Domains")}
         helpText="Unique domains linking to this page."
       />
     ),
@@ -68,7 +69,7 @@ const columns = [
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label="Rank"
+        label={t("Rank")}
         helpText="Authority score for this target page."
       />
     ),
@@ -80,7 +81,7 @@ const columns = [
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label="Broken Backlinks"
+        label={t("Broken Backlinks")}
         helpText="Backlinks pointing here that are currently broken."
       />
     ),
@@ -107,7 +108,7 @@ export function TopPagesTable({
   });
 
   if (rows.length === 0) {
-    return <EmptyTableState label="No top pages match this filter." />;
+    return <EmptyTableState label={t("No top pages match this filter.")} />;
   }
 
   return (

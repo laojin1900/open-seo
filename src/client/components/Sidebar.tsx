@@ -130,14 +130,13 @@ export function Sidebar({ projectId, onNavigate, onClose }: SidebarProps) {
           onClick={onNavigate}
           className="text-base font-semibold text-base-content"
         >
-          OpenSEO
-        </Link>
+          {t("OpenSEO")}</Link>
         {onClose ? (
           <button
             type="button"
             onClick={onClose}
             className="btn btn-ghost btn-sm btn-circle"
-            aria-label="Close sidebar"
+            aria-label={t("Close sidebar")}
           >
             <X className="h-5 w-5" />
           </button>
@@ -253,7 +252,7 @@ function SidebarFooter({ onNavigate }: { onNavigate?: () => void }) {
             type="button"
             tabIndex={0}
             className={`${navItemClass} w-full`}
-            aria-label="Open account menu"
+            aria-label={t("Open account menu")}
           >
             <User className="h-4 w-4 shrink-0" />
             <span className="truncate" data-ph-mask>
@@ -274,8 +273,7 @@ function SidebarFooter({ onNavigate }: { onNavigate?: () => void }) {
               <li>
                 <Link to={BILLING_ROUTE} onClick={closeMenu}>
                   <CreditCard className="h-4 w-4" />
-                  Billing
-                </Link>
+                  {t("Billing")}</Link>
               </li>
             ) : null}
             <ThemePreferenceMenuItems />
@@ -293,8 +291,7 @@ function SidebarFooter({ onNavigate }: { onNavigate?: () => void }) {
                     onClick={() => signOutAndRedirect()}
                   >
                     <LogOut className="h-4 w-4" />
-                    Sign out
-                  </button>
+                    {t("Sign out")}</button>
                 </li>
               </>
             ) : null}

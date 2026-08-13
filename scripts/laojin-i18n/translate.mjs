@@ -7,7 +7,7 @@ import path from "node:path";
 const ROOT = process.cwd();
 const CAND_FILE = path.join(ROOT, ".laojin-i18n", "candidates.json");
 const OUT_FILE = path.join(ROOT, "src/client/features/laojin/i18n/dict.generated.ts");
-const BATCH = 30;
+const BATCH = 15;
 
 function loadEnv() {
   const envFile = path.join(ROOT, ".env.local");

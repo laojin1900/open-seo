@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { t } from "@/client/features/laojin/i18n";
 import {
   AUTUMN_SEO_DATA_BALANCE_FEATURE_ID,
   AUTUMN_SEO_DATA_TOPUP_BALANCE_FEATURE_ID,
@@ -146,8 +147,8 @@ export function BillingFeatureBreakdown() {
   return (
     <div className="rounded-lg border border-base-300 bg-base-100 p-4 space-y-3">
       <div className="flex items-baseline justify-between gap-4">
-        <span className="font-semibold">Usage by feature</span>
-        <span className="text-xs text-base-content/50">Last 30 days</span>
+        <span className="font-semibold">{t("Usage by feature")}</span>
+        <span className="text-xs text-base-content/50">{t("Last 30 days")}</span>
       </div>
 
       {eventsQuery.isLoading ? (
@@ -158,8 +159,7 @@ export function BillingFeatureBreakdown() {
         </div>
       ) : rows.length === 0 ? (
         <div className="text-sm text-base-content/40">
-          No usage recorded yet
-        </div>
+          {t("No usage recorded yet")}</div>
       ) : (
         <ul className="space-y-2.5">
           {rows.map((row) => (

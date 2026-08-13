@@ -1,5 +1,6 @@
 import { RotateCcw, SlidersHorizontal } from "lucide-react";
 import type { ReactNode } from "react";
+import { t } from "@/client/features/laojin/i18n";
 import type {
   PagesFilters,
   PerformanceFilters,
@@ -20,13 +21,13 @@ export function PagesFilterBar({
     <FilterPanel activeFilterCount={activeFilterCount} onReset={onReset}>
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
         <TextFilter
-          label="Search"
+          label={t("Search")}
           value={filters.query}
-          placeholder="URL, title, meta"
+          placeholder={t("URL, title, meta")}
           onChange={(query) => onChange({ ...filters, query })}
         />
         <SelectFilter
-          label="Status"
+          label={t("Status")}
           value={filters.status}
           onChange={(status) => onChange({ ...filters, status })}
           options={[
@@ -38,7 +39,7 @@ export function PagesFilterBar({
           ]}
         />
         <SelectFilter
-          label="Alt text"
+          label={t("Alt text")}
           value={filters.missingAlt}
           onChange={(missingAlt) => onChange({ ...filters, missingAlt })}
           options={[
@@ -50,14 +51,14 @@ export function PagesFilterBar({
       </div>
       <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
         <RangeFilter
-          label="Words"
+          label={t("Words")}
           min={filters.minWords}
           max={filters.maxWords}
           onMinChange={(minWords) => onChange({ ...filters, minWords })}
           onMaxChange={(maxWords) => onChange({ ...filters, maxWords })}
         />
         <RangeFilter
-          label="Speed ms"
+          label={t("Speed ms")}
           min={filters.minResponseMs}
           max={filters.maxResponseMs}
           onMinChange={(minResponseMs) =>
@@ -87,13 +88,13 @@ export function PerformanceFilterBar({
     <FilterPanel activeFilterCount={activeFilterCount} onReset={onReset}>
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-4">
         <TextFilter
-          label="Search"
+          label={t("Search")}
           value={filters.query}
-          placeholder="URL"
+          placeholder={t("URL")}
           onChange={(query) => onChange({ ...filters, query })}
         />
         <SelectFilter
-          label="Device"
+          label={t("Device")}
           value={filters.device}
           onChange={(device) => onChange({ ...filters, device })}
           options={[
@@ -103,7 +104,7 @@ export function PerformanceFilterBar({
           ]}
         />
         <SelectFilter
-          label="Status"
+          label={t("Status")}
           value={filters.status}
           onChange={(status) => onChange({ ...filters, status })}
           options={[
@@ -113,7 +114,7 @@ export function PerformanceFilterBar({
           ]}
         />
         <TextFilter
-          label="Max LCP s"
+          label={t("Max LCP s")}
           value={filters.maxLcpSeconds}
           placeholder="2.5"
           type="number"
@@ -122,14 +123,14 @@ export function PerformanceFilterBar({
       </div>
       <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
         <RangeFilter
-          label="Perf"
+          label={t("Perf")}
           min={filters.minPerf}
           max={filters.maxPerf}
           onMinChange={(minPerf) => onChange({ ...filters, minPerf })}
           onMaxChange={(maxPerf) => onChange({ ...filters, maxPerf })}
         />
         <RangeFilter
-          label="SEO"
+          label={t("SEO")}
           min={filters.minSeo}
           max={filters.maxSeo}
           onMinChange={(minSeo) => onChange({ ...filters, minSeo })}
@@ -162,12 +163,11 @@ export function TableFilterToggle({
       <button
         className={`btn btn-ghost btn-sm gap-1.5 ${showFilters ? "btn-active" : ""}`}
         onClick={onToggle}
-        title="Toggle filters"
+        title={t("Toggle filters")}
         type="button"
       >
         <SlidersHorizontal className="size-3.5" />
-        Filters
-        {activeFilterCount > 0 ? (
+        {t("Filters")}{activeFilterCount > 0 ? (
           <span className="badge badge-xs badge-primary border-0 text-primary-content">
             {activeFilterCount}
           </span>
@@ -203,7 +203,7 @@ function FilterPanel({
     <div className="space-y-3 border-b border-base-300 bg-gradient-to-b from-base-100 to-base-200/30 px-4 py-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <p className="text-sm font-semibold">Refine results</p>
+          <p className="text-sm font-semibold">{t("Refine results")}</p>
           {activeFilterCount > 0 ? (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {activeFilterCount} active
@@ -217,8 +217,7 @@ function FilterPanel({
           disabled={activeFilterCount === 0}
         >
           <RotateCcw className="size-3" />
-          Clear all
-        </button>
+          {t("Clear all")}</button>
       </div>
       {children}
     </div>
@@ -277,14 +276,14 @@ function RangeFilter({
           className="input input-bordered input-xs bg-base-100"
           type="number"
           value={min}
-          placeholder="Min"
+          placeholder={t("Min")}
           onChange={(event) => onMinChange(event.target.value)}
         />
         <input
           className="input input-bordered input-xs bg-base-100"
           type="number"
           value={max}
-          placeholder="Max"
+          placeholder={t("Max")}
           onChange={(event) => onMaxChange(event.target.value)}
         />
       </div>

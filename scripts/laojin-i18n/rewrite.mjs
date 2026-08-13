@@ -40,19 +40,24 @@ function main() {
     );
   });
 
-  let totalRewrites = 0;
-  const changedFiles = [];
+  // 收集编辑：{ file, start, end, newText }。使用原始 span + 文本校验，
+  // 避免 ts-morph replaceWithText 对多行属性的 span 破坏。
+  const editsByFile = new Map();
 
   for (const file of targets) {
-    let rewrites = 0;
+    const edits = [];
     const walk = (node) => {
       if (node.getKind() === SyntaxKind.JsxText) {
         const tsNode = node.compilerNode;
         if (ts.isJsxText(tsNode)) {
           const text = tsNode.getText().replace(/\{\/\*[\s\S]*?\*\/\}/g, "").trim();
           if (candidates.has(text)) {
-            node.replaceWithText(`{t(${JSON.stringify(text)})}`);
-            rewrites++;
+            edits.push({
+              start: node.getStart(),
+              end: node.getEnd(),
+              newText: `{t(${JSON.stringify(text)})}`,
+              original: node.getText(),
+            });
           }
         }
         return;
@@ -66,8 +71,14 @@ function main() {
           if (init && ts.isStringLiteral(init)) {
             const text = init.text.trim();
             if (candidates.has(text)) {
-              node.replaceWithText(`{t(${JSON.stringify(text)})}`);
-              rewrites++;
+              // 只替换 initializer（字符串字面量，含引号）的 span，保留属性名与 =
+              const initNode = node.getChildren().find((c) => c.getKind() === SyntaxKind.StringLiteral);
+              edits.push({
+                start: initNode.getStart(),
+                end: initNode.getEnd(),
+                newText: `{t(${JSON.stringify(text)})}`,
+                original: initNode.getText(),
+              });
             }
           }
         }
@@ -76,22 +87,36 @@ function main() {
       node.forEachChild(walk);
     };
     walk(file);
+    if (edits.length) editsByFile.set(file.getFilePath(), edits);
+  }
 
-    if (rewrites > 0) {
-      changedFiles.push(file.getFilePath());
-      totalRewrites += rewrites;
+  let totalRewrites = 0;
+  const changedFiles = [];
+  for (const [fp, edits] of editsByFile) {
+    // 从后往前应用，避免位置漂移；每个 edit 校验原文再替换
+    edits.sort((a, b) => b.start - a.start);
+    let content = fs.readFileSync(fp, "utf8");
+    let applied = 0;
+    for (const e of edits) {
+      const actual = content.slice(e.start, e.end);
+      if (actual !== e.original) {
+        console.warn(`  ⚠ 跳过（原文不匹配）: ${path.relative(ROOT, fp)} @${e.start}: ${JSON.stringify(e.original.slice(0, 40))}`);
+        continue;
+      }
+      content = content.slice(0, e.start) + e.newText + content.slice(e.end);
+      applied++;
+    }
+    if (applied > 0) {
+      fs.writeFileSync(fp, content, "utf8");
+      changedFiles.push(fp);
+      totalRewrites += applied;
     }
   }
 
-  // 保存改写 + 注入 import（字符串层，避开 ts-morph addImport 的状态问题）
-  for (const file of project.getSourceFiles()) {
-    if (!changedFiles.includes(file.getFilePath())) continue;
-    file.saveSync();
-  }
+  // 注入 import（字符串层）
   for (const fp of changedFiles) {
     let content = fs.readFileSync(fp, "utf8");
-    if (!content.includes(IMPORT_LINE)) {
-      // 在最后一个 import 语句后插入
+    if (!content.includes('from "@/client/features/laojin/i18n"')) {
       const lines = content.split("\n");
       let lastImportIdx = -1;
       for (let i = 0; i < lines.length; i++) {

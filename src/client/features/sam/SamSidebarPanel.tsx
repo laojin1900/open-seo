@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Archive, Loader2, Plus, X } from "lucide-react";
 import { archiveSamSession, createSamSession } from "@/serverFunctions/sam";
+import { t } from "@/client/features/laojin/i18n";
 import {
   invalidateSamSessions,
   samSessionsQueryOptions,
@@ -23,10 +24,10 @@ function BetaNotice() {
   return (
     <div className="mx-2 mb-2 rounded-lg border border-base-300 bg-base-100 p-3">
       <div className="flex items-center justify-between">
-        <span className="badge badge-primary badge-sm">Beta</span>
+        <span className="badge badge-primary badge-sm">{t("Beta")}</span>
         <button
           type="button"
-          aria-label="Dismiss"
+          aria-label={t("Dismiss")}
           className="btn btn-ghost btn-xs btn-square text-base-content/40"
           onClick={() => {
             localStorage.setItem(BETA_NOTICE_DISMISSED_KEY, "1");
@@ -37,12 +38,9 @@ function BetaNotice() {
         </button>
       </div>
       <p className="mt-1.5 text-xs text-base-content/70">
-        For more powerful AI workflows, use the OpenSEO MCP with your own agent
-        like Claude Code or Hermes.
-      </p>
+        {t("For more powerful AI workflows, use the OpenSEO MCP with your own agent\n        like Claude Code or Hermes.")}</p>
       <Link to="/ai" className="link link-primary mt-1.5 inline-block text-xs">
-        Set up the MCP →
-      </Link>
+        {t("Set up the MCP →")}</Link>
     </div>
   );
 }
@@ -124,8 +122,7 @@ export function SamSidebarPanel({
           ) : (
             <Plus className="size-4" />
           )}
-          New chat
-        </button>
+          {t("New chat")}</button>
       </div>
 
       <div className="min-h-0 flex-1 overflow-y-auto px-2 py-1">
@@ -135,8 +132,7 @@ export function SamSidebarPanel({
           </div>
         ) : sessions.length === 0 ? (
           <p className="px-2 py-6 text-center text-xs text-base-content/50">
-            No chats yet. Start a new one.
-          </p>
+            {t("No chats yet. Start a new one.")}</p>
         ) : (
           sessions.map((session) => {
             const isActive = session.id === activeSessionId;
@@ -159,7 +155,7 @@ export function SamSidebarPanel({
                 </span>
                 <button
                   type="button"
-                  aria-label="Archive chat"
+                  aria-label={t("Archive chat")}
                   className="btn btn-ghost btn-xs btn-square hidden group-hover:inline-flex"
                   disabled={archiveSession.isPending}
                   onClick={() => archiveSession.mutate(session.id)}

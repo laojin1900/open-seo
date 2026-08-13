@@ -4,6 +4,7 @@ import {
   getLanguageOptions,
 } from "@/client/features/keywords/locations";
 import type { ProjectMarket } from "@/client/features/projects/types";
+import { t } from "@/client/features/laojin/i18n";
 
 /**
  * The project's default market: country plus the language served for it.
@@ -25,7 +26,7 @@ export function ProjectMarketFields({
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <label className="flex flex-col gap-1.5 text-sm">
-        <span className="font-medium">Country</span>
+        <span className="font-medium">{t("Country")}</span>
         <LocationSelect
           value={value.locationCode}
           onChange={(locationCode) =>
@@ -39,7 +40,7 @@ export function ProjectMarketFields({
       <label
         className={`${hideLanguageOnMobile ? "hidden sm:flex" : "flex"} flex-col gap-1.5 text-sm`}
       >
-        <span className="font-medium">Language</span>
+        <span className="font-medium">{t("Language")}</span>
         <select
           value={value.languageCode}
           onChange={(event) =>

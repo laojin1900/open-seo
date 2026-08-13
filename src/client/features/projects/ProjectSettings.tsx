@@ -17,6 +17,7 @@ import {
   updateProject,
 } from "@/serverFunctions/projects";
 import type { ProjectSummary } from "./types";
+import { t } from "@/client/features/laojin/i18n";
 
 export function ProjectSettings({ projectId }: { projectId: string }) {
   const projectsQuery = useQuery({
@@ -42,12 +43,10 @@ export function ProjectSettings({ projectId }: { projectId: string }) {
           className="inline-flex items-center gap-1 text-sm text-base-content/60 transition-colors hover:text-base-content"
         >
           <ChevronLeft className="size-4" />
-          Projects
-        </Link>
+          {t("Projects")}</Link>
         <div>
           <h1 className="text-2xl font-bold tracking-tight">
-            Project settings
-          </h1>
+            {t("Project settings")}</h1>
           <p className="text-sm text-base-content/60">{project.name}</p>
         </div>
       </div>
@@ -57,13 +56,12 @@ export function ProjectSettings({ projectId }: { projectId: string }) {
 
       <section id="search-console" className="space-y-3 scroll-mt-6">
         <h2 className="text-sm font-medium text-base-content/50">
-          Search Console
-        </h2>
+          {t("Search Console")}</h2>
         <SearchConsoleConnectionCard projectId={projectId} />
       </section>
 
       <section id="google-analytics" className="space-y-3 scroll-mt-6">
-        <h2 className="text-sm font-medium text-base-content/50">Analytics</h2>
+        <h2 className="text-sm font-medium text-base-content/50">{t("Analytics")}</h2>
         <GoogleAnalyticsConnectionCard projectId={projectId} />
       </section>
 
@@ -117,10 +115,10 @@ function GeneralSection({ project }: { project: ProjectSummary }) {
 
   return (
     <section className="space-y-3">
-      <h2 className="text-sm font-medium text-base-content/50">General</h2>
+      <h2 className="text-sm font-medium text-base-content/50">{t("General")}</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <label className="flex flex-col gap-1.5 text-sm">
-          <span className="font-medium">Name</span>
+          <span className="font-medium">{t("Name")}</span>
           <input
             type="text"
             value={name}
@@ -132,7 +130,7 @@ function GeneralSection({ project }: { project: ProjectSummary }) {
 
         <label className="flex flex-col gap-1.5 text-sm">
           <span className="font-medium">
-            Domain <span className="text-base-content/50">(optional)</span>
+            {t("Domain")}<span className="text-base-content/50">(optional)</span>
           </span>
           <input
             type="text"
@@ -147,9 +145,7 @@ function GeneralSection({ project }: { project: ProjectSummary }) {
         <div className="flex flex-col gap-1.5">
           <ProjectMarketFields value={market} onChange={setMarket} />
           <span className="text-xs text-base-content/50">
-            Keyword, SERP, and domain data uses this country and language unless
-            a call asks for a different one.
-          </span>
+            {t("Keyword, SERP, and domain data uses this country and language unless\n            a call asks for a different one.")}</span>
         </div>
 
         <div className="flex justify-end">
@@ -158,8 +154,7 @@ function GeneralSection({ project }: { project: ProjectSummary }) {
             className="btn btn-primary btn-sm"
             disabled={updateMutation.isPending || !isDirty}
           >
-            Save changes
-          </button>
+            {t("Save changes")}</button>
         </div>
       </form>
     </section>
@@ -193,19 +188,16 @@ function DangerSection({
   return (
     <section className="space-y-3 border-t border-base-300 pt-8">
       <h2 className="text-sm font-medium text-base-content/50">
-        Archive project
-      </h2>
+        {t("Archive project")}</h2>
 
       {confirming ? (
         <div className="space-y-3">
           <p className="text-sm text-base-content/70">
-            Archiving{" "}
+            {t("Archiving")}{" "}
             <span className="font-medium text-base-content">
               {project.name}
             </span>{" "}
-            removes it from your workspace and stops its scheduled rank
-            tracking. You can restore it later from the Projects page.
-          </p>
+            {t("removes it from your workspace and stops its scheduled rank\n            tracking. You can restore it later from the Projects page.")}</p>
           <div className="flex gap-2">
             <button
               type="button"
@@ -213,16 +205,14 @@ function DangerSection({
               onClick={() => archiveMutation.mutate()}
               disabled={archiveMutation.isPending}
             >
-              Yes, archive project
-            </button>
+              {t("Yes, archive project")}</button>
             <button
               type="button"
               className="btn btn-ghost btn-sm"
               onClick={() => setConfirming(false)}
               disabled={archiveMutation.isPending}
             >
-              Cancel
-            </button>
+              {t("Cancel")}</button>
           </div>
         </div>
       ) : (
@@ -238,8 +228,7 @@ function DangerSection({
             onClick={() => setConfirming(true)}
             disabled={!canArchive}
           >
-            Archive project
-          </button>
+            {t("Archive project")}</button>
         </div>
       )}
     </section>

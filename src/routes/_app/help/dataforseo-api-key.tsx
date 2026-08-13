@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { t } from "@/client/features/laojin/i18n";
 
 const DATAFORSEO_API_ACCESS_URL = "https://app.dataforseo.com/api-access";
 
@@ -13,40 +14,33 @@ function DataforseoApiKeyHelpPage() {
         <div className="card bg-base-100 border border-base-300">
           <div className="card-body gap-3">
             <h1 className="text-2xl font-semibold">
-              Set up your DataForSEO API key
-            </h1>
+              {t("Set up your DataForSEO API key")}</h1>
             <p className="text-sm text-base-content/70">
-              OpenSEO needs the <code>DATAFORSEO_API_KEY</code> secret before
-              keyword, domain, and SEO data workflows can run.
-            </p>
+              {t("OpenSEO needs the")}<code>{t("DATAFORSEO_API_KEY")}</code> {t("secret before\n              keyword, domain, and SEO data workflows can run.")}</p>
           </div>
         </div>
 
         <div className="card bg-base-100 border border-base-300">
           <div className="card-body gap-4">
-            <h2 className="card-title text-base">Steps</h2>
+            <h2 className="card-title text-base">{t("Steps")}</h2>
             <ol className="list-decimal pl-5 text-sm space-y-3 text-base-content/80">
               <li>
-                Go to{" "}
+                {t("Go to")}{" "}
                 <a
                   className="link link-primary"
                   href={DATAFORSEO_API_ACCESS_URL}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  DataForSEO API Access
-                </a>{" "}
-                and request API credentials by email.
-              </li>
+                  {t("DataForSEO API Access")}</a>{" "}
+                {t("and request API credentials by email.")}</li>
               <li>
-                Base64 encode your DataForSEO login and API password in this
-                format:
-                <pre className="mt-2 p-3 rounded bg-base-200 border border-base-300 overflow-x-auto text-xs">
-                  <code>printf '%s' 'YOUR_LOGIN:YOUR_PASSWORD' | base64</code>
+                {t("Base64 encode your DataForSEO login and API password in this\n                format:")}<pre className="mt-2 p-3 rounded bg-base-200 border border-base-300 overflow-x-auto text-xs">
+                  <code>{t("printf '%s' 'YOUR_LOGIN:YOUR_PASSWORD' | base64")}</code>
                 </pre>
               </li>
               <li>
-                Save the output as the <code>DATAFORSEO_API_KEY</code> secret in
+                {t("Save the output as the")}<code>{t("DATAFORSEO_API_KEY")}</code> secret in
                 your environment.
               </li>
             </ol>
@@ -56,35 +50,32 @@ function DataforseoApiKeyHelpPage() {
         <div className="card bg-base-100 border border-base-300">
           <div className="card-body gap-2 text-sm text-base-content/75">
             <h2 className="card-title text-base">
-              Cloudflare Workers (Dashboard UI)
-            </h2>
+              {t("Cloudflare Workers (Dashboard UI)")}</h2>
             <ol className="list-decimal pl-5 space-y-2 text-sm text-base-content/80">
               <li>
-                In Cloudflare, go to <code>Compute</code> -&gt;{" "}
-                <code>Workers &amp; Pages</code>
-                and open your OpenSEO Worker.
+                {t("In Cloudflare, go to")}<code>{t("Compute")}</code> -&gt;{" "}
+                <code>{t("Workers &amp; Pages")}</code>
+                {t("and open your OpenSEO Worker.")}</li>
+              <li>
+                {t("Open")}<code>{t("Settings")}</code>.
               </li>
               <li>
-                Open <code>Settings</code>.
-              </li>
-              <li>
-                Go to <code>Variables &amp; Secrets</code> and add a new secret
+                {t("Go to")}<code>{t("Variables &amp; Secrets")}</code> and add a new secret
                 named
-                <code className="mx-1">DATAFORSEO_API_KEY</code>.
+                <code className="mx-1">{t("DATAFORSEO_API_KEY")}</code>.
               </li>
               <li>
-                Paste the base64 value from the terminal command above and save.
-              </li>
+                {t("Paste the base64 value from the terminal command above and save.")}</li>
             </ol>
 
             <div className="divider my-1" />
 
-            <p>Or set the same secret from your terminal with:</p>
+            <p>{t("Or set the same secret from your terminal with:")}</p>
             <pre className="p-3 rounded bg-base-200 border border-base-300 overflow-x-auto text-xs">
-              <code>npx wrangler secret put DATAFORSEO_API_KEY</code>
+              <code>{t("npx wrangler secret put DATAFORSEO_API_KEY")}</code>
             </pre>
             <p>
-              Use the base64 value of <code>login:password</code> when prompted.
+              {t("Use the base64 value of")}<code>login:password</code> when prompted.
             </p>
           </div>
         </div>

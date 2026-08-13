@@ -12,6 +12,7 @@ import {
   WORK_FOR_OPTIONS,
 } from "@/client/features/onboarding/onboardingModel";
 import { SearchConsoleOnboardingStep } from "@/client/features/onboarding/SearchConsoleOnboardingStep";
+import { t } from "@/client/features/laojin/i18n";
 
 type PostSignupOnboardingProps = {
   firstName: string;
@@ -65,7 +66,7 @@ export function PostSignupOnboarding({
           className="mx-auto size-10 rounded-lg"
         />
         <p className="text-xs font-medium uppercase tracking-wide text-base-content/50">
-          Step {step + 1} of {ONBOARDING_LAST_STEP + 1}
+          {t("Step")}{step + 1} of {ONBOARDING_LAST_STEP + 1}
         </p>
         <h1 className="text-xl font-semibold">
           {title ??
@@ -81,8 +82,8 @@ export function PostSignupOnboarding({
       <div className="rounded-lg border border-base-300 bg-base-100 p-5 shadow-sm">
         {step === 0 ? (
           <OnboardingChoiceGroup
-            title="What tasks matter to you most?"
-            description="Pick up to 3."
+            title={t("What tasks matter to you most?")}
+            description={t("Pick up to 3.")}
             maxSelections={3}
             options={[...INTEREST_OPTIONS]}
             selectedValues={answers.selectedInterests}
@@ -99,7 +100,7 @@ export function PostSignupOnboarding({
           />
         ) : step === 1 ? (
           <OnboardingChoiceGroup
-            title="Who are you doing SEO for?"
+            title={t("Who are you doing SEO for?")}
             options={[...WORK_FOR_OPTIONS]}
             selectedValues={answers.workFor ? [answers.workFor] : []}
             onToggle={(workFor) => updateAnswers({ workFor })}
@@ -116,7 +117,7 @@ export function PostSignupOnboarding({
           />
         ) : step === 2 ? (
           <OnboardingChoiceGroup
-            title="How did you find OpenSEO?"
+            title={t("How did you find OpenSEO?")}
             options={[...SOURCE_OPTIONS]}
             selectedValues={answers.source ? [answers.source] : []}
             onToggle={(source) => updateAnswers({ source })}
@@ -135,8 +136,7 @@ export function PostSignupOnboarding({
             disabled={step === 0 || isSaving}
             onClick={onBack}
           >
-            Back
-          </button>
+            {t("Back")}</button>
           {step < ONBOARDING_LAST_STEP ? (
             <div className="flex items-center gap-2">
               <button
@@ -145,16 +145,14 @@ export function PostSignupOnboarding({
                 disabled={isSaving}
                 onClick={onSkip}
               >
-                Skip
-              </button>
+                {t("Skip")}</button>
               <button
                 type="button"
                 className="btn btn-primary"
                 disabled={!canContinue || isSaving}
                 onClick={onNext}
               >
-                Continue
-                <ArrowRight className="size-4" />
+                {t("Continue")}<ArrowRight className="size-4" />
               </button>
             </div>
           ) : (
@@ -164,8 +162,7 @@ export function PostSignupOnboarding({
               disabled={isSaving}
               onClick={onFinish}
             >
-              Finish
-              <ArrowRight className="size-4" />
+              {t("Finish")}<ArrowRight className="size-4" />
             </button>
           )}
         </div>

@@ -13,6 +13,7 @@ import {
 import { AuthConfigErrorCard } from "@/client/components/AuthConfigErrorCard";
 import { UnauthenticatedErrorCard } from "@/client/components/UnauthenticatedErrorCard";
 import { SUBSCRIBE_ROUTE } from "@/shared/billing";
+import { t } from "@/client/features/laojin/i18n";
 
 export const Route = createFileRoute("/_app/")({
   component: IndexRedirect,
@@ -90,8 +91,7 @@ function IndexRedirect() {
         <div className="flex items-center justify-center h-full p-4">
           <div className="flex flex-col items-center gap-3 max-w-xl text-center">
             <p className="text-base-content/80">
-              Redirecting you to billing so you can start a hosted subscription.
-            </p>
+              {t("Redirecting you to billing so you can start a hosted subscription.")}</p>
           </div>
         </div>
       );

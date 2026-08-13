@@ -4,6 +4,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getRankTrackingConfigs } from "@/serverFunctions/rank-tracking";
 import { RankTrackingDomainDetail } from "@/client/features/rank-tracking/RankTrackingDomainDetail";
 import { RankTrackingConfigModal } from "@/client/features/rank-tracking/RankTrackingConfigModal";
+import { t } from "@/client/features/laojin/i18n";
 
 export const Route = createFileRoute(
   "/_project/p/$projectId/rank-tracking/$configId",
@@ -52,11 +53,9 @@ function RankTrackingConfigRoute() {
     return (
       <>
         <p className="text-sm text-base-content/70">
-          Domain configuration not found.
-        </p>
+          {t("Domain configuration not found.")}</p>
         <button className="btn btn-ghost btn-sm" onClick={handleBack}>
-          Back to domains
-        </button>
+          {t("Back to domains")}</button>
       </>
     );
   }

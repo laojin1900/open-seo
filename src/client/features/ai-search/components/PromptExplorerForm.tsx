@@ -1,4 +1,5 @@
 import type { FormEvent } from "react";
+import { t } from "@/client/features/laojin/i18n";
 import {
   formatCountryLabel,
   formatModelLabel,
@@ -72,8 +73,7 @@ export function PromptExplorerForm({
             className="block text-sm font-medium"
             htmlFor="prompt-explorer-prompt"
           >
-            Prompt
-          </label>
+            {t("Prompt")}</label>
           <textarea
             id="prompt-explorer-prompt"
             className={`textarea textarea-bordered w-full resize-none ${
@@ -87,7 +87,7 @@ export function PromptExplorerForm({
             autoFocus
           />
           <div className="flex items-center justify-between text-xs text-base-content/60">
-            <span>What your customers might ask AI.</span>
+            <span>{t("What your customers might ask AI.")}</span>
             <span
               className={`tabular-nums ${promptOverLimit ? "font-medium text-error" : ""}`}
             >
@@ -102,8 +102,7 @@ export function PromptExplorerForm({
               className="block text-sm font-medium"
               htmlFor="prompt-explorer-brand"
             >
-              Highlight brand (optional)
-            </label>
+              {t("Highlight brand (optional)")}</label>
             <input
               id="prompt-explorer-brand"
               type="text"
@@ -114,12 +113,11 @@ export function PromptExplorerForm({
               spellCheck={false}
             />
             <p className="text-xs text-base-content/60">
-              We&apos;ll flag whether each model mentions this brand.
-            </p>
+              {t("We&apos;ll flag whether each model mentions this brand.")}</p>
           </div>
 
           <div className="space-y-1.5">
-            <span className="block text-sm font-medium">Models</span>
+            <span className="block text-sm font-medium">{t("Models")}</span>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1.5">
               {PROMPT_EXPLORER_MODELS.map((model) => {
                 const isActive = form.models.includes(model);
@@ -152,12 +150,11 @@ export function PromptExplorerForm({
                 onChange={(event) => onWebSearchChange(event.target.checked)}
               />
               <span className="text-sm">
-                Allow web search (more current answers)
-              </span>
+                {t("Allow web search (more current answers)")}</span>
             </label>
             <select
               id="prompt-explorer-country"
-              aria-label="Web search location"
+              aria-label={t("Web search location")}
               className="select select-bordered select-sm min-w-0 sm:max-w-xs"
               value={form.webSearchCountryCode}
               onChange={(event) =>

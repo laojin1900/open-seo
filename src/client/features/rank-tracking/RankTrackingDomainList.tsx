@@ -18,6 +18,7 @@ import {
 import { devicesLabel, scheduleLabel } from "@/shared/rank-tracking";
 import { formatLocationLabel } from "@/shared/keyword-locations";
 import { Modal } from "@/client/components/Modal";
+import { t } from "@/client/features/laojin/i18n";
 import {
   applyDomainListFilters,
   countActiveDomainListFilters,
@@ -86,14 +87,13 @@ export function RankTrackingDomainList({
     <div className="card bg-base-100 border border-base-300">
       <div className="card-body gap-0 p-0">
         <div className="flex items-center justify-between px-5 pt-4 pb-3">
-          <h2 className="text-sm font-semibold">Tracked Domains</h2>
+          <h2 className="text-sm font-semibold">{t("Tracked Domains")}</h2>
           <button
             className="btn btn-primary btn-sm gap-1"
             onClick={onAddDomain}
           >
             <Plus className="size-3.5" />
-            Add Domain
-          </button>
+            {t("Add Domain")}</button>
         </div>
         {(allSummaries.length >= FILTER_BAR_MIN_DOMAINS ||
           activeFilterCount > 0) && (
@@ -121,11 +121,9 @@ export function RankTrackingDomainList({
                 <Globe className="size-5 text-base-content/40" />
               </div>
               <p className="text-sm font-medium text-base-content/70">
-                No tracked domains yet
-              </p>
+                {t("No tracked domains yet")}</p>
               <p className="text-xs text-base-content/40">
-                Add a domain to start monitoring keyword rankings over time.
-              </p>
+                {t("Add a domain to start monitoring keyword rankings over time.")}</p>
             </div>
           ) : filteredSummaries.length === 0 ? (
             <div className="px-5 py-10 text-center space-y-3">
@@ -134,19 +132,16 @@ export function RankTrackingDomainList({
               </div>
               <div className="space-y-1">
                 <p className="text-sm font-medium text-base-content/70">
-                  No matching tracked domains
-                </p>
+                  {t("No matching tracked domains")}</p>
                 <p className="text-xs text-base-content/40">
-                  Try clearing search or adjusting filters.
-                </p>
+                  {t("Try clearing search or adjusting filters.")}</p>
               </div>
               <button
                 className="btn btn-ghost btn-xs"
                 onClick={() => setFilters(EMPTY_DOMAIN_LIST_FILTERS)}
                 disabled={activeFilterCount === 0}
               >
-                Clear filters
-              </button>
+                {t("Clear filters")}</button>
             </div>
           ) : (
             filteredSummaries.map((summary) => (
@@ -167,27 +162,23 @@ export function RankTrackingDomainList({
           labelledBy="archive-domain-title"
         >
           <h3 id="archive-domain-title" className="text-lg font-semibold">
-            Archive {archiveTarget.domain}?
+            {t("Archive")}{archiveTarget.domain}?
           </h3>
           <p className="text-sm text-base-content/70">
-            Scheduled checks will stop and this domain will be hidden from the
-            list. Ranking history is preserved.
-          </p>
+            {t("Scheduled checks will stop and this domain will be hidden from the\n            list. Ranking history is preserved.")}</p>
           <div className="flex justify-end gap-2">
             <button
               className="btn btn-ghost btn-sm"
               onClick={() => setArchiveTarget(null)}
             >
-              Cancel
-            </button>
+              {t("Cancel")}</button>
             <button
               className="btn btn-error btn-sm gap-1"
               onClick={() => archiveMutation.mutate(archiveTarget.id)}
               disabled={archiveMutation.isPending}
             >
               <Archive className="size-3.5" />
-              Archive
-            </button>
+              {t("Archive")}</button>
           </div>
         </Modal>
       )}
@@ -231,22 +222,19 @@ function DomainRow({
         {summary.lastSkipReason === "insufficient_credits" && (
           <p className="flex items-center gap-1 text-xs text-warning">
             <AlertTriangle className="size-3" />
-            Scheduled check skipped — insufficient credits
-          </p>
+            {t("Scheduled check skipped — insufficient credits")}</p>
         )}
         {summary.lastSkipReason === "plan_required" && (
           <p className="flex items-center gap-1 text-xs text-warning">
             <AlertTriangle className="size-3" />
-            Scheduled check skipped — paid plan required
-          </p>
+            {t("Scheduled check skipped — paid plan required")}</p>
         )}
       </div>
       <div className="hidden sm:flex items-center gap-6 text-sm pointer-events-none">
         {summary.keywordCount > 0 && (
           <div className="text-center">
             <p className="text-xs uppercase tracking-wide text-base-content/60">
-              Keywords
-            </p>
+              {t("Keywords")}</p>
             <p className="font-mono font-medium">{summary.keywordCount}</p>
           </div>
         )}
@@ -254,7 +242,7 @@ function DomainRow({
       <button
         type="button"
         className="btn btn-ghost btn-xs text-base-content/40 hover:text-error relative z-10"
-        title="Archive domain"
+        title={t("Archive domain")}
         onClick={(e) => {
           e.stopPropagation();
           e.preventDefault();

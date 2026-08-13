@@ -1,4 +1,5 @@
 import { ShieldAlert } from "lucide-react";
+import { t } from "@/client/features/laojin/i18n";
 
 export function BacklinksLoadingState() {
   return (
@@ -47,15 +48,14 @@ export function BacklinksErrorState({
           <ShieldAlert className="size-5" />
         </div>
         <div className="space-y-1">
-          <h2 className="text-lg font-semibold">Could not load backlinks</h2>
+          <h2 className="text-lg font-semibold">{t("Could not load backlinks")}</h2>
           <p className="text-sm text-base-content/70">
             {errorMessage ?? "Please try again in a moment."}
           </p>
         </div>
       </div>
       <button className="btn btn-sm" onClick={onRetry}>
-        Retry
-      </button>
+        {t("Retry")}</button>
     </section>
   );
 }

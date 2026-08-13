@@ -1,6 +1,7 @@
 import { CalendarDays, Loader2, SlidersHorizontal, Table } from "lucide-react";
 import { SegmentedToggle } from "@/client/components/SegmentedToggle";
 import { ExportMenu, MoreMenu } from "./ToolbarMenus";
+import { t } from "@/client/features/laojin/i18n";
 
 export function RankTrackingTableToolbar({
   showFilters,
@@ -71,11 +72,10 @@ export function RankTrackingTableToolbar({
       <button
         className={`btn btn-ghost btn-sm gap-1.5 ${showFilters ? "btn-active" : ""}`}
         onClick={onToggleFilters}
-        title="Toggle table filters"
+        title={t("Toggle table filters")}
       >
         <SlidersHorizontal className="size-3.5" />
-        Filters
-        {activeFilterCount > 0 && (
+        {t("Filters")}{activeFilterCount > 0 && (
           <span className="badge badge-xs badge-primary border-0 text-primary-content">
             {activeFilterCount}
           </span>

@@ -10,6 +10,7 @@ import {
 import { auditSearchSchema } from "@/types/schemas/audit";
 import { LaunchView } from "@/client/features/audit/launch/LaunchView";
 import { ResultsView } from "@/client/features/audit/results/ResultsView";
+import { t } from "@/client/features/laojin/i18n";
 import {
   extractHostname,
   extractPathname,
@@ -110,7 +111,7 @@ function AuditDetail({
         <div className="mx-auto max-w-3xl space-y-4">
           <div className="alert alert-error">
             <AlertCircle className="size-5" />
-            <span>We could not load this audit. It may have been deleted.</span>
+            <span>{t("We could not load this audit. It may have been deleted.")}</span>
           </div>
           <button className="btn btn-ghost btn-sm" onClick={onBack}>
             &larr; Back to audits
@@ -148,7 +149,7 @@ function AuditDetail({
           </div>
           {status && (
             <p className="text-sm text-base-content/60">
-              Site audit &middot; Started {formatStartedAt(status.startedAt)}
+              {t("Site audit &middot; Started")}{formatStartedAt(status.startedAt)}
             </p>
           )}
         </div>
@@ -168,10 +169,9 @@ function AuditDetail({
             <AlertCircle className="size-5" />
             <div className="space-y-1">
               <p className="font-medium">
-                Site audit couldn't fully crawl this website.
-              </p>
+                {t("Site audit couldn't fully crawl this website.")}</p>
               <p>
-                This is often caused by anti-bot or firewall settings. Email{" "}
+                {t("This is often caused by anti-bot or firewall settings. Email")}{" "}
                 <a
                   className="link link-primary"
                   href={`mailto:${SUPPORT_EMAIL}`}
@@ -189,12 +189,11 @@ function AuditDetail({
             <AlertCircle className="size-5" />
             <div className="space-y-1">
               <p className="font-medium">
-                This audit stopped early after {partialPageCount} page
+                {t("This audit stopped early after")}{partialPageCount} page
                 {partialPageCount === 1 ? "" : "s"}.
               </p>
               <p>
-                The results below cover everything crawled before it stopped.
-                Run a new audit to try again, or email{" "}
+                {t("The results below cover everything crawled before it stopped.\n                Run a new audit to try again, or email")}{" "}
                 <a
                   className="link link-primary"
                   href={`mailto:${SUPPORT_EMAIL}`}
@@ -311,7 +310,7 @@ function ProgressCard({
               Crawled Pages ({crawledUrls.length})
             </h3>
             <p className="text-xs text-base-content/50">
-              Updated {new Date(crawledUrls[0].crawledAt).toLocaleTimeString()}
+              {t("Updated")}{new Date(crawledUrls[0].crawledAt).toLocaleTimeString()}
             </p>
             <div className="max-h-[400px] overflow-y-auto -mx-1">
               {crawledUrls.map((entry, i) => (

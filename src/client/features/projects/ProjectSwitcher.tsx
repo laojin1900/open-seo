@@ -6,6 +6,7 @@ import { getProjects } from "@/serverFunctions/projects";
 import { setLastProjectId } from "@/client/lib/active-project";
 import { CreateProjectModal } from "@/client/features/projects/CreateProjectModal";
 import type { ProjectSummary } from "./types";
+import { t } from "@/client/features/laojin/i18n";
 
 // Below this many projects the plain list is faster to scan than a search box.
 const SEARCH_THRESHOLD = 8;
@@ -193,7 +194,7 @@ export function ProjectSwitcher({
       <button
         ref={triggerRef}
         type="button"
-        aria-label="Switch project"
+        aria-label={t("Switch project")}
         aria-expanded={open}
         aria-haspopup="listbox"
         onClick={() => (open ? closePanel() : openPanel())}
@@ -223,8 +224,8 @@ export function ProjectSwitcher({
                   ref={searchInputRef}
                   type="text"
                   value={query}
-                  placeholder="Find project…"
-                  aria-label="Filter projects"
+                  placeholder={t("Find project…")}
+                  aria-label={t("Filter projects")}
                   aria-controls="project-switcher-listbox"
                   aria-activedescendant={
                     filteredProjects[highlightIndex]
@@ -250,7 +251,7 @@ export function ProjectSwitcher({
               ref={listRef}
               id="project-switcher-listbox"
               role="listbox"
-              aria-label="Projects"
+              aria-label={t("Projects")}
               className="menu max-h-[min(60vh,21rem)] w-full flex-nowrap overflow-y-auto p-2"
             >
               {filteredProjects.map((project, index) => {
@@ -290,7 +291,7 @@ export function ProjectSwitcher({
               {filteredProjects.length === 0 ? (
                 <li className="menu-disabled">
                   <span className="text-base-content/50">
-                    No projects match “{query.trim()}”
+                    {t("No projects match “")}{query.trim()}”
                   </span>
                 </li>
               ) : null}
@@ -314,8 +315,7 @@ export function ProjectSwitcher({
                 }}
               >
                 <Plus className="size-4" />
-                New project
-              </button>
+                {t("New project")}</button>
             </li>
             <li>
               <Link
@@ -326,8 +326,7 @@ export function ProjectSwitcher({
                 }}
               >
                 <FolderCog className="size-4" />
-                Manage projects
-              </Link>
+                {t("Manage projects")}</Link>
             </li>
           </ul>
         </div>

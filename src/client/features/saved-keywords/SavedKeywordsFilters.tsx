@@ -4,6 +4,7 @@ import { SavedKeywordsTagFilter } from "./SavedKeywordsTagFilter";
 import type { TagColorKey } from "@/shared/tag-colors";
 import type { SavedKeywordTagSummary } from "@/types/keywords";
 import type { SavedKeywordsFilterForm } from "./useSavedKeywordsFilters";
+import { t } from "@/client/features/laojin/i18n";
 
 export function SavedKeywordsFilters({
   filtersForm,
@@ -43,11 +44,10 @@ export function SavedKeywordsFilters({
           type="button"
           className={`btn btn-ghost btn-sm gap-1.5 ${showFilters ? "btn-active" : ""}`}
           onClick={onToggleFilters}
-          title="Toggle table filters"
+          title={t("Toggle table filters")}
         >
           <SlidersHorizontal className="size-3.5" />
-          Filters
-          {activeFilterCount > 0 ? (
+          {t("Filters")}{activeFilterCount > 0 ? (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {activeFilterCount}
             </span>

@@ -40,6 +40,7 @@ import { CheckConfirmModal } from "./CheckConfirmModal";
 import { useMetricsRefresh } from "./useMetricsRefresh";
 import { useRankCheckTrigger } from "./useRankCheckTrigger";
 import { useRankRunPolling } from "./useRankRunPolling";
+import { t } from "@/client/features/laojin/i18n";
 
 function deviceVisibility(
   devices: RankTrackingConfig["devices"],
@@ -193,16 +194,13 @@ export function RankTrackingDomainDetail({
         onClick={onBack}
       >
         <ArrowLeft className="size-3" />
-        Back to domains
-      </button>
+        {t("Back to domains")}</button>
 
       {config.lastSkipReason === "insufficient_credits" && (
         <div className="alert alert-warning text-sm py-2">
           <AlertTriangle className="size-4" />
           <span>
-            Last scheduled check was skipped due to insufficient credits. Top up
-            your balance to resume automatic tracking.
-          </span>
+            {t("Last scheduled check was skipped due to insufficient credits. Top up\n            your balance to resume automatic tracking.")}</span>
         </div>
       )}
 
@@ -210,8 +208,7 @@ export function RankTrackingDomainDetail({
         <div className="alert alert-warning text-sm py-2">
           <AlertTriangle className="size-4" />
           <span>
-            This run may be unresponsive and will be cleaned up automatically.
-          </span>
+            {t("This run may be unresponsive and will be cleaned up automatically.")}</span>
         </div>
       )}
 

@@ -8,6 +8,7 @@ import {
   shouldValidateFieldOnChange,
 } from "@/client/lib/forms";
 import type { BacklinksSearchState } from "./backlinksPageTypes";
+import { t } from "@/client/features/laojin/i18n";
 import {
   inferBacklinksSearchScopeFromTarget,
   resolveBacklinksSearchScope,
@@ -97,7 +98,7 @@ export function BacklinksSearchCard({
                     >
                       <Search className="size-4 text-base-content/60" />
                       <input
-                        placeholder="Enter a domain or URL"
+                        placeholder={t("Enter a domain or URL")}
                         value={field.state.value}
                         onChange={(event) => {
                           const nextTarget = event.target.value;
@@ -160,8 +161,7 @@ export function BacklinksSearchCard({
                         field.handleChange("domain");
                       }}
                     >
-                      Site-wide
-                    </button>
+                      {t("Site-wide")}</button>
                     <button
                       type="button"
                       className={`btn btn-xs ${field.state.value === "page" ? "btn-soft" : "btn-ghost"}`}
@@ -170,8 +170,7 @@ export function BacklinksSearchCard({
                         field.handleChange("page");
                       }}
                     >
-                      Exact page
-                    </button>
+                      {t("Exact page")}</button>
                   </>
                 )}
               </form.Field>

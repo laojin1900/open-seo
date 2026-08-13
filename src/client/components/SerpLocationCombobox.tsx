@@ -3,6 +3,7 @@ import { Loader2, Search } from "lucide-react";
 import { searchSerpLocations } from "@/serverFunctions/serp-locations";
 import { formatLocationLabel } from "@/shared/keyword-locations";
 import type { SerpLocationResult } from "@/server/lib/dataforseo/serp-locations";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   value: string | undefined;
@@ -180,11 +181,10 @@ export function SerpLocationCombobox({
         <div className="absolute z-30 mt-1 w-full rounded-box border border-base-300 bg-base-100 shadow-lg p-1">
           {isError ? (
             <p className="px-3 py-2 text-sm text-error">
-              Unable to load locations
-            </p>
+              {t("Unable to load locations")}</p>
           ) : results.length === 0 ? (
             <p className="px-3 py-2 text-sm text-base-content/50">
-              No locations found for "{debouncedQuery.trim()}"
+              {t("No locations found for \"")}{debouncedQuery.trim()}"
             </p>
           ) : (
             <ul

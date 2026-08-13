@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { Loader2 } from "lucide-react";
 import type { RankPositionMatrixCell } from "@/serverFunctions/rank-tracking";
+import { t } from "@/client/features/laojin/i18n";
 
 /**
  * "By date" view: keyword rows × recent check columns, each cell the position
@@ -29,8 +30,7 @@ export function RankTrackingHistoryMatrix({
   if (runs.length === 0 || keywords.length === 0) {
     return (
       <div className="rounded-xl border border-dashed border-base-300 p-10 text-center text-sm text-base-content/55">
-        No history yet. Run a check to start building the timeline.
-      </div>
+        {t("No history yet. Run a check to start building the timeline.")}</div>
     );
   }
 
@@ -41,7 +41,7 @@ export function RankTrackingHistoryMatrix({
           <tr>
             {/* Unconstrained keyword column absorbs the slack when only a few
                 check columns exist, so sparse history doesn't stretch oddly. */}
-            <th className="sticky left-0 z-10 bg-base-100 w-full">Keyword</th>
+            <th className="sticky left-0 z-10 bg-base-100 w-full">{t("Keyword")}</th>
             {runs.map((r) => (
               <th
                 key={r.runId}

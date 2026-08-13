@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { ExportToSheetsButton } from "@/client/components/table/ExportToSheetsButton";
 import type { SerpResultItem } from "@/types/keywords";
+import { t } from "@/client/features/laojin/i18n";
 
 export function SerpAnalysisCard({
   items,
@@ -31,8 +32,7 @@ export function SerpAnalysisCard({
         <p>{error}</p>
         {onRetry ? (
           <button className="btn btn-xs" onClick={onRetry}>
-            Retry
-          </button>
+            {t("Retry")}</button>
         ) : null}
       </div>
     );
@@ -73,7 +73,7 @@ function SerpAnalysisTable({ items }: { items: SerpResultItem[] }) {
         <thead>
           <tr className="text-xs text-base-content/60">
             <th className="w-8">#</th>
-            <th>Page</th>
+            <th>{t("Page")}</th>
           </tr>
         </thead>
         <tbody>
@@ -124,7 +124,7 @@ function SerpAnalysisPagination({
   return (
     <div className="flex items-center justify-between mt-3 pt-3 border-t border-base-200">
       <span className="text-xs text-base-content/50">
-        Page {page + 1} of {totalPages}
+        {t("Page")}{page + 1} of {totalPages}
       </span>
       <div className="flex gap-1">
         <button
@@ -133,15 +133,13 @@ function SerpAnalysisPagination({
           onClick={() => onPageChange(page - 1)}
         >
           <ChevronLeft className="size-3.5" />
-          Prev
-        </button>
+          {t("Prev")}</button>
         <button
           className="btn btn-ghost btn-xs"
           disabled={page >= totalPages - 1}
           onClick={() => onPageChange(page + 1)}
         >
-          Next
-          <ChevronRight className="size-3.5" />
+          {t("Next")}<ChevronRight className="size-3.5" />
         </button>
       </div>
     </div>
@@ -165,9 +163,9 @@ function SerpAnalysisLoadingState() {
 function SerpAnalysisEmptyState({ keyword }: { keyword?: string | null }) {
   return (
     <div className="text-sm text-base-content/50 text-center py-8">
-      <p>No SERP details available for this keyword yet.</p>
+      <p>{t("No SERP details available for this keyword yet.")}</p>
       {keyword ? (
-        <p className="mt-1">Try clicking another keyword to load data.</p>
+        <p className="mt-1">{t("Try clicking another keyword to load data.")}</p>
       ) : null}
     </div>
   );

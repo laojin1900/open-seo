@@ -5,6 +5,7 @@ import {
 } from "@/client/features/keywords/keywordResearchTypes";
 import { INTENT_LABELS } from "@/client/features/keywords/components/IntentBadge";
 import type { KeywordResearchControllerState } from "./types";
+import { t } from "@/client/features/laojin/i18n";
 
 export function FilterIntentSelect({
   form,
@@ -21,8 +22,7 @@ export function FilterIntentSelect({
         id="keyword-intent-filter-label"
         className="text-[11px] font-semibold uppercase tracking-wide text-base-content/60"
       >
-        Intent
-      </p>
+        {t("Intent")}</p>
       <form.Field name="intents">
         {(field) => {
           const selected = parseIntentFilter(field.state.value);
@@ -110,13 +110,13 @@ export function FilterRangeInputs({
         <CompactRangeInput
           form={form}
           name={minName}
-          placeholder="Min"
+          placeholder={t("Min")}
           step={step}
         />
         <CompactRangeInput
           form={form}
           name={maxName}
-          placeholder="Max"
+          placeholder={t("Max")}
           step={step}
         />
       </div>
@@ -161,12 +161,10 @@ export function EmptyFilterResults({
   return (
     <div className="h-full flex flex-col items-center justify-center text-center px-4 text-base-content/50 gap-3">
       <p className="text-sm font-medium">
-        No keywords match your current filters.
-      </p>
+        {t("No keywords match your current filters.")}</p>
       {activeFilterCount > 0 ? (
         <button className="btn btn-ghost btn-sm" onClick={resetFilters}>
-          Clear filters
-        </button>
+          {t("Clear filters")}</button>
       ) : null}
     </div>
   );

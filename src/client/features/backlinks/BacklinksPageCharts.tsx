@@ -9,6 +9,7 @@ import {
   YAxis,
 } from "recharts";
 import type { BacklinksOverviewData } from "./backlinksPageTypes";
+import { t } from "@/client/features/laojin/i18n";
 import {
   formatCompactDate,
   formatMonthLabel,
@@ -30,7 +31,7 @@ export function BacklinksTrendChart({
     <div
       ref={containerRef}
       className="h-56 min-w-0"
-      aria-label="Backlink trend chart"
+      aria-label={t("Backlink trend chart")}
     >
       {chartWidth > 0 ? (
         <LineChart
@@ -100,7 +101,7 @@ export function BacklinksNewLostChart({
     <div
       ref={containerRef}
       className="h-56 min-w-0"
-      aria-label="New and lost backlinks chart"
+      aria-label={t("New and lost backlinks chart")}
     >
       {chartWidth > 0 ? (
         <LineChart
@@ -177,8 +178,7 @@ function useChartWidth() {
 function EmptyChartState() {
   return (
     <div className="flex h-56 items-center justify-center rounded-xl border border-dashed border-base-300 text-sm text-base-content/55">
-      Not enough historical data yet.
-    </div>
+      {t("Not enough historical data yet.")}</div>
   );
 }
 

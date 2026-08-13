@@ -12,6 +12,7 @@ import { captureClientEvent } from "@/client/lib/posthog";
 import { authClient } from "@/lib/auth-client";
 import { getSignInSearch, getVerifyEmailSearch } from "@/lib/auth-redirect";
 import { z } from "zod";
+import { t } from "@/client/features/laojin/i18n";
 
 const signInSchema = z.object({
   email: z.string().trim().email("Enter a valid email address."),
@@ -121,7 +122,7 @@ function SignInPage() {
 
   return (
     <AuthPageCard
-      title="Sign in"
+      title={t("Sign in")}
       footer={
         isHostedMode ? (
           <div
@@ -186,7 +187,7 @@ function SignInPage() {
                   <input
                     type="email"
                     className="input input-bordered w-full"
-                    placeholder="Email address..."
+                    placeholder={t("Email address...")}
                     value={field.state.value}
                     onChange={(event) => field.handleChange(event.target.value)}
                     autoComplete="email"
@@ -210,7 +211,7 @@ function SignInPage() {
                   <input
                     type="password"
                     className="input input-bordered w-full"
-                    placeholder="Password..."
+                    placeholder={t("Password...")}
                     value={field.state.value}
                     onChange={(event) => field.handleChange(event.target.value)}
                     autoComplete="current-password"

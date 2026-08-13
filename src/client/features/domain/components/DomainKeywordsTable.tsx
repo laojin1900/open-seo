@@ -15,6 +15,7 @@ import { DifficultyBadge } from "@/client/features/domain/components/DifficultyB
 import { SortableHeader } from "@/client/features/domain/components/SortableHeader";
 import { useDomainRenderDebug } from "@/client/features/domain/domainDebug";
 import { formatNumber, formatRounded } from "@/client/features/domain/utils";
+import { t } from "@/client/features/laojin/i18n";
 import type {
   DomainSortMode,
   KeywordRow,
@@ -65,7 +66,7 @@ function DomainKeywordsTableComponent({
       keywordColumnHelper.accessor("position", {
         header: () => (
           <SortableHeader
-            label="Rank"
+            label={t("Rank")}
             isActive={sortMode === "rank"}
             order={currentSortOrder}
             onClick={() => onSortClick("rank")}
@@ -76,7 +77,7 @@ function DomainKeywordsTableComponent({
       keywordColumnHelper.accessor("searchVolume", {
         header: () => (
           <SortableHeader
-            label="Volume"
+            label={t("Volume")}
             isActive={sortMode === "volume"}
             order={currentSortOrder}
             onClick={() => onSortClick("volume")}
@@ -87,7 +88,7 @@ function DomainKeywordsTableComponent({
       keywordColumnHelper.accessor("traffic", {
         header: () => (
           <SortableHeader
-            label="Traffic"
+            label={t("Traffic")}
             isActive={sortMode === "traffic"}
             order={currentSortOrder}
             onClick={() => onSortClick("traffic")}
@@ -98,7 +99,7 @@ function DomainKeywordsTableComponent({
       keywordColumnHelper.accessor("cpc", {
         header: () => (
           <SortableHeader
-            label="CPC"
+            label={t("CPC")}
             helpText="Cost per click in USD."
             isActive={sortMode === "cpc"}
             order={currentSortOrder}
@@ -127,7 +128,7 @@ function DomainKeywordsTableComponent({
       keywordColumnHelper.accessor("keywordDifficulty", {
         header: () => (
           <SortableHeader
-            label="Score"
+            label={t("Score")}
             helpText="Organic ranking difficulty (0-100): higher means harder to reach Google's top 10."
             isActive={sortMode === "score"}
             order={currentSortOrder}

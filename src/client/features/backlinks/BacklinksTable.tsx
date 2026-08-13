@@ -12,6 +12,7 @@ import {
 import type { BacklinksRow } from "./backlinksPageTypes";
 import type { BacklinksDomainExpansion } from "./useBacklinksDomainExpansion";
 import type { DomainRatings } from "./useAhrefsDomainRatings";
+import { t } from "@/client/features/laojin/i18n";
 
 /** Interleaves expanded domains' extra links beneath their page row. */
 function buildDisplayRows(
@@ -106,7 +107,7 @@ export function BacklinksTable({
   });
 
   if (rows.length === 0) {
-    return <EmptyTableState label="No backlinks match this filter." />;
+    return <EmptyTableState label={t("No backlinks match this filter.")} />;
   }
 
   return (

@@ -1,5 +1,6 @@
 import { Monitor, Moon, Sun } from "lucide-react";
 import { type ThemePreference, useThemePreference } from "@/client/lib/theme";
+import { t } from "@/client/features/laojin/i18n";
 
 const THEME_OPTIONS: {
   value: ThemePreference;
@@ -17,13 +18,13 @@ export function ThemePreferenceMenuItems() {
   return (
     <>
       <li className="menu-title pt-2">
-        <span>Theme</span>
+        <span>{t("Theme")}</span>
       </li>
 
       <li>
         <div
           role="radiogroup"
-          aria-label="Theme preference"
+          aria-label={t("Theme preference")}
           className="flex gap-0.5 rounded-lg bg-base-200 p-0.5"
         >
           {THEME_OPTIONS.map((option) => {

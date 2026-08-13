@@ -1,6 +1,7 @@
 import { Loader2, Zap } from "lucide-react";
 import { Modal } from "@/client/components/Modal";
 import type { RankTrackingConfig } from "@/types/schemas/rank-tracking";
+import { t } from "@/client/features/laojin/i18n";
 import {
   estimateRankCheckCredits,
   devicesCount,
@@ -42,13 +43,12 @@ export function CheckConfirmModal({
     >
       <div>
         <h3 id="rank-check-confirm-title" className="text-lg font-semibold">
-          Check {keywordCount} keyword
+          {t("Check")}{keywordCount} keyword
           {keywordCount !== 1 ? "s" : ""}
         </h3>
         <p className="text-sm text-base-content/60 mt-1">
           {keywordCount} keywords &times; {dc} device
-          {dc !== 1 ? "s" : ""} = {totalChecks} SERP checks
-        </p>
+          {dc !== 1 ? "s" : ""} = {totalChecks} {t("SERP checks")}</p>
       </div>
 
       <button
@@ -60,10 +60,9 @@ export function CheckConfirmModal({
           <Zap className="size-5 text-primary" />
         </div>
         <div className="flex-1">
-          <p className="font-medium">Run Now</p>
+          <p className="font-medium">{t("Run Now")}</p>
           <p className="text-xs text-base-content/60">
-            Results in ~
-            {liveTime < 60 ? `${liveTime}s` : `${Math.ceil(liveTime / 60)} min`}
+            {t("Results in ~")}{liveTime < 60 ? `${liveTime}s` : `${Math.ceil(liveTime / 60)} min`}
           </p>
         </div>
         <div className="text-right">
@@ -73,8 +72,7 @@ export function CheckConfirmModal({
       </button>
 
       <button className="btn btn-ghost btn-sm self-center" onClick={onCancel}>
-        Cancel
-      </button>
+        {t("Cancel")}</button>
     </Modal>
   );
 }

@@ -12,6 +12,7 @@ import {
   resolveIssueSeverity,
 } from "@/client/features/audit/results/IssuesView";
 import { PagesTable } from "@/client/features/audit/results/PagesTable";
+import { t } from "@/client/features/laojin/i18n";
 import {
   ExportDropdown,
   PerformanceTable,
@@ -47,15 +48,12 @@ export function ResultsView({
           <ShieldAlert className="mt-0.5 size-4 shrink-0 text-warning" />
           <p>
             <span className="font-medium">
-              We were blocked on {blockedCount}{" "}
+              {t("We were blocked on")}{blockedCount}{" "}
               {blockedCount === 1 ? "page" : "pages"}.
             </span>{" "}
             <span className="text-base-content/70">
-              The site's bot protection challenged our crawler, so those pages
-              couldn't be audited. If this is your site, allowlist the{" "}
-              <code className="font-mono">OpenSEO-Audit</code> user agent in
-              your WAF or bot-protection settings and re-run the audit.
-            </span>
+              {t("The site's bot protection challenged our crawler, so those pages\n              couldn't be audited. If this is your site, allowlist the")}{" "}
+              <code className="font-mono">{t("OpenSEO-Audit")}</code> {t("user agent in\n              your WAF or bot-protection settings and re-run the audit.")}</span>
           </p>
         </div>
       )}

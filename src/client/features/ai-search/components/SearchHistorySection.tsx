@@ -1,5 +1,6 @@
 import type { ComponentType, ReactNode } from "react";
 import { Clock, History, X } from "lucide-react";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props<TItem extends { timestamp: number }> = {
   history: TItem[];
@@ -85,7 +86,7 @@ export function SearchHistorySection<TItem extends { timestamp: number }>({
                 type="button"
                 className="btn btn-ghost btn-xs opacity-0 group-hover:opacity-100 p-1"
                 onClick={() => onRemoveHistoryItem(item.timestamp)}
-                aria-label="Remove from history"
+                aria-label={t("Remove from history")}
               >
                 <X className="size-3" />
               </button>

@@ -13,6 +13,7 @@ import {
   VolumeCell,
 } from "./RankTrackingTableParts";
 import type { SelectionAnchor } from "@/client/components/table/tableSelection";
+import { t } from "@/client/features/laojin/i18n";
 
 const HEADER_TOOLTIPS: Record<string, string> = {
   keyword: "The search term being tracked in Google",
@@ -103,7 +104,7 @@ const cpcColumn: ColumnDef<RankTrackingRow> = {
   id: "cpc",
   accessorFn: (row) => row.cpc ?? undefined,
   header: ({ column }) => (
-    <SortableHeader column={column} label="CPC" id="cpc" />
+    <SortableHeader column={column} label={t("CPC")} id="cpc" />
   ),
   size: 80,
   cell: ({ getValue }) => (
@@ -119,14 +120,14 @@ function makeKeywordColumn(
     id: "keyword",
     accessorKey: "keyword",
     header: ({ column }) => (
-      <SortableHeader column={column} label="Keyword" id="keyword" />
+      <SortableHeader column={column} label={t("Keyword")} id="keyword" />
     ),
     cell: ({ row }) => (
       <button
         type="button"
         className="font-medium text-left link link-hover decoration-dotted underline-offset-2"
         onClick={() => onKeywordClick(row.original)}
-        title="View position history"
+        title={t("View position history")}
       >
         {row.original.keyword}
       </button>
@@ -143,7 +144,7 @@ function makeDeviceColumn(
     id,
     accessorFn: (row) => row[device].position ?? undefined,
     header: ({ column }) => (
-      <SortableHeader column={column} label="Position" id={id} />
+      <SortableHeader column={column} label={t("Position")} id={id} />
     ),
     size: 120,
     maxSize: 140,
@@ -164,8 +165,7 @@ function makeUrlColumn(
         className="text-xs uppercase tracking-wide font-medium text-base-content/60 cursor-help"
         title={HEADER_TOOLTIPS.url}
       >
-        URL
-      </span>
+        {t("URL")}</span>
     ),
     size: 240,
     cell: ({ row }) => (
@@ -185,8 +185,7 @@ function makeSerpColumn(
         className="text-xs uppercase tracking-wide font-medium text-base-content/60 cursor-help"
         title={HEADER_TOOLTIPS.serp}
       >
-        SERP Features
-      </span>
+        {t("SERP Features")}</span>
     ),
     cell: ({ row }) => {
       const features = row.original[device].serpFeatures;

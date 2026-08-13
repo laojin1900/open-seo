@@ -10,6 +10,7 @@ import {
 import { useSamAccess } from "./useSamAccess";
 import { SamSetupGate } from "./SamSetupGate";
 import { SamConversation } from "./SamConversation";
+import { t } from "@/client/features/laojin/i18n";
 
 /**
  * The SAM route's content: the active conversation, full-width. The chat
@@ -114,11 +115,9 @@ export function SamChat({
         <Wrench className="size-6" />
       </div>
       <div className="space-y-1">
-        <p className="text-lg font-medium">What should we work on?</p>
+        <p className="text-lg font-medium">{t("What should we work on?")}</p>
         <p className="max-w-sm text-sm text-base-content/60">
-          SAM is your in-app SEO agent with access to every OpenSEO research
-          tool. Start a chat to get going.
-        </p>
+          {t("SAM is your in-app SEO agent with access to every OpenSEO research\n          tool. Start a chat to get going.")}</p>
       </div>
       <button
         type="button"
@@ -131,8 +130,7 @@ export function SamChat({
         ) : (
           <Plus className="size-4" />
         )}
-        New chat
-      </button>
+        {t("New chat")}</button>
     </div>
   );
 }

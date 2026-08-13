@@ -1,5 +1,6 @@
 import { GoogleGlyph } from "@/client/features/gsc/GoogleGlyph";
 import { startGoogleLink } from "@/client/features/integrations/startGoogleLink";
+import { t } from "@/client/features/laojin/i18n";
 
 type SiteOption = {
   siteUrl: string;
@@ -59,23 +60,20 @@ export function SitePicker({
     return (
       <div className="flex items-center gap-2 text-sm text-base-content/50">
         <span className="loading loading-spinner loading-sm" />
-        Loading properties…
-      </div>
+        {t("Loading properties…")}</div>
     );
   }
   if (error) {
     return (
       <div className="space-y-3">
         <p className="text-sm text-error">
-          Couldn't load your Search Console properties.
-        </p>
+          {t("Couldn't load your Search Console properties.")}</p>
         <button
           type="button"
           className="btn btn-ghost btn-sm"
           onClick={onRetry}
         >
-          Try again
-        </button>
+          {t("Try again")}</button>
       </div>
     );
   }
@@ -87,16 +85,14 @@ export function SitePicker({
     return (
       <div className="space-y-3">
         <p className="text-sm text-error">
-          Connection expired. Reconnect to continue.
-        </p>
+          {t("Connection expired. Reconnect to continue.")}</p>
         <button
           type="button"
           onClick={onReconnect}
           className="inline-flex items-center gap-2.5 rounded-lg border border-base-300 bg-base-100 px-4 py-2.5 text-sm font-semibold shadow-sm transition hover:bg-base-200"
         >
           <GoogleGlyph className="size-[18px]" />
-          Reconnect with Google
-        </button>
+          {t("Reconnect with Google")}</button>
       </div>
     );
   }
@@ -122,8 +118,7 @@ export function SitePicker({
     <div className="space-y-4">
       <label className="block">
         <span className="mb-1.5 block text-sm font-medium text-base-content/80">
-          Property
-        </span>
+          {t("Property")}</span>
         <select
           className="select select-bordered w-full max-w-md"
           value={selectedIndex >= 0 ? String(selectedIndex) : ""}
@@ -133,15 +128,14 @@ export function SitePicker({
           }}
         >
           <option value="" disabled>
-            Select a property…
-          </option>
+            {t("Select a property…")}</option>
           {healthyAccounts.map((account) => (
             <optgroup
               key={account.accountId}
               label={account.email ?? "Google account"}
             >
               {account.sites.length === 0 ? (
-                <option disabled>No properties</option>
+                <option disabled>{t("No properties")}</option>
               ) : (
                 account.sites.map((site) => {
                   const index = options.findIndex(
@@ -179,8 +173,7 @@ export function SitePicker({
           className="btn btn-ghost btn-sm"
           onClick={() => void startGoogleLink("gsc", window.location.href)}
         >
-          Connect another Google account
-        </button>
+          {t("Connect another Google account")}</button>
         {secondaryAction ? (
           <button
             type="button"

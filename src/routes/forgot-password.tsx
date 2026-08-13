@@ -10,6 +10,7 @@ import { authClient } from "@/lib/auth-client";
 import { isHostedClientAuthMode } from "@/lib/auth-mode";
 import { getSignInSearch, normalizeAuthRedirect } from "@/lib/auth-redirect";
 import { z } from "zod";
+import { t } from "@/client/features/laojin/i18n";
 
 const forgotPasswordSchema = z.object({
   email: z.string().trim().email("Enter a valid email address."),
@@ -100,9 +101,7 @@ function ForgotPasswordPage() {
               {isSuccess ? (
                 <div className="alert alert-success">
                   <span>
-                    If an account exists for that email, you'll receive password
-                    reset instructions shortly.
-                  </span>
+                    {t("If an account exists for that email, you'll receive password\n                    reset instructions shortly.")}</span>
                 </div>
               ) : (
                 <form
@@ -121,7 +120,7 @@ function ForgotPasswordPage() {
                           <input
                             type="email"
                             className="input input-bordered w-full"
-                            placeholder="Email address..."
+                            placeholder={t("Email address...")}
                             value={field.state.value}
                             onChange={(event) =>
                               field.handleChange(event.target.value)

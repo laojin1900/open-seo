@@ -7,6 +7,7 @@ import { type ThemePreference, useThemePreference } from "@/client/lib/theme";
 import { authClient, useSession } from "@/lib/auth-client";
 import { isHostedClientAuthMode } from "@/lib/auth-mode";
 import { version } from "../../../package.json";
+import { t } from "@/client/features/laojin/i18n";
 
 export const Route = createFileRoute("/_app/settings")({
   component: SettingsPage,
@@ -51,17 +52,16 @@ function SettingsPage() {
   return (
     <div className="h-full overflow-auto bg-base-100 px-4 py-8 pb-24 md:px-6 md:py-12 md:pb-8">
       <div className="mx-auto max-w-3xl space-y-10">
-        <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
+        <h1 className="text-2xl font-bold tracking-tight">{t("Settings")}</h1>
 
         <section className="space-y-3">
           <h2 className="text-sm font-medium text-base-content/50">
-            Appearance
-          </h2>
+            {t("Appearance")}</h2>
           <div className="flex items-center justify-between gap-6">
-            <span className="text-sm">Theme</span>
+            <span className="text-sm">{t("Theme")}</span>
             <div
               role="radiogroup"
-              aria-label="Theme preference"
+              aria-label={t("Theme preference")}
               className="flex gap-0.5 rounded-lg bg-base-200 p-0.5"
             >
               {THEME_OPTIONS.map((option) => {
@@ -96,14 +96,12 @@ function SettingsPage() {
 
             <section className="space-y-3">
               <h2 className="text-sm font-medium text-base-content/50">
-                Analytics
-              </h2>
+                {t("Analytics")}</h2>
               <div className="flex items-start justify-between gap-6">
                 <div>
-                  <p className="text-sm">Help improve OpenSEO</p>
+                  <p className="text-sm">{t("Help improve OpenSEO")}</p>
                   <p className="mt-1 text-sm text-base-content/60">
-                    Share analytics and usage data.
-                  </p>
+                    {t("Share analytics and usage data.")}</p>
                 </div>
                 <input
                   type="checkbox"
@@ -113,16 +111,16 @@ function SettingsPage() {
                   onChange={(event) => {
                     void updateAnalyticsPreference(event.currentTarget.checked);
                   }}
-                  aria-label="Enable product analytics"
+                  aria-label={t("Enable product analytics")}
                 />
               </div>
             </section>
           </>
         ) : (
           <section className="space-y-3">
-            <h2 className="text-sm font-medium text-base-content/50">About</h2>
+            <h2 className="text-sm font-medium text-base-content/50">{t("About")}</h2>
             <div className="flex items-center justify-between gap-6">
-              <span className="text-sm">Version</span>
+              <span className="text-sm">{t("Version")}</span>
               <span className="font-mono text-sm text-base-content/60">
                 v{version}
               </span>

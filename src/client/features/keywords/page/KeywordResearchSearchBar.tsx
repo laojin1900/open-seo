@@ -11,6 +11,7 @@ import {
 import { isLabsLocationCode } from "@/client/features/keywords/locations";
 import { LocationSelect } from "@/client/components/LocationSelect";
 import type { KeywordResearchControllerState } from "./types";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   controller: KeywordResearchControllerState;
@@ -47,7 +48,7 @@ export function KeywordResearchSearchBar({ controller }: Props) {
                   <textarea
                     className="grow min-w-0 resize-none bg-transparent text-sm leading-6 outline-none placeholder:text-base-content/40"
                     rows={rows}
-                    placeholder="Enter a keyword"
+                    placeholder={t("Enter a keyword")}
                     value={field.state.value}
                     onChange={(event) => field.handleChange(event.target.value)}
                     onKeyDown={(event) => {
@@ -104,10 +105,10 @@ export function KeywordResearchSearchBar({ controller }: Props) {
                     field.handleChange(normalizeKeywordMode(event.target.value))
                   }
                 >
-                  <option value="auto">Auto</option>
-                  <option value="related">Related keywords</option>
-                  <option value="suggestions">Suggestions</option>
-                  <option value="ideas">Ideas</option>
+                  <option value="auto">{t("Auto")}</option>
+                  <option value="related">{t("Related keywords")}</option>
+                  <option value="suggestions">{t("Suggestions")}</option>
+                  <option value="ideas">{t("Ideas")}</option>
                 </select>
               )}
             </controlsForm.Field>
@@ -116,8 +117,7 @@ export function KeywordResearchSearchBar({ controller }: Props) {
               type="submit"
               className="btn btn-primary w-full px-6 lg:w-auto lg:shrink-0"
             >
-              Search
-            </button>
+              {t("Search")}</button>
           </div>
         </form>
         <controlsForm.Field name="keyword">
@@ -145,8 +145,7 @@ export function KeywordResearchSearchBar({ controller }: Props) {
                         }
                       />
                       <span className="text-sm font-medium text-base-content/80">
-                        Clickstream-refined volumes
-                      </span>
+                        {t("Clickstream-refined volumes")}</span>
                     </label>
                     <div
                       className="tooltip tooltip-right"

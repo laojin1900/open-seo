@@ -16,6 +16,7 @@ import {
   LighthouseScoreBadge,
 } from "@/client/features/audit/shared";
 import type { AuditResultsData } from "@/client/features/audit/results/types";
+import { t } from "@/client/features/laojin/i18n";
 import {
   countActiveFilters,
   EmptyTableMessage,
@@ -122,7 +123,7 @@ function buildPerformanceColumns({
 }): ColumnDef<PerformanceRowData>[] {
   return [
     performanceColumnHelper.accessor("pagePath", {
-      header: ({ column }) => <SortableHeader column={column} label="URL" />,
+      header: ({ column }) => <SortableHeader column={column} label={t("URL")} />,
       cell: ({ getValue }) => (
         <span className="text-xs">{getValue() ?? "-"}</span>
       ),
@@ -130,14 +131,14 @@ function buildPerformanceColumns({
       meta: { cellClassName: "max-w-[180px] truncate" },
     }),
     performanceColumnHelper.accessor("strategy", {
-      header: ({ column }) => <SortableHeader column={column} label="Device" />,
+      header: ({ column }) => <SortableHeader column={column} label={t("Device")} />,
       cell: ({ getValue }) => (
         <span className="capitalize text-xs">{getValue()}</span>
       ),
     }),
     performanceColumnHelper.display({
       id: "status",
-      header: ({ column }) => <SortableHeader column={column} label="Status" />,
+      header: ({ column }) => <SortableHeader column={column} label={t("Status")} />,
       cell: ({ row }) => {
         const isFailed = isLighthouseFailure(row.original);
         const failureMessage =
@@ -159,22 +160,22 @@ function buildPerformanceColumns({
         Number(isLighthouseFailure(right.original)),
     }),
     performanceColumnHelper.accessor("performanceScore", {
-      header: ({ column }) => <SortableHeader column={column} label="Perf" />,
+      header: ({ column }) => <SortableHeader column={column} label={t("Perf")} />,
       cell: ({ getValue }) => <LighthouseScoreBadge score={getValue()} />,
       sortingFn: nullableNumberSort,
     }),
     performanceColumnHelper.accessor("accessibilityScore", {
-      header: ({ column }) => <SortableHeader column={column} label="A11y" />,
+      header: ({ column }) => <SortableHeader column={column} label={t("A11y")} />,
       cell: ({ getValue }) => <LighthouseScoreBadge score={getValue()} />,
       sortingFn: nullableNumberSort,
     }),
     performanceColumnHelper.accessor("seoScore", {
-      header: ({ column }) => <SortableHeader column={column} label="SEO" />,
+      header: ({ column }) => <SortableHeader column={column} label={t("SEO")} />,
       cell: ({ getValue }) => <LighthouseScoreBadge score={getValue()} />,
       sortingFn: nullableNumberSort,
     }),
     performanceColumnHelper.accessor("lcpMs", {
-      header: ({ column }) => <SortableHeader column={column} label="LCP" />,
+      header: ({ column }) => <SortableHeader column={column} label={t("LCP")} />,
       cell: ({ getValue }) => {
         const value = getValue();
         return value ? (
@@ -186,7 +187,7 @@ function buildPerformanceColumns({
       sortingFn: nullableNumberSort,
     }),
     performanceColumnHelper.accessor("cls", {
-      header: ({ column }) => <SortableHeader column={column} label="CLS" />,
+      header: ({ column }) => <SortableHeader column={column} label={t("CLS")} />,
       cell: ({ getValue }) => {
         const value = getValue();
         return value != null ? (
@@ -198,7 +199,7 @@ function buildPerformanceColumns({
       sortingFn: nullableNumberSort,
     }),
     performanceColumnHelper.accessor("inpMs", {
-      header: ({ column }) => <SortableHeader column={column} label="INP" />,
+      header: ({ column }) => <SortableHeader column={column} label={t("INP")} />,
       cell: ({ getValue }) => {
         const value = getValue();
         return value ? (
@@ -210,7 +211,7 @@ function buildPerformanceColumns({
       sortingFn: nullableNumberSort,
     }),
     performanceColumnHelper.accessor("ttfbMs", {
-      header: ({ column }) => <SortableHeader column={column} label="TTFB" />,
+      header: ({ column }) => <SortableHeader column={column} label={t("TTFB")} />,
       cell: ({ getValue }) => {
         const value = getValue();
         return value ? (
@@ -232,8 +233,7 @@ function buildPerformanceColumns({
             params={{ projectId, resultId: row.original.id }}
             search={{ auditId, category: "performance" }}
           >
-            View issues
-          </Link>
+            {t("View issues")}</Link>
         ) : (
           <span className="text-xs text-base-content/40">-</span>
         ),

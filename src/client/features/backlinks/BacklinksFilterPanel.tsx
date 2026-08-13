@@ -8,6 +8,7 @@ import {
   type BacklinksTabFilterValues,
 } from "./backlinksFilterTypes";
 import type { BacklinksFiltersState } from "./useBacklinksFilters";
+import { t } from "@/client/features/laojin/i18n";
 
 /**
  * Filters are applied explicitly (not per keystroke) because every change
@@ -180,8 +181,7 @@ function BacklinksToggleControls({
     <div className="flex flex-wrap items-center gap-4">
       <div className="space-y-1.5">
         <p className="text-[11px] font-semibold uppercase tracking-wide text-base-content/60">
-          Link Type
-        </p>
+          {t("Link Type")}</p>
         <div className="flex items-center gap-1">
           {(["", "dofollow", "nofollow"] as const).map((value) => (
             <button
@@ -202,8 +202,7 @@ function BacklinksToggleControls({
 
       <div className="space-y-1.5">
         <p className="text-[11px] font-semibold uppercase tracking-wide text-base-content/60">
-          Visibility
-        </p>
+          {t("Visibility")}</p>
         <div className="flex items-center gap-3">
           <label className="flex items-center gap-1.5 cursor-pointer">
             <input
@@ -214,7 +213,7 @@ function BacklinksToggleControls({
                 setValue("hideLost", event.target.checked ? "true" : "")
               }
             />
-            <span className="text-xs">Hide lost</span>
+            <span className="text-xs">{t("Hide lost")}</span>
           </label>
           <label className="flex items-center gap-1.5 cursor-pointer">
             <input
@@ -225,7 +224,7 @@ function BacklinksToggleControls({
                 setValue("hideBroken", event.target.checked ? "true" : "")
               }
             />
-            <span className="text-xs">Hide broken</span>
+            <span className="text-xs">{t("Hide broken")}</span>
           </label>
         </div>
       </div>

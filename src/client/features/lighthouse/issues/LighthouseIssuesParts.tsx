@@ -19,6 +19,7 @@ import { LighthouseIssueRow } from "./LighthouseIssueRow";
 import { LighthouseIssuesSummary } from "./LighthouseIssuesSummary";
 import { categoryLabel } from "./utils";
 import { categoryTabs } from "./types";
+import { t } from "@/client/features/laojin/i18n";
 
 export function LighthouseIssuesHeader({
   backLabel,
@@ -53,7 +54,7 @@ export function LighthouseIssuesHeader({
       <div className="card bg-base-100 border border-base-300">
         <div className="card-body py-5 gap-4">
           <div className="space-y-1">
-            <h1 className="text-2xl font-semibold">Lighthouse Issues</h1>
+            <h1 className="text-2xl font-semibold">{t("Lighthouse Issues")}</h1>
             <p className="text-sm text-base-content/70 break-all">
               {finalUrl ?? "Loading URL..."}
             </p>
@@ -62,15 +63,15 @@ export function LighthouseIssuesHeader({
           <div className="flex flex-wrap gap-2 text-xs">
             <span className="badge border border-error/30 bg-error/10 text-error/80 gap-1">
               <FileWarning className="size-3" />
-              Critical {severityCounts.critical}
+              {t("Critical")}{severityCounts.critical}
             </span>
             <span className="badge border border-warning/30 bg-warning/10 text-warning/80 gap-1">
               <TriangleAlert className="size-3" />
-              Warning {severityCounts.warning}
+              {t("Warning")}{severityCounts.warning}
             </span>
             <span className="badge border border-info/30 bg-info/10 text-info/80 gap-1">
               <Info className="size-3" />
-              Info {severityCounts.info}
+              {t("Info")}{severityCounts.info}
             </span>
           </div>
         </div>
@@ -207,7 +208,7 @@ function ExportMenu({
       {(close) => (
         <>
           <li className="menu-title">
-            <span>Export to Sheets</span>
+            <span>{t("Export to Sheets")}</span>
           </li>
           <li>
             <button
@@ -218,7 +219,7 @@ function ExportMenu({
               }}
             >
               <Sheet className="size-4" />
-              Open in Sheets — {categoryLabelLower}
+              {t("Open in Sheets —")}{categoryLabelLower}
             </button>
           </li>
           <li>
@@ -230,11 +231,10 @@ function ExportMenu({
               }}
             >
               <Sheet className="size-4" />
-              Open in Sheets — all actionable
-            </button>
+              {t("Open in Sheets — all actionable")}</button>
           </li>
           <li className="menu-title">
-            <span>Copy</span>
+            <span>{t("Copy")}</span>
           </li>
           <li>
             <button
@@ -248,7 +248,7 @@ function ExportMenu({
               }}
             >
               <Copy className="size-4" />
-              Copy {categoryLabelLower} issues
+              {t("Copy")}{categoryLabelLower} issues
             </button>
           </li>
           <li>
@@ -260,8 +260,7 @@ function ExportMenu({
               }}
             >
               <Copy className="size-4" />
-              Copy all actionable issues
-            </button>
+              {t("Copy all actionable issues")}</button>
           </li>
           <li>
             <button
@@ -272,11 +271,10 @@ function ExportMenu({
               }}
             >
               <Copy className="size-4" />
-              Copy saved Lighthouse payload
-            </button>
+              {t("Copy saved Lighthouse payload")}</button>
           </li>
           <li className="menu-title">
-            <span>Download JSON</span>
+            <span>{t("Download JSON")}</span>
           </li>
           <li>
             <button
@@ -286,7 +284,7 @@ function ExportMenu({
                 onExport(exportCurrentCategory);
               }}
             >
-              Download {categoryLabelLower} issues
+              {t("Download")}{categoryLabelLower} issues
             </button>
           </li>
           <li>
@@ -297,8 +295,7 @@ function ExportMenu({
                 onExport({ mode: "issues" });
               }}
             >
-              Download all actionable issues
-            </button>
+              {t("Download all actionable issues")}</button>
           </li>
           <li>
             <button
@@ -308,11 +305,10 @@ function ExportMenu({
                 onExport({ mode: "full" });
               }}
             >
-              Download saved Lighthouse payload
-            </button>
+              {t("Download saved Lighthouse payload")}</button>
           </li>
           <li className="menu-title">
-            <span>Download CSV</span>
+            <span>{t("Download CSV")}</span>
           </li>
           <li>
             <button
@@ -322,7 +318,7 @@ function ExportMenu({
                 onExportCsv(visibleIssues, "current");
               }}
             >
-              Download {categoryLabelLower} issues
+              {t("Download")}{categoryLabelLower} issues
             </button>
           </li>
           <li>
@@ -333,8 +329,7 @@ function ExportMenu({
                 onExportCsv(allIssues, "all");
               }}
             >
-              Download all actionable issues
-            </button>
+              {t("Download all actionable issues")}</button>
           </li>
         </>
       )}
@@ -352,7 +347,7 @@ export function LighthouseIssueList({
   emptyMessage?: string;
 }) {
   if (isLoading) {
-    return <p className="text-sm text-base-content/60">Loading issues...</p>;
+    return <p className="text-sm text-base-content/60">{t("Loading issues...")}</p>;
   }
   if (!issues.length) {
     return (
@@ -374,13 +369,12 @@ export function LighthouseIssueList({
       <thead>
         <tr className="text-xs text-base-content/50 uppercase tracking-wide border-b border-base-300">
           <th />
-          <th className="font-medium">Severity</th>
-          <th className="font-medium">Issue</th>
-          <th className="font-medium hidden sm:table-cell">Category</th>
+          <th className="font-medium">{t("Severity")}</th>
+          <th className="font-medium">{t("Issue")}</th>
+          <th className="font-medium hidden sm:table-cell">{t("Category")}</th>
           <th className="font-medium hidden md:table-cell text-right">
-            Impact
-          </th>
-          <th className="font-medium text-right">Score</th>
+            {t("Impact")}</th>
+          <th className="font-medium text-right">{t("Score")}</th>
         </tr>
       </thead>
       <tbody className="divide-y divide-base-300/60">

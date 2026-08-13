@@ -7,6 +7,7 @@ import {
 } from "./BacklinksPageCharts";
 import type { BacklinksOverviewData } from "./backlinksPageTypes";
 import { formatRelativeTimestamp } from "./backlinksPageUtils";
+import { t } from "@/client/features/laojin/i18n";
 
 type SummaryStat = { label: string; value: string; description: string };
 
@@ -38,14 +39,13 @@ export function BacklinksOverviewPanels({
           className="btn btn-ghost btn-sm gap-2 px-0 text-base-content/70 hover:bg-transparent"
         >
           <ArrowLeft className="size-4" />
-          Recent searches
-        </Link>
+          {t("Recent searches")}</Link>
       </div>
       <div className="flex flex-wrap items-center gap-2 text-sm text-base-content/65">
         <span className="badge badge-outline">{data.scope}</span>
-        <span>Target: {data.displayTarget}</span>
+        <span>{t("Target:")}{data.displayTarget}</span>
         <span>-</span>
-        <span>Updated {formatRelativeTimestamp(data.fetchedAt)}</span>
+        <span>{t("Updated")}{formatRelativeTimestamp(data.fetchedAt)}</span>
       </div>
       <OverviewGrid data={data} summaryStats={summaryStats} />
       {data.scope === "page" ? (
@@ -114,14 +114,14 @@ function TrendPanels({ data }: { data: BacklinksOverviewData }) {
   return (
     <>
       <TrendCard
-        title="Backlink growth"
-        description="Backlinks and referring domains over the last year"
+        title={t("Backlink growth")}
+        description={t("Backlinks and referring domains over the last year")}
       >
         <BacklinksTrendChart data={data.trends} />
       </TrendCard>
       <TrendCard
-        title="New vs lost"
-        description="Backlink acquisition and attrition"
+        title={t("New vs lost")}
+        description={t("Backlink acquisition and attrition")}
       >
         <BacklinksNewLostChart data={data.newLostTrends} />
       </TrendCard>

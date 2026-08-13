@@ -21,6 +21,7 @@ import {
   HOSTED_PASSWORD_MIN_LENGTH,
 } from "@/lib/auth-options";
 import { z } from "zod";
+import { t } from "@/client/features/laojin/i18n";
 
 const signUpSchema = z
   .object({
@@ -150,7 +151,7 @@ function SignUpPage() {
 
   return (
     <AuthPageCard
-      title="Create your account"
+      title={t("Create your account")}
       footer={
         isHostedMode ? (
           showEmailForm ? (
@@ -238,7 +239,7 @@ function SignUpPage() {
                   <input
                     type="text"
                     className="input input-bordered w-full"
-                    placeholder="Name (optional)..."
+                    placeholder={t("Name (optional)...")}
                     value={field.state.value}
                     onChange={(event) => field.handleChange(event.target.value)}
                     autoComplete="name"
@@ -261,7 +262,7 @@ function SignUpPage() {
                   <input
                     type="email"
                     className="input input-bordered w-full"
-                    placeholder="Email address..."
+                    placeholder={t("Email address...")}
                     value={field.state.value}
                     onChange={(event) => field.handleChange(event.target.value)}
                     autoComplete="email"
@@ -285,7 +286,7 @@ function SignUpPage() {
                   <input
                     type="password"
                     className="input input-bordered w-full"
-                    placeholder="Password..."
+                    placeholder={t("Password...")}
                     value={field.state.value}
                     onChange={(event) => field.handleChange(event.target.value)}
                     autoComplete="new-password"
@@ -311,7 +312,7 @@ function SignUpPage() {
                   <input
                     type="password"
                     className="input input-bordered w-full"
-                    placeholder="Confirm password..."
+                    placeholder={t("Confirm password...")}
                     value={field.state.value}
                     onChange={(event) => field.handleChange(event.target.value)}
                     autoComplete="new-password"

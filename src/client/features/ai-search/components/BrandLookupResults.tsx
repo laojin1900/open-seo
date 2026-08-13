@@ -8,6 +8,7 @@ import {
   PLATFORM_DOT_CLASS,
 } from "@/client/features/ai-search/platformLabels";
 import type { BrandLookupResult } from "@/types/schemas/ai-search";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   result: BrandLookupResult;
@@ -29,7 +30,7 @@ export function BrandLookupResults({ result, projectId }: Props) {
     if (allPlatformsErrored) {
       return (
         <div className="rounded-lg border border-warning/30 bg-warning/10 p-4 text-sm">
-          AI mention data is temporarily unavailable for{" "}
+          {t("AI mention data is temporarily unavailable for")}{" "}
           <strong>{result.resolvedTarget}</strong>. Please try again shortly.
         </div>
       );
@@ -37,11 +38,11 @@ export function BrandLookupResults({ result, projectId }: Props) {
     return (
       <div className="space-y-3">
         <div className="rounded-lg border border-info/30 bg-info/10 p-4 text-sm">
-          No AI mentions found for <strong>{result.resolvedTarget}</strong>.
+          {t("No AI mentions found for")}<strong>{result.resolvedTarget}</strong>.
         </div>
         {erroredPlatforms.length > 0 ? (
           <p className="text-xs text-base-content/60">
-            Note:{" "}
+            {t("Note:")}{" "}
             {erroredPlatforms
               .map((p) => formatPlatformLabel(p.platform))
               .join(" and ")}{" "}
@@ -91,7 +92,7 @@ function BrandHeader({ result }: { result: BrandLookupResult }) {
         </span>
       </div>
       <p className="text-xs text-base-content/50">
-        Updated {formatRelative(result.fetchedAt)}
+        {t("Updated")}{formatRelative(result.fetchedAt)}
       </p>
     </section>
   );
@@ -102,15 +103,15 @@ function StatsCard({ result }: { result: BrandLookupResult }) {
     <section className="rounded-xl border border-base-300 bg-base-100">
       <div className="flex h-full flex-col divide-y divide-base-200">
         <StatBlock
-          label="Mentions"
-          tooltip="Estimated count of AI answers where the searched brand or domain appeared in the answer text or cited sources."
+          label={t("Mentions")}
+          tooltip={t("Estimated count of AI answers where the searched brand or domain appeared in the answer text or cited sources.")}
           value={result.totalMentions}
           perPlatform={result.perPlatform}
           metric="mentions"
         />
         <StatBlock
-          label="AI search volume"
-          tooltip="Estimated monthly search demand for prompts where the searched brand or domain appears in AI answers. This is prompt demand, not mention count."
+          label={t("AI search volume")}
+          tooltip={t("Estimated monthly search demand for prompts where the searched brand or domain appears in AI answers. This is prompt demand, not mention count.")}
           value={result.totalAiSearchVolume}
           perPlatform={result.perPlatform}
           metric="aiSearchVolume"
@@ -172,7 +173,7 @@ function PlatformStatRow({
         {row.platform === "chat_gpt" ? (
           <span
             className="tooltip z-20 inline-flex"
-            data-tip="DataForSEO indexes ChatGPT mentions for US English only — country selection is not available for this platform."
+            data-tip={t("DataForSEO indexes ChatGPT mentions for US English only — country selection is not available for this platform.")}
           >
             <Info className="size-3 text-base-content/40" />
           </span>
@@ -193,8 +194,7 @@ function MentionTrendCard({ result }: { result: BrandLookupResult }) {
     <section className="overflow-hidden rounded-xl border border-base-300 bg-base-100">
       <div className="border-b border-base-300 px-4 py-3">
         <h3 className="text-sm font-semibold">
-          Mention trend (last 12 months)
-        </h3>
+          {t("Mention trend (last 12 months)")}</h3>
       </div>
       <div className="p-4">
         <BrandLookupMentionTrendCard result={result} />

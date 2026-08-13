@@ -13,6 +13,7 @@ import {
 import type { MonthlySearch } from "@/types/keywords";
 import { formatCompactNumber } from "../utils";
 import { FloatingTooltip, useFloatingTooltip } from "./FloatingTooltip";
+import { t } from "@/client/features/laojin/i18n";
 
 export type SortField =
   | "keyword"
@@ -110,7 +111,7 @@ export function AreaTrendChart({ trend }: { trend: MonthlySearch[] }) {
     <div
       ref={containerRef}
       className="w-full h-[210px] min-w-0"
-      aria-label="Search trend chart"
+      aria-label={t("Search trend chart")}
     >
       {chartWidth > 0 ? (
         <AreaChart

@@ -28,6 +28,7 @@ import {
 import { setProjectDomain } from "@/serverFunctions/projects";
 import { GA4_OAUTH_APP_PENDING } from "@/shared/ga4";
 import type { DashboardHeroStep } from "@/types/schemas/dashboard";
+import { t } from "@/client/features/laojin/i18n";
 
 const HERO_COPY: Record<
   DashboardHeroStep,
@@ -142,15 +143,14 @@ function OnboardingChecklist({
     <div className="rounded-xl border border-primary/25 bg-primary/5 shadow-sm">
       <div className="flex items-center justify-between gap-4 px-5 pt-4">
         <p className="text-xs font-medium uppercase tracking-wide text-primary">
-          Onboarding checklist
-        </p>
+          {t("Onboarding checklist")}</p>
         <div className="flex items-center gap-1">
           <button
             type="button"
             className={`btn btn-ghost btn-xs btn-square ${
               index === 0 ? "invisible" : ""
             }`}
-            aria-label="Previous step"
+            aria-label={t("Previous step")}
             disabled={index === 0}
             onClick={() => page(-1)}
           >
@@ -164,7 +164,7 @@ function OnboardingChecklist({
             className={`btn btn-ghost btn-xs btn-square ${
               index === STEP_ORDER.length - 1 ? "invisible" : ""
             }`}
-            aria-label="Next step"
+            aria-label={t("Next step")}
             disabled={index === STEP_ORDER.length - 1}
             onClick={() => page(1)}
           >
@@ -183,8 +183,7 @@ function OnboardingChecklist({
           {done ? (
             <span className="inline-flex items-center gap-1.5 text-sm font-medium text-success">
               <Check className="size-4" />
-              Done
-            </span>
+              {t("Done")}</span>
           ) : step === "domain" ? (
             <form
               className="join"
@@ -199,7 +198,7 @@ function OnboardingChecklist({
                 placeholder="acme.com"
                 value={domainInput}
                 onChange={(event) => setDomainInput(event.target.value)}
-                aria-label="Your site's domain"
+                aria-label={t("Your site's domain")}
               />
               <button
                 type="submit"
@@ -305,7 +304,7 @@ export function DashboardPage({ projectId }: { projectId: string }) {
   return (
     <div className="px-4 py-4 pb-24 md:px-6 md:py-6 md:pb-8">
       <div className="mx-auto flex max-w-5xl flex-col gap-5">
-        <h1 className="text-2xl font-semibold">Dashboard</h1>
+        <h1 className="text-2xl font-semibold">{t("Dashboard")}</h1>
 
         <WorkspaceMergeBanner />
 

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "@tanstack/react-router";
 import { Check, ExternalLink, X } from "lucide-react";
 import { Modal } from "@/client/components/Modal";
+import { t } from "@/client/features/laojin/i18n";
 import {
   closeExportToSheetsModal,
   openGoogleSheetsTab,
@@ -39,22 +40,21 @@ export function ExportToSheetsModal() {
             <Check className="size-4" />
           </span>
           <h3 id="export-to-sheets-title" className="text-base font-semibold">
-            Copied {rowCount} row{rowCount === 1 ? "" : "s"} to your clipboard
+            {t("Copied")}{rowCount} row{rowCount === 1 ? "" : "s"} to your clipboard
           </h3>
         </div>
         <button
           type="button"
           className="btn btn-ghost btn-xs btn-square"
           onClick={closeExportToSheetsModal}
-          aria-label="Close"
+          aria-label={t("Close")}
         >
           <X className="size-4" />
         </button>
       </div>
 
       <p className="text-sm text-base-content/75">
-        Open a new Google Sheet and paste to fill it.
-      </p>
+        {t("Open a new Google Sheet and paste to fill it.")}</p>
 
       <div className="flex justify-end">
         <button
@@ -62,8 +62,7 @@ export function ExportToSheetsModal() {
           className="btn btn-primary btn-sm gap-1.5"
           onClick={handleOpenSheet}
         >
-          Open new Google Sheet
-          <ExternalLink className="size-3.5" />
+          {t("Open new Google Sheet")}<ExternalLink className="size-3.5" />
         </button>
       </div>
     </Modal>

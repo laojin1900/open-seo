@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { formatCount } from "@/client/features/ai-search/platformLabels";
 import type { BrandLookupResult } from "@/types/schemas/ai-search";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   result: BrandLookupResult;
@@ -28,8 +29,7 @@ export function BrandLookupMentionTrendCard({ result }: Props) {
   if (chartData.length === 0) {
     return (
       <div className="flex h-56 items-center justify-center text-sm text-base-content/60">
-        Not enough historical data yet.
-      </div>
+        {t("Not enough historical data yet.")}</div>
     );
   }
 

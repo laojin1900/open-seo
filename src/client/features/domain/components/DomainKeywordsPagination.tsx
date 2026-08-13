@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { DOMAIN_KEYWORDS_PAGE_SIZES } from "@/types/schemas/domain";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   page: number;
@@ -52,7 +53,7 @@ export function DomainKeywordsPagination({
 
       <div className="flex items-center gap-6">
         <label className="flex items-center gap-2 text-sm text-base-content/70">
-          <span className="whitespace-nowrap">Rows per page</span>
+          <span className="whitespace-nowrap">{t("Rows per page")}</span>
           <select
             className="select select-bordered select-sm w-20"
             value={pageSize}
@@ -68,7 +69,7 @@ export function DomainKeywordsPagination({
 
         <div className="flex items-center gap-2">
           <span className="whitespace-nowrap text-sm tabular-nums text-base-content/70">
-            Page {page.toLocaleString()}
+            {t("Page")}{page.toLocaleString()}
             {totalPages != null ? ` of ${totalPages.toLocaleString()}` : ""}
           </span>
           <div className="flex items-center gap-1">
@@ -76,7 +77,7 @@ export function DomainKeywordsPagination({
               page={page - 1}
               disabled={!canGoPrev || isLoading}
               onPageChange={onPageChange}
-              label="Previous page"
+              label={t("Previous page")}
             >
               <ChevronLeft className="size-4" />
             </PageLink>
@@ -84,7 +85,7 @@ export function DomainKeywordsPagination({
               page={page + 1}
               disabled={!canGoNext || isLoading}
               onPageChange={onPageChange}
-              label="Next page"
+              label={t("Next page")}
             >
               <ChevronRight className="size-4" />
             </PageLink>

@@ -28,6 +28,7 @@ import {
   FilterTextInput,
 } from "./keywordResearchFilters";
 import { KeywordResearchDesktopTable } from "./KeywordResearchDesktopTable";
+import { t } from "@/client/features/laojin/i18n";
 import {
   KeywordResearchPagination,
   useKeywordResearchPagination,
@@ -101,13 +102,13 @@ function DesktopKeywordPanel({ controller }: Props) {
           className="rounded-lg border border-warning/40 bg-warning/15 px-3 py-2 text-sm text-base-content"
           role="status"
         >
-          No exact match for{" "}
+          {t("No exact match for")}{" "}
           <span className="font-medium">"{searchedKeyword}"</span>. Showing
           closest related keywords instead.
           {lastUsedFallback ? (
             <span className="text-base-content/75">
               {" "}
-              Source: {lastResultSource} fallback.
+              {t("Source:")}{lastResultSource} fallback.
             </span>
           ) : null}
         </div>
@@ -172,11 +173,10 @@ function DesktopTableCard({ controller }: Props) {
         <button
           className={`btn btn-ghost btn-sm gap-1.5 ${showFilters ? "btn-active" : ""}`}
           onClick={() => controller.setShowFilters((current) => !current)}
-          title="Toggle table filters"
+          title={t("Toggle table filters")}
         >
           <SlidersHorizontal className="size-3.5" />
-          Filters
-          {activeFilterCount > 0 ? (
+          {t("Filters")}{activeFilterCount > 0 ? (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {activeFilterCount}
             </span>
@@ -193,7 +193,7 @@ function DesktopTableCard({ controller }: Props) {
             className={`btn btn-ghost btn-sm gap-1 ${!canExport ? "btn-disabled" : ""}`}
           >
             <Download className="size-3.5" />
-            <span className="hidden lg:inline">Export</span>
+            <span className="hidden lg:inline">{t("Export")}</span>
             <ChevronDown className="size-3 opacity-60" />
           </div>
           <ul
@@ -203,14 +203,12 @@ function DesktopTableCard({ controller }: Props) {
             <li>
               <button onClick={handleExportToSheets} disabled={!canExport}>
                 <Sheet className="size-4" />
-                Export to Sheets
-              </button>
+                {t("Export to Sheets")}</button>
             </li>
             <li>
               <button onClick={controller.exportCsv} disabled={!canExport}>
                 <FileDown className="size-4" />
-                Export CSV
-              </button>
+                {t("Export CSV")}</button>
             </li>
           </ul>
         </div>
@@ -278,7 +276,7 @@ function DesktopFilters({ controller }: Props) {
     <div className="shrink-0 border-b border-base-300 bg-gradient-to-b from-base-100 to-base-200/30 px-4 py-3 space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <p className="text-sm font-semibold">Refine table results</p>
+          <p className="text-sm font-semibold">{t("Refine table results")}</p>
           {activeFilterCount > 0 ? (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {activeFilterCount} active
@@ -291,21 +289,20 @@ function DesktopFilters({ controller }: Props) {
           disabled={activeFilterCount === 0}
         >
           <RotateCcw className="size-3" />
-          Clear all
-        </button>
+          {t("Clear all")}</button>
       </div>
 
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
         <FilterTextInput
           form={filtersForm}
           name="include"
-          label="Include Terms"
+          label={t("Include Terms")}
           placeholder="audit, checker, template"
         />
         <FilterTextInput
           form={filtersForm}
           name="exclude"
-          label="Exclude Terms"
+          label={t("Exclude Terms")}
           placeholder="jobs, salary, course"
         />
       </div>
@@ -313,20 +310,20 @@ function DesktopFilters({ controller }: Props) {
       <div className="grid grid-cols-1 gap-2 lg:grid-cols-3">
         <FilterRangeInputs
           form={filtersForm}
-          title="Search Volume"
+          title={t("Search Volume")}
           minName="minVol"
           maxName="maxVol"
         />
         <FilterRangeInputs
           form={filtersForm}
-          title="CPC (USD)"
+          title={t("CPC (USD)")}
           minName="minCpc"
           maxName="maxCpc"
           step="0.01"
         />
         <FilterRangeInputs
           form={filtersForm}
-          title="Difficulty"
+          title={t("Difficulty")}
           minName="minKd"
           maxName="maxKd"
         />
@@ -348,7 +345,7 @@ function DesktopSerpPanel({ controller }: Props) {
       {overviewKeyword && overviewKeyword.trend.length > 0 ? (
         <div className="shrink-0 overflow-hidden border border-base-300 rounded-xl bg-base-100 px-4 py-3">
           <h4 className="text-sm font-semibold mb-1">
-            Search Trends{" "}
+            {t("Search Trends")}{" "}
             <span className="font-normal text-base-content/50">
               {trendRangeLabel}
             </span>
@@ -361,8 +358,7 @@ function DesktopSerpPanel({ controller }: Props) {
         <div className="shrink-0 px-4 py-3 border-b border-base-300">
           <h3 className="text-sm font-semibold flex items-center gap-1.5">
             <Globe className="size-3.5" />
-            SERP Analysis
-            {controller.activeSerpKeyword ? (
+            {t("SERP Analysis")}{controller.activeSerpKeyword ? (
               <span className="font-normal text-base-content/50 truncate">
                 : {controller.activeSerpKeyword}
               </span>

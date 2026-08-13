@@ -11,6 +11,7 @@ import {
   formatNumber,
 } from "./backlinksPageUtils";
 import type { DomainRatings } from "./useAhrefsDomainRatings";
+import { t } from "@/client/features/laojin/i18n";
 
 /**
  * Row model for the backlinks table. In the one-per-domain view, depth-0 rows
@@ -31,15 +32,14 @@ function BacklinkFlags({ row }: { row: BacklinksRow }) {
   return (
     <div className="flex flex-wrap gap-1">
       {row.isLost ? (
-        <span className="badge badge-sm badge-error badge-outline">Lost</span>
+        <span className="badge badge-sm badge-error badge-outline">{t("Lost")}</span>
       ) : null}
       {row.isBroken ? (
         <span className="badge badge-sm badge-warning badge-outline">
-          Broken
-        </span>
+          {t("Broken")}</span>
       ) : null}
       {row.isDofollow === false ? (
-        <span className="badge badge-sm badge-outline">Nofollow</span>
+        <span className="badge badge-sm badge-outline">{t("Nofollow")}</span>
       ) : null}
       {row.linksCount != null && row.linksCount > 1 ? (
         <span className="badge badge-sm badge-outline min-w-fit whitespace-nowrap">
@@ -55,8 +55,7 @@ function StatusCell({ status }: { status: "loading" | "error" | "empty" }) {
     return (
       <span className="flex items-center gap-2 pl-6 text-sm text-base-content/60">
         <span className="loading loading-spinner loading-xs" />
-        Loading links…
-      </span>
+        {t("Loading links…")}</span>
     );
   }
   return (
@@ -137,7 +136,7 @@ function buildBaseColumns(
       id: "source",
       enableSorting: false,
       header: () => (
-        <HeaderHelpLabel label="Source" helpText="Page linking to you" />
+        <HeaderHelpLabel label={t("Source")} helpText="Page linking to you" />
       ),
       size: 250,
       minSize: 180,
@@ -149,7 +148,7 @@ function buildBaseColumns(
       id: "target",
       enableSorting: false,
       header: () => (
-        <HeaderHelpLabel label="Target" helpText="Destination on your site" />
+        <HeaderHelpLabel label={t("Target")} helpText="Destination on your site" />
       ),
       size: 220,
       minSize: 150,
@@ -167,7 +166,7 @@ function buildBaseColumns(
       id: "anchor",
       enableSorting: false,
       header: () => (
-        <HeaderHelpLabel label="Anchor" helpText="Text or format of the link" />
+        <HeaderHelpLabel label={t("Anchor")} helpText="Text or format of the link" />
       ),
       size: 150,
       minSize: 100,
@@ -185,7 +184,7 @@ function buildBaseColumns(
       enableSorting: false,
       header: () => (
         <HeaderHelpLabel
-          label="Flags"
+          label={t("Flags")}
           helpText="Special backlink attributes, such as lost, broken, nofollow, or multiple links from the same source."
         />
       ),
@@ -200,7 +199,7 @@ function buildBaseColumns(
       header: ({ column }) => (
         <SortableHeader
           column={column}
-          label="Link"
+          label={t("Link")}
           helpText="Authority of the linking page"
           align="right"
         />
@@ -242,7 +241,7 @@ function buildBaseColumns(
       header: ({ column }) => (
         <SortableHeader
           column={column}
-          label="Spam"
+          label={t("Spam")}
           helpText="Estimated spam risk for this backlink. Higher scores are more likely to be manipulative or low quality."
           align="right"
         />
@@ -266,7 +265,7 @@ function buildBaseColumns(
       header: ({ column }) => (
         <SortableHeader
           column={column}
-          label="First Seen"
+          label={t("First Seen")}
           helpText="When this link was first discovered by the crawler"
         />
       ),
@@ -278,7 +277,7 @@ function buildBaseColumns(
           <div>{formatCompactDate(row.firstSeen)}</div>
           {row.lastSeen ? (
             <div className="text-xs text-base-content/55">
-              Last {formatCompactDate(row.lastSeen)}
+              {t("Last")}{formatCompactDate(row.lastSeen)}
             </div>
           ) : null}
         </div>
@@ -307,7 +306,7 @@ export function buildBacklinksColumns(
     header: () => (
       <span className="flex w-full justify-end">
         <HeaderHelpLabel
-          label="Ahrefs DR"
+          label={t("Ahrefs DR")}
           helpText="Ahrefs Domain Rating (0-100) for the linking domain."
         />
       </span>

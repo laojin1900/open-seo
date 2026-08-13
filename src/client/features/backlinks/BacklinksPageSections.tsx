@@ -19,6 +19,7 @@ import type { BacklinksDomainExpansion } from "./useBacklinksDomainExpansion";
 import type { BacklinksFiltersState } from "./useBacklinksFilters";
 import { useAhrefsDomainRatings } from "./useAhrefsDomainRatings";
 import { TablePagination } from "@/client/components/table/TablePagination";
+import { t } from "@/client/features/laojin/i18n";
 import {
   BACKLINKS_PAGE_SIZES,
   type BacklinksTab,
@@ -143,11 +144,10 @@ export function BacklinksResultsCard({
         <button
           className={`btn btn-ghost btn-sm gap-1.5 ${filters.showFilters ? "btn-active" : ""}`}
           onClick={() => filters.setShowFilters((current) => !current)}
-          title="Toggle table filters"
+          title={t("Toggle table filters")}
         >
           <SlidersHorizontal className="size-3.5" />
-          Filters
-          {activeFilterCount > 0 ? (
+          {t("Filters")}{activeFilterCount > 0 ? (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {activeFilterCount}
             </span>
@@ -156,7 +156,7 @@ export function BacklinksResultsCard({
         {activeTab === "backlinks" ? (
           <div
             role="tablist"
-            aria-label="Backlinks view"
+            aria-label={t("Backlinks view")}
             className="ml-auto tabs tabs-border tabs-xs w-fit"
           >
             <button
@@ -164,21 +164,19 @@ export function BacklinksResultsCard({
               role="tab"
               aria-selected={view !== "all"}
               className={`tab ${view !== "all" ? "tab-active" : ""}`}
-              title="Show each referring domain's strongest link; expand a row for the rest"
+              title={t("Show each referring domain's strongest link; expand a row for the rest")}
               onClick={() => onViewChange(undefined)}
             >
-              One per domain
-            </button>
+              {t("One per domain")}</button>
             <button
               type="button"
               role="tab"
               aria-selected={view === "all"}
               className={`tab ${view === "all" ? "tab-active" : ""}`}
-              title="List every individual backlink"
+              title={t("List every individual backlink")}
               onClick={() => onViewChange("all")}
             >
-              All links
-            </button>
+              {t("All links")}</button>
           </div>
         ) : null}
       </div>

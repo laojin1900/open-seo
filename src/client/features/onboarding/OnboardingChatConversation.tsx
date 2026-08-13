@@ -13,6 +13,7 @@ import { getStandardErrorMessage } from "@/client/lib/error-messages";
 import { buildCheckoutSuccessUrl } from "@/client/features/billing/checkout-url";
 import { AUTUMN_PAID_PLAN_ID } from "@/shared/billing";
 import { FREE_ONBOARDING_QUESTION_LIMIT } from "@/shared/onboardingChat";
+import { t } from "@/client/features/laojin/i18n";
 import {
   ChatComposer,
   ChatGate,
@@ -214,8 +215,7 @@ export function OnboardingChatConversation({
                 {/* Billing gates (free-question cap / out-of-credits) come
                     back as normal assistant messages now, so this only covers
                     genuine failures. */}
-                Something went wrong. Please refresh and try again.
-              </p>
+                {t("Something went wrong. Please refresh and try again.")}</p>
             ) : null}
 
             {showSuggestions ? (
@@ -255,8 +255,7 @@ export function OnboardingChatConversation({
                     disabled={isStartingCheckout}
                     onClick={() => void startCheckout()}
                   >
-                    Upgrade for full access
-                  </button>
+                    {t("Upgrade for full access")}</button>
                 </p>
               ) : null}
               <ChatComposer busy={isBusy} onSend={sendText} />

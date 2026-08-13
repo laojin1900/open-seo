@@ -20,6 +20,7 @@ import { PromptExplorerLoadingState } from "@/client/features/ai-search/componen
 import { PromptExplorerHistorySection } from "@/client/features/ai-search/components/PromptExplorerHistorySection";
 import { AiSearchPaidPlanGate } from "@/client/features/ai-search/components/AiSearchPaidPlanGate";
 import { usePromptExplorerSearchHistory } from "@/client/hooks/usePromptExplorerSearchHistory";
+import { t } from "@/client/features/laojin/i18n";
 import {
   PROMPT_EXPLORER_MAX_PROMPT_LENGTH,
   type PromptExplorerModel,
@@ -199,17 +200,15 @@ function PromptExplorerPageInner({
     <div className="px-4 py-4 pb-24 overflow-auto md:px-6 md:py-6 md:pb-8">
       <div className="mx-auto max-w-7xl space-y-4">
         <div>
-          <h1 className="text-2xl font-semibold">Prompt Explorer</h1>
+          <h1 className="text-2xl font-semibold">{t("Prompt Explorer")}</h1>
           <p className="text-sm text-base-content/70">
-            Ask any prompt across ChatGPT, Claude, Gemini, and Perplexity
-            side-by-side.
-          </p>
+            {t("Ask any prompt across ChatGPT, Claude, Gemini, and Perplexity\n            side-by-side.")}</p>
         </div>
 
         {planGate.isFreePlan ? (
           <AiSearchPaidPlanGate
             feature="Prompt Explorer"
-            description="Ask one prompt across ChatGPT, Claude, Gemini, and Perplexity at the same time and compare their answers — including which sources each model cites."
+            description={t("Ask one prompt across ChatGPT, Claude, Gemini, and Perplexity at the same time and compare their answers — including which sources each model cites.")}
             bullets={PROMPT_EXPLORER_BULLETS}
           />
         ) : (
@@ -254,8 +253,7 @@ function PromptExplorerPageInner({
                     className="btn btn-ghost btn-sm gap-2 px-0 text-base-content/70 hover:bg-transparent"
                   >
                     <ArrowLeft className="size-4" />
-                    Recent searches
-                  </Link>
+                    {t("Recent searches")}</Link>
                 </div>
                 <PromptExplorerResults result={resultData} />
               </>

@@ -9,6 +9,7 @@ import {
   YAxis,
 } from "recharts";
 import type { TooltipContentProps } from "recharts";
+import { t } from "@/client/features/laojin/i18n";
 
 export interface TrendSeries {
   /** key into each data row holding the position value (1 = best, serpDepth = bottom band) */
@@ -63,9 +64,9 @@ export function RankTrendChart({
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between text-[11px] text-base-content/50">
-        <span>Google position (1 = best)</span>
+        <span>{t("Google position (1 = best)")}</span>
         <span className="inline-flex items-center gap-1">
-          Better <span aria-hidden>↑</span>
+          {t("Better")}<span aria-hidden>↑</span>
         </span>
       </div>
       <div ref={containerRef} className="w-full min-w-0" style={{ height }}>

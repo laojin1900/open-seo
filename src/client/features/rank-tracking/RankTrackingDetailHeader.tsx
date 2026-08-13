@@ -3,6 +3,7 @@ import { SegmentedToggle } from "@/client/components/SegmentedToggle";
 import { LOCATIONS } from "@/client/features/keywords/locations";
 import { devicesLabel, scheduleLabel } from "@/shared/rank-tracking";
 import { formatLocationLabel } from "@/shared/keyword-locations";
+import { t } from "@/client/features/laojin/i18n";
 import type {
   ComparePeriod,
   RankTrackingConfig,
@@ -83,7 +84,7 @@ export function RankTrackingDetailHeader({
         )}
         <select
           className="select select-bordered select-sm text-xs w-auto"
-          title="Comparison period"
+          title={t("Comparison period")}
           value={comparePeriod}
           onChange={(e) => {
             if (isComparePeriod(e.target.value))
@@ -98,15 +99,13 @@ export function RankTrackingDetailHeader({
         <div className="hidden sm:block h-6 w-px bg-base-300" />
         <button className="btn btn-sm gap-1" onClick={onEdit}>
           <Settings className="size-3.5" />
-          Configure
-        </button>
+          {t("Configure")}</button>
         <button
           className="btn btn-primary btn-sm gap-1"
           onClick={onToggleAddKeywords}
         >
           <Plus className="size-3.5" />
-          Add Keywords
-        </button>
+          {t("Add Keywords")}</button>
       </div>
     </div>
   );

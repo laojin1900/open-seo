@@ -10,6 +10,7 @@ import type { CsvValue } from "@/client/lib/csv";
 import { exportTableToSheets } from "@/client/lib/exportToSheets";
 import type { BacklinksSearchState } from "./backlinksPageTypes";
 import { exportBacklinksTabCsv } from "./export";
+import { t } from "@/client/features/laojin/i18n";
 
 export function BacklinksExportMenu({
   activeTab,
@@ -45,11 +46,10 @@ export function BacklinksExportMenu({
         tabIndex={0}
         role="button"
         className={`btn btn-sm btn-ghost gap-1 ${rows.length === 0 ? "btn-disabled" : ""}`}
-        aria-label="Export backlinks table"
+        aria-label={t("Export backlinks table")}
       >
         <Download className="size-4" />
-        Export
-        <ChevronDown className="size-3 opacity-60" />
+        {t("Export")}<ChevronDown className="size-3 opacity-60" />
       </div>
       <ul
         tabIndex={0}
@@ -67,8 +67,7 @@ export function BacklinksExportMenu({
             ) : (
               <Sheet className="size-4" />
             )}
-            Export to Sheets
-          </button>
+            {t("Export to Sheets")}</button>
         </li>
         <li>
           <button
@@ -84,8 +83,7 @@ export function BacklinksExportMenu({
             disabled={rows.length === 0}
           >
             <Download className="size-4" />
-            Export CSV
-          </button>
+            {t("Export CSV")}</button>
         </li>
       </ul>
     </div>
@@ -107,8 +105,8 @@ export function BacklinksActionsMenu({
         tabIndex={0}
         role="button"
         className="btn btn-sm btn-ghost btn-square"
-        aria-label="Backlinks table actions"
-        title="Backlinks table actions"
+        aria-label={t("Backlinks table actions")}
+        title={t("Backlinks table actions")}
       >
         <MoreHorizontal className="size-4" />
       </div>
@@ -122,15 +120,14 @@ export function BacklinksActionsMenu({
             type="button"
             onClick={() => void loadRatings(ratableDomains)}
             disabled={isLoadingRatings}
-            title="Look up Ahrefs Domain Rating for each domain in the table"
+            title={t("Look up Ahrefs Domain Rating for each domain in the table")}
           >
             {isLoadingRatings ? (
               <span className="loading loading-spinner loading-xs" />
             ) : (
               <Gauge className="size-4" />
             )}
-            Ahrefs DR
-          </button>
+            {t("Ahrefs DR")}</button>
         </li>
       </ul>
     </div>

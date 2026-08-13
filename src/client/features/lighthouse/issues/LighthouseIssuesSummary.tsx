@@ -1,4 +1,5 @@
 import type { LighthouseMetrics, LighthouseScores } from "./types";
+import { t } from "@/client/features/laojin/i18n";
 
 export function LighthouseIssuesSummary({
   scores,
@@ -17,10 +18,10 @@ export function LighthouseIssuesSummary({
     <>
       {scores ? (
         <div className="grid grid-cols-4 gap-3">
-          <ScoreGauge label="Performance" score={scores.performance} />
-          <ScoreGauge label="Accessibility" score={scores.accessibility} />
-          <ScoreGauge label="Best Practices" score={scores["best-practices"]} />
-          <ScoreGauge label="SEO" score={scores.seo} />
+          <ScoreGauge label={t("Performance")} score={scores.performance} />
+          <ScoreGauge label={t("Accessibility")} score={scores.accessibility} />
+          <ScoreGauge label={t("Best Practices")} score={scores["best-practices"]} />
+          <ScoreGauge label={t("SEO")} score={scores.seo} />
         </div>
       ) : null}
       {metricItems.length > 0 ? (

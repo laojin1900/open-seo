@@ -2,6 +2,7 @@ import { Sheet } from "lucide-react";
 import { useState } from "react";
 import type { CsvValue } from "@/client/lib/csv";
 import { exportTableToSheets } from "@/client/lib/exportToSheets";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   headers: string[];
@@ -47,7 +48,7 @@ export function ExportToSheetsButton({
       className={`btn btn-ghost btn-xs gap-1 ${className ?? ""}`}
       onClick={handleClick}
       disabled={disabled || rows.length === 0 || busy}
-      title="Copy table and open a new Google Sheet"
+      title={t("Copy table and open a new Google Sheet")}
       aria-label={iconOnly ? "Export to Sheets" : undefined}
     >
       <Sheet className="size-3.5" />

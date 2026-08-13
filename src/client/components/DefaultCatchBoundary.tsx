@@ -9,6 +9,7 @@ import {
 import { AuthConfigErrorCard } from "@/client/components/AuthConfigErrorCard";
 import { captureClientError } from "@/client/lib/posthog";
 import { UnauthenticatedErrorCard } from "@/client/components/UnauthenticatedErrorCard";
+import { t } from "@/client/features/laojin/i18n";
 
 export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
   const router = useRouter();
@@ -74,12 +75,10 @@ export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
           }}
           className="btn btn-primary btn-sm"
         >
-          Try Again
-        </button>
+          {t("Try Again")}</button>
         {isRoot ? (
           <Link to="/" className="btn btn-sm">
-            Home
-          </Link>
+            {t("Home")}</Link>
         ) : (
           <Link
             to="/"
@@ -89,8 +88,7 @@ export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
               window.history.back();
             }}
           >
-            Go Back
-          </Link>
+            {t("Go Back")}</Link>
         )}
       </div>
     </div>

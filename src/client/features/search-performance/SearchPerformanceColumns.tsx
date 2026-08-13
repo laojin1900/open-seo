@@ -3,6 +3,7 @@ import type { MutableRefObject } from "react";
 import { makeSelectionColumn } from "@/client/components/table/AppDataTable";
 import { SortableHeader } from "@/client/components/table/SortableHeader";
 import type { SelectionAnchor } from "@/client/components/table/tableSelection";
+import { t } from "@/client/features/laojin/i18n";
 import type {
   getSearchPerformanceReport,
   getSearchPerformanceTable,
@@ -55,28 +56,28 @@ export function buildDimensionColumns(
     }),
     dimensionHelper.accessor("clicks", {
       header: ({ column }) => (
-        <SortableHeader column={column} label="Clicks" align="right" />
+        <SortableHeader column={column} label={t("Clicks")} align="right" />
       ),
       cell: ({ getValue }) => formatCount(getValue()),
       meta: rightAligned,
     }),
     dimensionHelper.accessor("impressions", {
       header: ({ column }) => (
-        <SortableHeader column={column} label="Impressions" align="right" />
+        <SortableHeader column={column} label={t("Impressions")} align="right" />
       ),
       cell: ({ getValue }) => formatCount(getValue()),
       meta: rightAligned,
     }),
     dimensionHelper.accessor("ctr", {
       header: ({ column }) => (
-        <SortableHeader column={column} label="CTR" align="right" />
+        <SortableHeader column={column} label={t("CTR")} align="right" />
       ),
       cell: ({ getValue }) => formatCtr(getValue()),
       meta: rightAligned,
     }),
     dimensionHelper.accessor("position", {
       header: ({ column }) => (
-        <SortableHeader column={column} label="Position" align="right" />
+        <SortableHeader column={column} label={t("Position")} align="right" />
       ),
       cell: ({ getValue }) => formatPosition(getValue()),
       meta: rightAligned,
@@ -124,21 +125,21 @@ export function buildStrikingColumns(
     }),
     strikingHelper.accessor("impressions", {
       header: ({ column }) => (
-        <SortableHeader column={column} label="Impressions" align="right" />
+        <SortableHeader column={column} label={t("Impressions")} align="right" />
       ),
       cell: ({ getValue }) => formatCount(getValue()),
       meta: rightAligned,
     }),
     strikingHelper.accessor("clicks", {
       header: ({ column }) => (
-        <SortableHeader column={column} label="Clicks" align="right" />
+        <SortableHeader column={column} label={t("Clicks")} align="right" />
       ),
       cell: ({ getValue }) => formatCount(getValue()),
       meta: rightAligned,
     }),
     strikingHelper.accessor("position", {
       header: ({ column }) => (
-        <SortableHeader column={column} label="Position" align="right" />
+        <SortableHeader column={column} label={t("Position")} align="right" />
       ),
       cell: ({ getValue }) => formatPosition(getValue()),
       meta: rightAligned,

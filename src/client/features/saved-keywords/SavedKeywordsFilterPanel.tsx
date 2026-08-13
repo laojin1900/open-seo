@@ -2,6 +2,7 @@ import { Minus, Plus, RotateCcw, X } from "lucide-react";
 import { useState, type KeyboardEvent } from "react";
 import type { SavedKeywordsFilterValues } from "./savedKeywordsFilterTypes";
 import type { SavedKeywordsFilterForm } from "./useSavedKeywordsFilters";
+import { t } from "@/client/features/laojin/i18n";
 
 export function SavedKeywordsFilterPanel({
   form,
@@ -16,7 +17,7 @@ export function SavedKeywordsFilterPanel({
     <div className="space-y-3 border-b border-base-300 bg-gradient-to-b from-base-100 to-base-200/30 px-4 py-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <p className="text-sm font-semibold">Refine results</p>
+          <p className="text-sm font-semibold">{t("Refine results")}</p>
           {activeFilterCount > 0 ? (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {activeFilterCount} active
@@ -30,38 +31,37 @@ export function SavedKeywordsFilterPanel({
           disabled={activeFilterCount === 0}
         >
           <RotateCcw className="size-3" />
-          Clear all
-        </button>
+          {t("Clear all")}</button>
       </div>
 
       <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
         <TermsTokenInput
           form={form}
           name="include"
-          label="Include"
+          label={t("Include")}
           variant="include"
-          placeholder="Must contain… e.g. audit"
+          placeholder={t("Must contain… e.g. audit")}
         />
         <TermsTokenInput
           form={form}
           name="exclude"
-          label="Exclude"
+          label={t("Exclude")}
           variant="exclude"
-          placeholder="Must not contain… e.g. jobs"
+          placeholder={t("Must not contain… e.g. jobs")}
         />
       </div>
 
       <div className="grid grid-cols-1 gap-2 lg:grid-cols-3">
         <FilterRangeInputs
           form={form}
-          title="Search Volume"
+          title={t("Search Volume")}
           minName="minVol"
           maxName="maxVol"
           min={0}
         />
         <FilterRangeInputs
           form={form}
-          title="CPC (USD)"
+          title={t("CPC (USD)")}
           minName="minCpc"
           maxName="maxCpc"
           step="0.01"
@@ -69,7 +69,7 @@ export function SavedKeywordsFilterPanel({
         />
         <FilterRangeInputs
           form={form}
-          title="Difficulty"
+          title={t("Difficulty")}
           minName="minKd"
           maxName="maxKd"
           min={0}
@@ -230,7 +230,7 @@ function FilterRangeInputs({
         <CompactRangeInput
           form={form}
           name={minName}
-          placeholder="Min"
+          placeholder={t("Min")}
           step={step}
           min={min}
           max={max}
@@ -238,7 +238,7 @@ function FilterRangeInputs({
         <CompactRangeInput
           form={form}
           name={maxName}
-          placeholder="Max"
+          placeholder={t("Max")}
           step={step}
           min={min}
           max={max}

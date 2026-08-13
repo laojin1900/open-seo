@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useCustomer } from "autumn-js/react";
 import { useSession } from "@/lib/auth-client";
 import { getCustomerPlanStatus } from "@/client/features/billing/plan-detection";
+import { t } from "@/client/features/laojin/i18n";
 import {
   AUTUMN_SEO_DATA_BALANCE_FEATURE_ID,
   AUTUMN_SEO_DATA_TOPUP_BALANCE_FEATURE_ID,
@@ -46,43 +47,36 @@ export function FreePlanBanner() {
       search={{ upgrade: true }}
       className="link link-primary font-medium"
     >
-      Upgrade your plan
-    </Link>
+      {t("Upgrade your plan")}</Link>
   ) : (
     <Link to={BILLING_ROUTE} className="link link-primary font-medium">
-      Buy more credits
-    </Link>
+      {t("Buy more credits")}</Link>
   );
 
   if (isOutOfCredits) {
     return (
       <BannerShell variant="error">
-        You&rsquo;ve used all your credits. {creditsActionLink} to continue
-        using OpenSEO.
-      </BannerShell>
+        {t("You&rsquo;ve used all your credits.")}{creditsActionLink} {t("to continue\n        using OpenSEO.")}</BannerShell>
     );
   }
 
   if (isLowCredits) {
     return (
       <BannerShell variant="warning">
-        You&rsquo;re running low on credits. {creditsActionLink} to keep using
-        OpenSEO.
-      </BannerShell>
+        {t("You&rsquo;re running low on credits.")}{creditsActionLink} {t("to keep using\n        OpenSEO.")}</BannerShell>
     );
   }
 
   if (isFreePlan) {
     return (
       <BannerShell variant="info">
-        We hope you&rsquo;re enjoying OpenSEO!{" "}
+        {t("We hope you&rsquo;re enjoying OpenSEO!")}{" "}
         <Link
           to={SUBSCRIBE_ROUTE}
           search={{ upgrade: true }}
           className="link link-primary font-medium"
         >
-          Upgrade anytime
-        </Link>{" "}
+          {t("Upgrade anytime")}</Link>{" "}
         or{" "}
         <Link to="/support" className="link link-primary font-medium">
           reach out with questions

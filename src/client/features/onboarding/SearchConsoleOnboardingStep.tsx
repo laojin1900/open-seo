@@ -19,6 +19,7 @@ import {
   setGscSite,
 } from "@/serverFunctions/gsc";
 import { getProjects, setProjectMarket } from "@/serverFunctions/projects";
+import { t } from "@/client/features/laojin/i18n";
 
 const GRANT_STATUS_KEY = ["gscGrantStatus"];
 
@@ -39,19 +40,16 @@ export function SearchConsoleOnboardingStep() {
     <div className="space-y-8">
       <div className="space-y-4">
         <h2 className="text-lg font-semibold">
-          Connect with Google Search Console now?
-        </h2>
+          {t("Connect with Google Search Console now?")}</h2>
 
         {project ? <GscConnect projectId={project.id} /> : <Checking />}
 
         <p className="hidden sm:block text-xs leading-relaxed text-base-content/55">
-          For now, Search Console data flows through the OpenSEO MCP. We're
-          building it into the OpenSEO app soon too.
-        </p>
+          {t("For now, Search Console data flows through the OpenSEO MCP. We're\n          building it into the OpenSEO app soon too.")}</p>
       </div>
 
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold">Choose country &amp; language</h2>
+        <h2 className="text-lg font-semibold">{t("Choose country &amp; language")}</h2>
         {project ? <DefaultMarketPicker project={project} /> : <Checking />}
       </div>
     </div>
@@ -95,9 +93,7 @@ function DefaultMarketPicker({
         hideLanguageOnMobile
       />
       <p className="hidden sm:block text-xs leading-relaxed text-base-content/55">
-        We'll use this country and language for keyword, SERP, and domain data
-        unless you pick a different one. You can change it in project settings.
-      </p>
+        {t("We'll use this country and language for keyword, SERP, and domain data\n        unless you pick a different one. You can change it in project settings.")}</p>
     </div>
   );
 }
@@ -170,7 +166,7 @@ function GscConnect({ projectId }: { projectId: string }) {
           <Check className="size-3.5" />
         </span>
         <span className="text-base-content/80">
-          Connected to <span className="font-mono">{connection?.siteUrl}</span>.
+          {t("Connected to")}<span className="font-mono">{connection?.siteUrl}</span>.
         </span>
       </div>
     );
@@ -199,8 +195,7 @@ function GscConnect({ projectId }: { projectId: string }) {
       className="inline-flex items-center gap-2.5 rounded-lg border border-base-300 bg-base-100 px-4 py-2.5 text-sm font-semibold text-base-content shadow-sm transition hover:bg-base-200 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
       <GoogleGlyph className="size-[18px]" />
-      Connect with Google
-    </button>
+      {t("Connect with Google")}</button>
   );
 }
 
@@ -208,7 +203,6 @@ function Checking() {
   return (
     <div className="flex items-center gap-2 text-sm text-base-content/50">
       <span className="loading loading-spinner loading-sm" />
-      Checking…
-    </div>
+      {t("Checking…")}</div>
   );
 }

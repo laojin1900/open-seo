@@ -11,6 +11,7 @@ import {
 } from "@/client/features/keywords/locations";
 import { ProjectMarketFields } from "@/client/features/projects/ProjectMarketFields";
 import { createProject } from "@/serverFunctions/projects";
+import { t } from "@/client/features/laojin/i18n";
 
 export function CreateProjectModal({ onClose }: { onClose: () => void }) {
   const navigate = useNavigate();
@@ -67,16 +68,15 @@ export function CreateProjectModal({ onClose }: { onClose: () => void }) {
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <h2 id="create-project-title" className="text-lg font-semibold">
-          New project
-        </h2>
+          {t("New project")}</h2>
 
         <label className="flex flex-col gap-1.5 text-sm">
-          <span className="font-medium">Name</span>
+          <span className="font-medium">{t("Name")}</span>
           <input
             type="text"
             value={name}
             onChange={(event) => setName(event.target.value)}
-            placeholder="Acme Inc."
+            placeholder={t("Acme Inc.")}
             maxLength={120}
             autoFocus
             className="input input-bordered w-full"
@@ -85,7 +85,7 @@ export function CreateProjectModal({ onClose }: { onClose: () => void }) {
 
         <label className="flex flex-col gap-1.5 text-sm">
           <span className="font-medium">
-            Domain <span className="text-base-content/50">(optional)</span>
+            {t("Domain")}<span className="text-base-content/50">(optional)</span>
           </span>
           <input
             type="text"
@@ -96,9 +96,7 @@ export function CreateProjectModal({ onClose }: { onClose: () => void }) {
             className="input input-bordered w-full"
           />
           <span className="text-xs text-base-content/50">
-            You can connect Search Console and set up rank tracking after
-            creating the project.
-          </span>
+            {t("You can connect Search Console and set up rank tracking after\n            creating the project.")}</span>
         </label>
 
         <div className="flex flex-col gap-1.5">
@@ -117,15 +115,13 @@ export function CreateProjectModal({ onClose }: { onClose: () => void }) {
             onClick={onClose}
             disabled={isPending}
           >
-            Cancel
-          </button>
+            {t("Cancel")}</button>
           <button
             type="submit"
             className="btn btn-primary btn-sm"
             disabled={isPending}
           >
-            Create project
-          </button>
+            {t("Create project")}</button>
         </div>
       </form>
     </Modal>

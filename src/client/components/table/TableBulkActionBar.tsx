@@ -1,5 +1,6 @@
 import { ChevronDown, Download, Loader2, X } from "lucide-react";
 import type { ReactNode } from "react";
+import { t } from "@/client/features/laojin/i18n";
 
 export function TableBulkActionBar({
   selectedCount,
@@ -27,11 +28,11 @@ export function TableBulkActionBar({
 
   return (
     <div className={wrapperClass}>
-      <div role="toolbar" aria-label="Bulk actions" className={toolbarClass}>
+      <div role="toolbar" aria-label={t("Bulk actions")} className={toolbarClass}>
         <div className="flex items-center gap-2 border-r border-base-content/10 px-3 py-2 text-sm">
           <button
             type="button"
-            aria-label="Clear selection"
+            aria-label={t("Clear selection")}
             className="-ml-1 rounded p-1 text-base-content/55 hover:bg-base-content/10 hover:text-base-content"
             onClick={onClear}
           >
@@ -103,8 +104,7 @@ export function TableBulkExportMenu({
         ) : (
           <Download className="size-3.5" />
         )}
-        Export
-        <ChevronDown className="size-3 opacity-60" />
+        {t("Export")}<ChevronDown className="size-3 opacity-60" />
       </button>
       <ul
         tabIndex={0}
@@ -146,8 +146,7 @@ export function TableExportMenu({
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className={buttonClassName}>
         <Download className="size-4" />
-        Export
-        <ChevronDown className="size-3 opacity-60" />
+        {t("Export")}<ChevronDown className="size-3 opacity-60" />
       </div>
       <ul tabIndex={0} className={menuClassName}>
         {actions.map((action, index) => (

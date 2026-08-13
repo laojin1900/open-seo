@@ -7,6 +7,7 @@ import {
 } from "react";
 import { ArrowUp, Check, Globe, Loader2, Sparkles } from "lucide-react";
 import { FREE_ONBOARDING_QUESTION_LIMIT } from "@/shared/onboardingChat";
+import { t } from "@/client/features/laojin/i18n";
 
 const DISCORD_URL = "https://discord.gg/c9uGs3cFXr";
 
@@ -65,39 +66,32 @@ export function WelcomeMessage({
       </div>
       <div className="min-w-0 flex-1 space-y-3 pt-0.5 text-sm">
         <div className="space-y-3 text-base-content/80">
-          <p>Hey, I’m Sam — welcome to OpenSEO.</p>
+          <p>{t("Hey, I’m Sam — welcome to OpenSEO.")}</p>
           <p>
-            To get full access to OpenSEO, you need to upgrade to the paid plan.
-            But, I’m here if you have any questions.
-          </p>
+            {t("To get full access to OpenSEO, you need to upgrade to the paid plan.\n            But, I’m here if you have any questions.")}</p>
           <p>
-            You can also{" "}
+            {t("You can also")}{" "}
             <a
               href={DISCORD_URL}
               target="_blank"
               rel="noreferrer"
               className="link link-primary"
             >
-              join the Discord
-            </a>{" "}
+              {t("join the Discord")}</a>{" "}
             or email{" "}
             <a href="mailto:ben@openseo.so" className="link link-primary">
               ben@openseo.so
             </a>{" "}
-            if you have any questions I can’t help you with.
-          </p>
+            {t("if you have any questions I can’t help you with.")}</p>
           <p>
-            Want me to analyze{" "}
-            <span className="font-medium text-base-content">{domain}</span> and
-            draft a strategy, or do you have questions first? Pick one below to
-            get started.
-          </p>
+            {t("Want me to analyze")}{" "}
+            <span className="font-medium text-base-content">{domain}</span> {t("and\n            draft a strategy, or do you have questions first? Pick one below to\n            get started.")}</p>
         </div>
 
         <div className="rounded-box border border-base-300 bg-base-200/50 p-3 text-xs lg:hidden">
-          <p className="font-medium">Want Sam to keep going?</p>
+          <p className="font-medium">{t("Want Sam to keep going?")}</p>
           <p className="mt-0.5 text-base-content/70">
-            Upgrade to run keyword research, rank tracking, and site audits on{" "}
+            {t("Upgrade to run keyword research, rank tracking, and site audits on")}{" "}
             {domain}.
           </p>
           <button
@@ -146,7 +140,7 @@ export function UpgradeSidebar({
           <Globe className="size-4" />
         </span>
         <div className="min-w-0">
-          <p className="font-medium text-base-content/80">Previewing OpenSEO</p>
+          <p className="font-medium text-base-content/80">{t("Previewing OpenSEO")}</p>
           <p className="truncate" title={domain}>
             {domain}
           </p>
@@ -160,9 +154,7 @@ export function UpgradeSidebar({
             <span className="text-sm text-base-content/55">/month</span>
           </div>
           <p className="mt-1.5 text-xs leading-relaxed text-base-content/55">
-            Includes $10 of usage credits every month, plus a 30-day money-back
-            guarantee.
-          </p>
+            {t("Includes $10 of usage credits every month, plus a 30-day money-back\n            guarantee.")}</p>
         </div>
 
         <ul className="space-y-3 border-t border-base-300 pt-5">
@@ -187,15 +179,14 @@ export function UpgradeSidebar({
             {isStartingCheckout ? "Redirecting..." : "Upgrade to continue"}
           </button>
           <p className="text-center text-xs leading-relaxed text-base-content/55">
-            Want advice from other OpenSEO users?{" "}
+            {t("Want advice from other OpenSEO users?")}{" "}
             <a
               href={DISCORD_URL}
               target="_blank"
               rel="noreferrer"
               className="link link-primary"
             >
-              Join the Discord
-            </a>
+              {t("Join the Discord")}</a>
             .
           </p>
         </div>
@@ -228,11 +219,10 @@ export function ChatGate({
     <div className="flex-shrink-0 border-t border-base-300 px-5 py-4">
       <div className="mx-auto w-full max-w-2xl rounded-box border border-primary/30 bg-primary/5 p-4 text-center">
         <p className="text-sm font-medium">
-          That’s all {FREE_ONBOARDING_QUESTION_LIMIT} free questions
+          {t("That’s all")}{FREE_ONBOARDING_QUESTION_LIMIT} free questions
         </p>
         <p className="mx-auto mt-1 max-w-md text-xs text-base-content/70">
-          Upgrade to keep working with Sam and unlock the full OpenSEO app.
-        </p>
+          {t("Upgrade to keep working with Sam and unlock the full OpenSEO app.")}</p>
         <button
           type="button"
           className="btn btn-primary btn-sm mt-3"
@@ -305,7 +295,7 @@ export function ChatComposer({
       />
       <button
         type="submit"
-        aria-label="Send message"
+        aria-label={t("Send message")}
         disabled={busy || !value.trim()}
         className="btn btn-primary btn-circle btn-sm"
       >

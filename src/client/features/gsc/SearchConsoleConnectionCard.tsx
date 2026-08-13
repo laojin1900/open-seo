@@ -13,6 +13,7 @@ import {
   type GscSiteSelection,
 } from "@/client/features/gsc/SitePicker";
 import { startGoogleLink } from "@/client/features/integrations/startGoogleLink";
+import { t } from "@/client/features/laojin/i18n";
 import {
   disconnectGsc,
   getGscConnection,
@@ -140,7 +141,7 @@ export function SearchConsoleConnectionCard({
 
   return (
     <IntegrationConnectionCard
-      title="Google Search Console"
+      title={t("Google Search Console")}
       icon={<GoogleSearchConsoleLogo className="size-5" />}
       status={
         connectionQuery.isLoading
@@ -155,8 +156,7 @@ export function SearchConsoleConnectionCard({
       {connectionQuery.isLoading ? (
         <div className="flex items-center gap-2 text-sm text-base-content/50">
           <span className="loading loading-spinner loading-sm" />
-          Checking…
-        </div>
+          {t("Checking…")}</div>
       ) : selfHostedNeedsSetup ? (
         <SelfHostedSetupWarning />
       ) : connected && !picking ? (
@@ -195,17 +195,14 @@ export function SearchConsoleConnectionCard({
       ) : (
         <div className="space-y-4">
           <p className="text-sm text-base-content/70">
-            Connect GSC to see how your website is actually performing in Google
-            Search.
-          </p>
+            {t("Connect GSC to see how your website is actually performing in Google\n            Search.")}</p>
           <button
             type="button"
             onClick={handleConnect}
             className="inline-flex items-center gap-2.5 rounded-lg border border-base-300 bg-base-100 px-4 py-2.5 text-sm font-semibold text-base-content shadow-sm transition hover:bg-base-200 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             <GoogleGlyph className="size-[18px]" />
-            Connect with Google
-          </button>
+            {t("Connect with Google")}</button>
         </div>
       )}
     </IntegrationConnectionCard>
@@ -239,7 +236,7 @@ function ConnectedState({
           <p className="truncate font-mono text-sm">{siteUrl}</p>
           {connectedByEmail ? (
             <p className="truncate text-xs text-base-content/55">
-              Connected by {connectedByEmail}
+              {t("Connected by")}{connectedByEmail}
             </p>
           ) : null}
         </div>
@@ -250,16 +247,14 @@ function ConnectedState({
           className="btn btn-ghost btn-sm"
           onClick={onChange}
         >
-          Change property
-        </button>
+          {t("Change property")}</button>
         <button
           type="button"
           className="btn btn-ghost btn-sm text-error hover:bg-error/10"
           onClick={onDisconnect}
           disabled={disconnecting}
         >
-          Disconnect
-        </button>
+          {t("Disconnect")}</button>
       </div>
     </div>
   );

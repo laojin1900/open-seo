@@ -1,4 +1,5 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { t } from "@/client/features/laojin/i18n";
 
 type Props = {
   page: number;
@@ -51,7 +52,7 @@ export function TablePagination({
 
       <div className="flex items-center gap-6">
         <label className="flex items-center gap-2 text-sm text-base-content/70">
-          <span className="whitespace-nowrap">Rows per page</span>
+          <span className="whitespace-nowrap">{t("Rows per page")}</span>
           <select
             className="select select-bordered select-sm w-20"
             value={pageSize}
@@ -67,13 +68,13 @@ export function TablePagination({
 
         <div className="flex items-center gap-2">
           <span className="whitespace-nowrap text-sm tabular-nums text-base-content/70">
-            Page {page.toLocaleString()}
+            {t("Page")}{page.toLocaleString()}
             {totalPages != null ? ` of ${totalPages.toLocaleString()}` : ""}
           </span>
           <div className="flex items-center gap-1">
             <button
               type="button"
-              aria-label="Previous page"
+              aria-label={t("Previous page")}
               className="btn btn-ghost btn-sm btn-square"
               disabled={!canGoPrev || isLoading}
               onClick={() => onPageChange(page - 1)}
@@ -82,7 +83,7 @@ export function TablePagination({
             </button>
             <button
               type="button"
-              aria-label="Next page"
+              aria-label={t("Next page")}
               className="btn btn-ghost btn-sm btn-square"
               disabled={!canGoNext || isLoading}
               onClick={() => onPageChange(page + 1)}

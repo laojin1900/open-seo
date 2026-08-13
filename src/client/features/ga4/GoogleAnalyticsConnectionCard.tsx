@@ -13,6 +13,7 @@ import { startGoogleLink } from "@/client/features/integrations/startGoogleLink"
 import { getStandardErrorMessage } from "@/client/lib/error-messages";
 import { captureClientEvent } from "@/client/lib/posthog";
 import { isHostedClientAuthMode } from "@/lib/auth-mode";
+import { t } from "@/client/features/laojin/i18n";
 import {
   disconnectGa4,
   getGa4Connection,
@@ -116,7 +117,7 @@ export function GoogleAnalyticsConnectionCard({
 
   return (
     <IntegrationConnectionCard
-      title="Google Analytics"
+      title={t("Google Analytics")}
       icon={<GoogleAnalyticsLogo className="size-5" />}
       status={
         connectionQuery.isLoading
@@ -131,8 +132,7 @@ export function GoogleAnalyticsConnectionCard({
       {connectionQuery.isLoading ? (
         <div className="flex items-center gap-2 text-sm text-base-content/50">
           <span className="loading loading-spinner loading-sm" />
-          Checking…
-        </div>
+          {t("Checking…")}</div>
       ) : selfHostedNeedsSetup ? (
         <div className="space-y-3">
           <GoogleOAuthSetupWarning
@@ -187,9 +187,7 @@ export function GoogleAnalyticsConnectionCard({
       ) : (
         <div className="space-y-4">
           <p className="text-sm text-base-content/70">
-            Connect GA4 to understand what organic visitors do after they land
-            on your site.
-          </p>
+            {t("Connect GA4 to understand what organic visitors do after they land\n            on your site.")}</p>
           <div className="flex flex-wrap items-center gap-1">
             <button
               type="button"
@@ -197,8 +195,7 @@ export function GoogleAnalyticsConnectionCard({
               className="inline-flex items-center gap-2.5 rounded-lg border border-base-300 bg-base-100 px-4 py-2.5 text-sm font-semibold text-base-content shadow-sm transition hover:bg-base-200 hover:shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               <GoogleGlyph className="size-[18px]" />
-              Connect with Google
-            </button>
+              {t("Connect with Google")}</button>
             {onDismiss ? (
               <DismissButton onClick={onDismiss} disabled={dismissing} />
             ) : null}
@@ -223,8 +220,7 @@ function DismissButton({
       onClick={onClick}
       disabled={disabled}
     >
-      Dismiss
-    </button>
+      {t("Dismiss")}</button>
   );
 }
 
@@ -255,8 +251,7 @@ function ConnectedState({
         <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
           <div className="min-w-0">
             <p className="text-[11px] font-medium uppercase tracking-wide text-base-content/45">
-              Selected property
-            </p>
+              {t("Selected property")}</p>
             <p className="mt-0.5 truncate text-sm font-semibold">
               {displayName}
             </p>
@@ -268,20 +263,20 @@ function ConnectedState({
 
         <dl className="mt-3 grid gap-x-6 gap-y-2 border-t border-base-300/70 pt-3 text-xs sm:grid-cols-3">
           <div className="min-w-0">
-            <dt className="text-base-content/45">Time zone</dt>
+            <dt className="text-base-content/45">{t("Time zone")}</dt>
             <dd className="mt-0.5 truncate font-medium text-base-content/75">
               {timeZone}
             </dd>
           </div>
           <div>
-            <dt className="text-base-content/45">Currency</dt>
+            <dt className="text-base-content/45">{t("Currency")}</dt>
             <dd className="mt-0.5 font-medium text-base-content/75">
               {currencyCode}
             </dd>
           </div>
           {connectedByEmail ? (
             <div className="min-w-0">
-              <dt className="text-base-content/45">Connected account</dt>
+              <dt className="text-base-content/45">{t("Connected account")}</dt>
               <dd className="mt-0.5 truncate font-medium text-base-content/75">
                 {connectedByEmail}
               </dd>
@@ -295,8 +290,7 @@ function ConnectedState({
           className="btn btn-outline btn-sm border-base-300 font-medium"
           onClick={onChange}
         >
-          Change property
-        </button>
+          {t("Change property")}</button>
         <button
           type="button"
           className="btn btn-ghost btn-sm font-medium text-error hover:bg-error/10"

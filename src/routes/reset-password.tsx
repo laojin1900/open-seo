@@ -14,6 +14,7 @@ import {
   HOSTED_PASSWORD_MIN_LENGTH,
 } from "@/lib/auth-options";
 import { z } from "zod";
+import { t } from "@/client/features/laojin/i18n";
 
 const resetPasswordSchema = z
   .object({
@@ -192,16 +193,14 @@ function ResetPasswordPage() {
                   }
                   className="btn btn-soft w-full"
                 >
-                  Continue to sign in
-                </a>
+                  {t("Continue to sign in")}</a>
               ) : routeError || !token ? (
                 <Link
                   to="/forgot-password"
                   search={getSignInSearch(redirectTo)}
                   className="btn btn-soft w-full"
                 >
-                  Request a new reset link
-                </Link>
+                  {t("Request a new reset link")}</Link>
               ) : (
                 <form
                   className="space-y-4"
@@ -219,7 +218,7 @@ function ResetPasswordPage() {
                           <input
                             type="password"
                             className="input input-bordered w-full"
-                            placeholder="New password..."
+                            placeholder={t("New password...")}
                             value={field.state.value}
                             onChange={(event) =>
                               field.handleChange(event.target.value)
@@ -246,7 +245,7 @@ function ResetPasswordPage() {
                           <input
                             type="password"
                             className="input input-bordered w-full"
-                            placeholder="Confirm new password..."
+                            placeholder={t("Confirm new password...")}
                             value={field.state.value}
                             onChange={(event) =>
                               field.handleChange(event.target.value)

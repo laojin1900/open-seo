@@ -11,6 +11,7 @@ import {
   messageHasVisibleContent,
 } from "@/client/components/chat/ChatMessage";
 import { useStickToBottom } from "@/client/components/chat/useStickToBottom";
+import { t } from "@/client/features/laojin/i18n";
 
 const SUGGESTIONS = [
   "What keywords should I focus on next?",
@@ -99,8 +100,7 @@ export function SamConversation({
           className="btn btn-ghost btn-xs absolute right-3 top-2 z-10 text-base-content/40"
           onClick={() => clearHistory()}
         >
-          Clear history (dev)
-        </button>
+          {t("Clear history (dev)")}</button>
       ) : null}
       <div
         ref={scrollRef}
@@ -116,7 +116,7 @@ export function SamConversation({
                 and Search Console, and turn it into next steps for this
                 project.
               </p>
-              <p>Ask me anything, or start with one of these:</p>
+              <p>{t("Ask me anything, or start with one of these:")}</p>
             </div>
           ) : null}
 
@@ -158,8 +158,7 @@ export function SamConversation({
 
           {status === "error" ? (
             <p className="text-sm text-error">
-              Something went wrong. Please try again.
-            </p>
+              {t("Something went wrong. Please try again.")}</p>
           ) : null}
 
           {showSuggestions ? (
@@ -184,7 +183,7 @@ export function SamConversation({
           <ChatComposer
             busy={isBusy}
             onSend={sendText}
-            placeholder="Ask SAM to research, analyze, or track anything…"
+            placeholder={t("Ask SAM to research, analyze, or track anything…")}
           />
         </div>
       </div>

@@ -10,6 +10,7 @@ import type { RankKeywordHistoryPoint } from "@/serverFunctions/rank-tracking";
 import { LOCATIONS } from "@/client/features/keywords/locations";
 import { formatLocationLabel } from "@/shared/keyword-locations";
 import { csvChange, DeviceRankCell } from "./RankTrackingTableParts";
+import { t } from "@/client/features/laojin/i18n";
 import {
   RankTrendChart,
   TrendRangeToggle,
@@ -184,24 +185,22 @@ export function KeywordTrendModal({
           <div className="flex items-center justify-end gap-2">
             <button className="btn btn-ghost btn-xs gap-1" onClick={handleCopy}>
               <Copy className="size-3.5" />
-              Copy
-            </button>
+              {t("Copy")}</button>
             <button
               className="btn btn-ghost btn-xs gap-1"
               onClick={handleExport}
             >
               <Download className="size-3.5" />
-              Export CSV
-            </button>
+              {t("Export CSV")}</button>
           </div>
 
           <div className="max-h-64 overflow-auto rounded-lg border border-base-300">
             <table className="table table-sm">
               <thead className="sticky top-0 bg-base-100">
                 <tr>
-                  <th>Date</th>
-                  {devices.length > 1 && <th>Device</th>}
-                  <th>Position</th>
+                  <th>{t("Date")}</th>
+                  {devices.length > 1 && <th>{t("Device")}</th>}
+                  <th>{t("Position")}</th>
                   <th>Δ vs previous check</th>
                 </tr>
               </thead>
@@ -226,7 +225,7 @@ export function KeywordTrendModal({
                       <td>
                         {r.position === null ? (
                           <span className="text-base-content/40 text-xs">
-                            Not in top {serpDepth}
+                            {t("Not in top")}{serpDepth}
                           </span>
                         ) : (
                           <span className="font-mono text-sm">
@@ -270,8 +269,7 @@ export function KeywordTrendModal({
 
       <div className="flex justify-end">
         <button className="btn btn-ghost btn-sm" onClick={onClose}>
-          Close
-        </button>
+          {t("Close")}</button>
       </div>
     </Modal>
   );
@@ -318,7 +316,7 @@ function ChartTooltip({
             {device}:{" "}
             {inBottomBand ? (
               <span className="text-base-content/60">
-                Not in top {serpDepth}
+                {t("Not in top")}{serpDepth}
               </span>
             ) : (
               e.value

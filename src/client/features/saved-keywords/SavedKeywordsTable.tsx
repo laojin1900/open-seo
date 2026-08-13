@@ -18,6 +18,7 @@ import { DifficultyBadge } from "@/client/features/domain/components/DifficultyB
 import { IntentBadge } from "@/client/features/keywords/components";
 import type { KeywordIntent, SavedKeywordRow } from "@/types/keywords";
 import { TagChip } from "./TagChip";
+import { t } from "@/client/features/laojin/i18n";
 import {
   formatSavedKeywordDate,
   formatSavedKeywordNumber,
@@ -48,7 +49,7 @@ export function SavedKeywordsTable({
       makeSelectionColumn<SavedKeywordRow>(selectAnchorRef),
       columnHelper.accessor("keyword", {
         header: ({ column }) => (
-          <SortableHeader column={column} label="Keyword" />
+          <SortableHeader column={column} label={t("Keyword")} />
         ),
         cell: ({ getValue }) => (
           <span className="font-medium">{getValue()}</span>
@@ -56,12 +57,12 @@ export function SavedKeywordsTable({
       }),
       columnHelper.accessor("searchVolume", {
         header: ({ column }) => (
-          <SortableHeader column={column} label="Volume" />
+          <SortableHeader column={column} label={t("Volume")} />
         ),
         cell: ({ getValue }) => formatSavedKeywordNumber(getValue()),
       }),
       columnHelper.accessor("cpc", {
-        header: ({ column }) => <SortableHeader column={column} label="CPC" />,
+        header: ({ column }) => <SortableHeader column={column} label={t("CPC")} />,
         cell: ({ getValue }) => {
           const value = getValue();
           return value == null ? "-" : `$${value.toFixed(2)}`;
@@ -71,7 +72,7 @@ export function SavedKeywordsTable({
         header: ({ column }) => (
           <SortableHeader
             column={column}
-            label="Competition"
+            label={t("Competition")}
             helpText="Paid-search competition from Google Ads (0-1): higher means more advertisers bidding."
           />
         ),
@@ -84,7 +85,7 @@ export function SavedKeywordsTable({
         header: ({ column }) => (
           <SortableHeader
             column={column}
-            label="Difficulty"
+            label={t("Difficulty")}
             helpText="Organic ranking difficulty (0-100): higher means harder to reach Google's top 10."
           />
         ),
@@ -106,7 +107,7 @@ export function SavedKeywordsTable({
       }),
       columnHelper.accessor("fetchedAt", {
         header: ({ column }) => (
-          <SortableHeader column={column} label="Last Fetched" />
+          <SortableHeader column={column} label={t("Last Fetched")} />
         ),
         cell: ({ getValue }) => (
           <span className="text-xs text-base-content/55">

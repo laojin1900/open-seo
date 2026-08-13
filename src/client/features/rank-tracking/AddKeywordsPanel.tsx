@@ -5,6 +5,7 @@ import { addTrackingKeywords } from "@/serverFunctions/rank-tracking";
 import { MAX_TRACKED_KEYWORD_LENGTH } from "@/shared/rank-tracking";
 import { getStandardErrorMessage } from "@/client/lib/error-messages";
 import { Loader2 } from "lucide-react";
+import { t } from "@/client/features/laojin/i18n";
 
 export function AddKeywordsPanel({
   configId,
@@ -35,7 +36,7 @@ export function AddKeywordsPanel({
       <textarea
         className="textarea textarea-bordered textarea-sm flex-1"
         rows={3}
-        placeholder="Enter keywords, one per line"
+        placeholder={t("Enter keywords, one per line")}
         value={keywordInput}
         onChange={(e) => setKeywordInput(e.target.value)}
       />
@@ -58,11 +59,9 @@ export function AddKeywordsPanel({
           disabled={isPending || !keywordInput.trim()}
         >
           {isPending && <Loader2 className="size-3 animate-spin" />}
-          Add
-        </button>
+          {t("Add")}</button>
         <button className="btn btn-ghost btn-sm" onClick={onCancel}>
-          Cancel
-        </button>
+          {t("Cancel")}</button>
       </div>
     </div>
   );

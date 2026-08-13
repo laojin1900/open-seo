@@ -2,6 +2,7 @@ import { RotateCcw } from "lucide-react";
 import type { CitationTab } from "@/client/features/ai-search/brandLookupFilterTypes";
 import { formatPlatformLabel } from "@/client/features/ai-search/platformLabels";
 import type { BrandLookupFiltersState } from "@/client/features/ai-search/useBrandLookupFilters";
+import { t } from "@/client/features/laojin/i18n";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyForm = { Field: React.ComponentType<any> };
@@ -56,8 +57,8 @@ function FilterRangeInputs({
         {title}
       </p>
       <div className="grid grid-cols-2 gap-2">
-        <CompactRangeInput form={form} name={minName} placeholder="Min" />
-        <CompactRangeInput form={form} name={maxName} placeholder="Max" />
+        <CompactRangeInput form={form} name={minName} placeholder={t("Min")} />
+        <CompactRangeInput form={form} name={maxName} placeholder={t("Max")} />
       </div>
     </div>
   );
@@ -94,8 +95,7 @@ function PlatformToggle({ form }: { form: AnyForm }) {
   return (
     <div className="space-y-1.5">
       <p className="text-[11px] font-semibold uppercase tracking-wide text-base-content/60">
-        Platform
-      </p>
+        {t("Platform")}</p>
       <form.Field name="platform">
         {(field: {
           state: { value: string };
@@ -130,13 +130,13 @@ function TopPagesFilters({
         <FilterTextInput
           form={form}
           name="include"
-          label="Include Terms"
+          label={t("Include Terms")}
           placeholder="reddit, forbes"
         />
         <FilterTextInput
           form={form}
           name="exclude"
-          label="Exclude Terms"
+          label={t("Exclude Terms")}
           placeholder="pinterest, /tag"
         />
       </div>
@@ -146,7 +146,7 @@ function TopPagesFilters({
         <div className="min-w-[220px]">
           <FilterRangeInputs
             form={form}
-            title="Source mentions"
+            title={t("Source mentions")}
             minName="minMentions"
             maxName="maxMentions"
           />
@@ -167,13 +167,13 @@ function QueriesFilters({
         <FilterTextInput
           form={form}
           name="include"
-          label="Include Terms"
+          label={t("Include Terms")}
           placeholder="pricing, reviews"
         />
         <FilterTextInput
           form={form}
           name="exclude"
-          label="Exclude Terms"
+          label={t("Exclude Terms")}
           placeholder="login, download"
         />
       </div>
@@ -183,7 +183,7 @@ function QueriesFilters({
         <div className="min-w-[220px]">
           <FilterRangeInputs
             form={form}
-            title="AI search volume"
+            title={t("AI search volume")}
             minName="minVolume"
             maxName="maxVolume"
           />
@@ -206,7 +206,7 @@ export function BrandLookupFilterPanel({
     <div className="shrink-0 border-b border-base-300 bg-gradient-to-b from-base-100 to-base-200/30 px-4 py-3 space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <p className="text-sm font-semibold">Refine results</p>
+          <p className="text-sm font-semibold">{t("Refine results")}</p>
           {current.activeFilterCount > 0 ? (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {current.activeFilterCount} active
@@ -220,8 +220,7 @@ export function BrandLookupFilterPanel({
           disabled={current.activeFilterCount === 0}
         >
           <RotateCcw className="size-3" />
-          Clear all
-        </button>
+          {t("Clear all")}</button>
       </div>
 
       {activeTab === "pages" ? (

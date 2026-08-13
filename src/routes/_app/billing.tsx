@@ -11,6 +11,7 @@ import { BillingFeatureBreakdown } from "@/client/features/billing/BillingFeatur
 import { parseTopUpAmount } from "@/client/features/billing/HostedBillingContentUtils";
 import { getBillingRouteState } from "@/client/features/billing/route-state";
 import { getCustomerPlanStatus } from "@/client/features/billing/plan-detection";
+import { t } from "@/client/features/laojin/i18n";
 import {
   AUTUMN_PAID_PLAN_ID,
   BILLING_ROUTE,
@@ -72,7 +73,7 @@ function BillingPage() {
   if (billingRouteState === "error") {
     return (
       <div className="mx-auto w-full max-w-2xl space-y-4 p-4 py-10 md:p-6 md:py-12">
-        <h1 className="text-xl font-semibold">Billing unavailable</h1>
+        <h1 className="text-xl font-semibold">{t("Billing unavailable")}</h1>
         <p className="text-sm text-base-content/70">
           {getStandardErrorMessage(
             customerQuery.error,
@@ -86,8 +87,7 @@ function BillingPage() {
             void customerQuery.refetch();
           }}
         >
-          Try again
-        </button>
+          {t("Try again")}</button>
       </div>
     );
   }
@@ -120,14 +120,14 @@ function BillingPage() {
   if (isPending) {
     return (
       <div className="flex h-full items-center justify-center">
-        <p className="text-sm text-base-content/50">Redirecting to Stripe...</p>
+        <p className="text-sm text-base-content/50">{t("Redirecting to Stripe...")}</p>
       </div>
     );
   }
 
   return (
     <div className="mx-auto w-full max-w-2xl space-y-5 p-4 py-10 md:p-6 md:py-12">
-      <h1 className="text-xl font-semibold">Billing</h1>
+      <h1 className="text-xl font-semibold">{t("Billing")}</h1>
 
       <div className="grid gap-5 md:grid-cols-2">
         {/* Subscription card */}
@@ -142,24 +142,24 @@ function BillingPage() {
             {!isFreePlan ? (
               <div className="mt-1 flex gap-3 text-xs text-base-content/50">
                 <span className="tabular-nums">
-                  Monthly ${monthlyRemaining.toFixed(2)}
+                  {t("Monthly $")}{monthlyRemaining.toFixed(2)}
                 </span>
                 <span>&middot;</span>
                 <span className="tabular-nums">
-                  Top-ups ${topUpRemaining.toFixed(2)}
+                  {t("Top-ups $")}{topUpRemaining.toFixed(2)}
                 </span>
               </div>
             ) : null}
             {totalRemaining <= 0 ? (
               <p className="mt-2 text-xs text-error">
-                You&rsquo;ve used all your credits.{" "}
+                {t("You&rsquo;ve used all your credits.")}{" "}
                 {isFreePlan
                   ? "Upgrade your plan to continue."
                   : "Buy more credits below to continue."}
               </p>
             ) : totalRemaining < LOW_CREDITS_THRESHOLD_USD ? (
               <p className="mt-2 text-xs text-amber-600">
-                You&rsquo;re running low on credits.{" "}
+                {t("You&rsquo;re running low on credits.")}{" "}
                 {isFreePlan
                   ? "Upgrade to get $10/month."
                   : "Buy more credits below."}
@@ -168,7 +168,7 @@ function BillingPage() {
           </div>
 
           <div className="text-sm">
-            <span className="font-medium">Plan</span>{" "}
+            <span className="font-medium">{t("Plan")}</span>{" "}
             <span className="text-base-content/50">
               {isFreePlan ? "Free Plan" : "Base Plan"}
             </span>
@@ -177,7 +177,7 @@ function BillingPage() {
           {isFreePlan ? (
             <div className="space-y-3 border-t border-base-300 pt-3">
               <div className="flex items-baseline justify-between gap-4">
-                <span className="text-sm font-medium">Base Plan</span>
+                <span className="text-sm font-medium">{t("Base Plan")}</span>
                 <span className="text-sm font-medium tabular-nums">
                   $10/month
                 </span>
@@ -208,8 +208,7 @@ function BillingPage() {
                   )
                 }
               >
-                Upgrade Plan
-              </button>
+                {t("Upgrade Plan")}</button>
             </div>
           ) : (
             <button
@@ -225,8 +224,7 @@ function BillingPage() {
                 )
               }
             >
-              Manage subscription
-            </button>
+              {t("Manage subscription")}</button>
           )}
         </div>
 
@@ -234,11 +232,9 @@ function BillingPage() {
         {!isFreePlan ? (
           <div className="rounded-lg border border-base-300 bg-base-100 p-4 space-y-3">
             <div>
-              <span className="font-semibold">Buy credits</span>
+              <span className="font-semibold">{t("Buy credits")}</span>
               <p className="mt-1 text-sm text-base-content/60">
-                Top-up credits never expire and are used after your monthly
-                credits.
-              </p>
+                {t("Top-up credits never expire and are used after your monthly\n                credits.")}</p>
             </div>
 
             <div>
@@ -257,8 +253,7 @@ function BillingPage() {
               </div>
               {topUpAmount.trim() !== "" && !isValidTopUp ? (
                 <p className="mt-1 text-xs text-error">
-                  Enter between $10–$99.
-                </p>
+                  {t("Enter between $10–$99.")}</p>
               ) : null}
             </div>
 
@@ -285,8 +280,7 @@ function BillingPage() {
                 )
               }
             >
-              Buy credits
-            </button>
+              {t("Buy credits")}</button>
           </div>
         ) : null}
       </div>
@@ -300,8 +294,7 @@ function BillingPage() {
       {error ? <p className="text-sm text-error">{error}</p> : null}
 
       <p className="text-xs text-base-content/40">
-        Billing is powered by Stripe.
-      </p>
+        {t("Billing is powered by Stripe.")}</p>
     </div>
   );
 }

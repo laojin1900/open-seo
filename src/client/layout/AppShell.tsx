@@ -13,6 +13,7 @@ import { BILLING_ROUTE } from "@/shared/billing";
 import { getSeoApiKeyStatus } from "@/serverFunctions/config";
 import { getProjects } from "@/serverFunctions/projects";
 import { getLastProjectId } from "@/client/lib/active-project";
+import { t } from "@/client/features/laojin/i18n";
 
 const DATAFORSEO_HELP_PATH = "/help/dataforseo-api-key";
 
@@ -174,15 +175,14 @@ function MobileTopBar({
       <button
         type="button"
         className="btn btn-square btn-ghost btn-sm"
-        aria-label="Toggle sidebar"
+        aria-label={t("Toggle sidebar")}
         aria-expanded={drawerOpen}
         onClick={onOpenDrawer}
       >
         <Menu className="h-5 w-5" />
       </button>
       <Link to="/" className="ml-1 font-semibold text-base-content">
-        OpenSEO
-      </Link>
+        {t("OpenSEO")}</Link>
     </div>
   );
 }

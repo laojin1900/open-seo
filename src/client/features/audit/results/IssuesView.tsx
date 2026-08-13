@@ -6,6 +6,7 @@ import {
   type IssueSeverity,
 } from "@/shared/audit-issues";
 import type { AuditResultsData } from "@/client/features/audit/results/types";
+import { t } from "@/client/features/laojin/i18n";
 
 type AuditIssueRow = AuditResultsData["issues"][number];
 
@@ -92,11 +93,9 @@ export function IssuesView({ issues }: { issues: AuditIssueRow[] }) {
   if (issues.length === 0) {
     return (
       <div className="py-10 text-center text-base-content/60">
-        <p className="font-medium">No issues recorded for this audit.</p>
+        <p className="font-medium">{t("No issues recorded for this audit.")}</p>
         <p className="text-sm mt-1">
-          Either the site is in great shape, or this audit ran before issue
-          checks existed — run a new audit to get the full report.
-        </p>
+          {t("Either the site is in great shape, or this audit ran before issue\n          checks existed — run a new audit to get the full report.")}</p>
       </div>
     );
   }
@@ -184,7 +183,7 @@ function IssueRow({ group }: { group: IssueGroup }) {
           )}
           {group.howToFix && (
             <p className="text-sm max-w-prose">
-              <span className="font-medium">How to fix: </span>
+              <span className="font-medium">{t("How to fix:")}</span>
               <span className="text-base-content/80">{group.howToFix}</span>
             </p>
           )}
@@ -220,8 +219,7 @@ function AffectedUrlList({ issues }: { issues: AuditIssueRow[] }) {
       ))}
       {remaining > 0 && (
         <div className="px-3 py-2 text-xs text-base-content/50">
-          …and {remaining} more — export the issues CSV for the full list.
-        </div>
+          …and {remaining} {t("more — export the issues CSV for the full list.")}</div>
       )}
     </div>
   );

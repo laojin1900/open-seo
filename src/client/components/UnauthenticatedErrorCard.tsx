@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { getSignInHref, getSignInHrefForLocation } from "@/lib/auth-redirect";
 import { isHostedClientAuthMode } from "@/lib/auth-mode";
+import { t } from "@/client/features/laojin/i18n";
 
 type UnauthenticatedErrorCardProps = {
   message: string;
@@ -32,17 +33,14 @@ export function UnauthenticatedErrorCard({
   return (
     <div className="card w-full max-w-md bg-base-100 border border-base-300 shadow-xl">
       <div className="card-body gap-4">
-        <h2 className="card-title">Authentication required</h2>
+        <h2 className="card-title">{t("Authentication required")}</h2>
         <p className="text-sm text-base-content/70">{message}</p>
         <p className="text-sm text-base-content/70">
-          This deployment uses external authentication. Refresh your access
-          session, then try again.
-        </p>
+          {t("This deployment uses external authentication. Refresh your access\n          session, then try again.")}</p>
         {onRetry ? (
           <div className="card-actions justify-end">
             <button className="btn btn-primary btn-sm" onClick={onRetry}>
-              Try Again
-            </button>
+              {t("Try Again")}</button>
           </div>
         ) : null}
       </div>

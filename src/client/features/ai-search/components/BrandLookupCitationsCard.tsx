@@ -25,6 +25,7 @@ import {
 import { useBrandLookupFilters } from "@/client/features/ai-search/useBrandLookupFilters";
 import type { CitationTab } from "@/client/features/ai-search/brandLookupFilterTypes";
 import type { BrandLookupResult } from "@/types/schemas/ai-search";
+import { t } from "@/client/features/laojin/i18n";
 
 const DEFAULT_PAGES_SORT: SortingState = [{ id: "capturedVolume", desc: true }];
 const DEFAULT_QUERIES_SORT: SortingState = [
@@ -157,8 +158,7 @@ export function CitationTabsCard({
             className={`tab ${queriesActive ? "tab-active" : ""}`}
             onClick={() => setActiveTab("queries")}
           >
-            Queries
-          </button>
+            {t("Queries")}</button>
           <button
             type="button"
             role="tab"
@@ -166,8 +166,7 @@ export function CitationTabsCard({
             className={`tab ${pagesActive ? "tab-active" : ""}`}
             onClick={() => setActiveTab("pages")}
           >
-            Cited sources
-          </button>
+            {t("Cited sources")}</button>
         </div>
 
         <div className="dropdown dropdown-end">
@@ -177,8 +176,7 @@ export function CitationTabsCard({
             className={`btn btn-ghost btn-sm gap-1.5 ${canExport ? "" : "btn-disabled"}`}
           >
             <Download className="size-3.5" />
-            Export
-            <ChevronDown className="size-3.5" />
+            {t("Export")}<ChevronDown className="size-3.5" />
           </div>
           <ul
             tabIndex={0}
@@ -191,8 +189,7 @@ export function CitationTabsCard({
                 disabled={!canExport}
               >
                 <Sheet className="size-4" />
-                Google Sheets
-              </button>
+                {t("Google Sheets")}</button>
             </li>
             <li>
               <button
@@ -201,8 +198,7 @@ export function CitationTabsCard({
                 disabled={!canExport}
               >
                 <Download className="size-4" />
-                CSV
-              </button>
+                {t("CSV")}</button>
             </li>
           </ul>
         </div>
@@ -213,11 +209,10 @@ export function CitationTabsCard({
           type="button"
           className={`btn btn-ghost btn-sm gap-1.5 ${filters.showFilters ? "btn-active" : ""}`}
           onClick={() => filters.setShowFilters((current) => !current)}
-          title="Toggle table filters"
+          title={t("Toggle table filters")}
         >
           <SlidersHorizontal className="size-3.5" />
-          Filters
-          {currentFilterCount > 0 ? (
+          {t("Filters")}{currentFilterCount > 0 ? (
             <span className="badge badge-xs badge-primary border-0 text-primary-content">
               {currentFilterCount}
             </span>
@@ -229,15 +224,14 @@ export function CitationTabsCard({
         <span>
           {activeTab === "pages" ? (
             <>
-              Pages cited alongside{" "}
+              {t("Pages cited alongside")}{" "}
               <strong className="text-base-content/80">
                 {result.resolvedTarget}
               </strong>{" "}
-              in AI answers. Prompt examples come from the fetched sample.
-            </>
+              {t("in AI answers. Prompt examples come from the fetched sample.")}</>
           ) : (
             <>
-              Fetched sample of prompts whose AI answer cited{" "}
+              {t("Fetched sample of prompts whose AI answer cited")}{" "}
               <strong className="text-base-content/80">
                 {result.resolvedTarget}
               </strong>{" "}

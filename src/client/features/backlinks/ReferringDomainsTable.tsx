@@ -17,6 +17,7 @@ import {
   formatNumber,
 } from "./backlinksPageUtils";
 import type { DomainRatings } from "./useAhrefsDomainRatings";
+import { t } from "@/client/features/laojin/i18n";
 
 const columnHelper = createColumnHelper<ReferringDomainRow>();
 
@@ -28,7 +29,7 @@ const baseColumns = [
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label="Domain"
+        label={t("Domain")}
         helpText="The referring site linking to your target."
       />
     ),
@@ -49,7 +50,7 @@ const baseColumns = [
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label="Backlinks"
+        label={t("Backlinks")}
         helpText="Total backlinks found from this domain."
       />
     ),
@@ -61,7 +62,7 @@ const baseColumns = [
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label="Referring Pages"
+        label={t("Referring Pages")}
         helpText="Unique pages on this domain that link to your target."
       />
     ),
@@ -73,7 +74,7 @@ const baseColumns = [
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label="Rank"
+        label={t("Rank")}
         helpText="Authority score for the referring domain."
       />
     ),
@@ -85,7 +86,7 @@ const baseColumns = [
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label="Spam"
+        label={t("Spam")}
         helpText="Spam risk score for this referring domain."
       />
     ),
@@ -97,7 +98,7 @@ const baseColumns = [
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label="First Seen"
+        label={t("First Seen")}
         helpText="When this domain was first discovered linking to your target."
       />
     ),
@@ -109,15 +110,15 @@ const baseColumns = [
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label="Issues"
+        label={t("Issues")}
         helpText="Broken link and broken page counts tied to this domain."
       />
     ),
     cell: ({ row }) => (
       <div className="text-sm">
-        <div>Broken links: {formatNumber(row.original.brokenBacklinks)}</div>
+        <div>{t("Broken links:")}{formatNumber(row.original.brokenBacklinks)}</div>
         <div className="text-base-content/55">
-          Broken pages: {formatNumber(row.original.brokenPages)}
+          {t("Broken pages:")}{formatNumber(row.original.brokenPages)}
         </div>
       </div>
     ),
@@ -139,7 +140,7 @@ function buildReferringDomainColumns(domainRatings: DomainRatings | null) {
     id: "ahrefsDr",
     header: () => (
       <HeaderHelpLabel
-        label="Ahrefs DR"
+        label={t("Ahrefs DR")}
         helpText="Ahrefs Domain Rating (0-100) for this referring domain."
       />
     ),
@@ -191,7 +192,7 @@ export function ReferringDomainsTable({
   });
 
   if (rows.length === 0) {
-    return <EmptyTableState label="No referring domains match this filter." />;
+    return <EmptyTableState label={t("No referring domains match this filter.")} />;
   }
 
   return (
