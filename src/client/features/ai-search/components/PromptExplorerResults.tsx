@@ -164,7 +164,7 @@ function CitationsList({
           onClick={() => setExpanded((current) => !current)}
           className="mt-1.5 text-xs text-base-content/50 hover:text-base-content"
         >
-          {expanded ? "Show less" : `+${remaining} more`}
+          {expanded ? t("Show less") : `+${remaining} more`}
         </button>
       ) : null}
     </div>

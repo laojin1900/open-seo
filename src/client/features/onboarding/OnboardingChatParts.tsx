@@ -100,7 +100,7 @@ export function WelcomeMessage({
             disabled={isStartingCheckout}
             onClick={onUpgrade}
           >
-            {isStartingCheckout ? "Redirecting..." : "Upgrade"}
+            {isStartingCheckout ? t("Redirecting...") : t("Upgrade")}
           </button>
           {checkoutError ? (
             <p className="mt-2 text-error">{checkoutError}</p>
@@ -176,7 +176,7 @@ export function UpgradeSidebar({
             disabled={isStartingCheckout}
             onClick={onUpgrade}
           >
-            {isStartingCheckout ? "Redirecting..." : "Upgrade to continue"}
+            {isStartingCheckout ? t("Redirecting...") : t("Upgrade to continue")}
           </button>
           <p className="text-center text-xs leading-relaxed text-base-content/55">
             {t("Want advice from other OpenSEO users?")}{" "}
@@ -229,7 +229,7 @@ export function ChatGate({
           disabled={isStartingCheckout}
           onClick={onUpgrade}
         >
-          {isStartingCheckout ? "Redirecting..." : "Upgrade to continue"}
+          {isStartingCheckout ? t("Redirecting...") : t("Upgrade to continue")}
         </button>
         <p className="mt-2 text-xs text-base-content/45">
           30-day money-back guarantee

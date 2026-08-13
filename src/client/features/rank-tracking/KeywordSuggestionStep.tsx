@@ -242,7 +242,7 @@ export function KeywordSuggestionStep({
   if (!labsSupported) {
     return (
       <>
-        {sectionHeader("Add keywords manually")}
+        {sectionHeader(t("Add keywords manually"))}
         <div className="flex flex-col items-center justify-center gap-3 py-16">
           <p className="text-xs text-base-content/50">
             {t("Ranked-keyword suggestions aren't available for this country.\n            Continue and add the keywords you want to track manually.")}</p>
@@ -257,7 +257,7 @@ export function KeywordSuggestionStep({
   if (suggestionsQuery.isLoading) {
     return (
       <>
-        {sectionHeader("Finding your top keywords...")}
+        {sectionHeader(t("Finding your top keywords..."))}
         <div className="flex flex-col items-center justify-center gap-3 py-16">
           <Loader2 className="size-8 animate-spin text-primary" />
           <p className="text-xs text-base-content/50">
@@ -271,7 +271,7 @@ export function KeywordSuggestionStep({
   if (suggestionsQuery.isError) {
     return (
       <>
-        {sectionHeader("Couldn't fetch keywords")}
+        {sectionHeader(t("Couldn't fetch keywords"))}
         <div className="flex flex-col items-center justify-center gap-3 py-16">
           <AlertCircle className="size-8 text-error" />
           <p className="text-xs text-base-content/50">
@@ -289,7 +289,7 @@ export function KeywordSuggestionStep({
   if (data.length === 0) {
     return (
       <>
-        {sectionHeader("No rankings found")}
+        {sectionHeader(t("No rankings found"))}
         <div className="flex flex-col items-center justify-center gap-3 py-16">
           <p className="text-xs text-base-content/50">
             {t("We couldn't find any keywords")}{domain} {t("currently ranks for. You can\n            add keywords manually.")}</p>
@@ -303,7 +303,7 @@ export function KeywordSuggestionStep({
   // Data loaded
   return (
     <div className="flex flex-col gap-3">
-      {sectionHeader("Choose keywords to track")}
+      {sectionHeader(t("Choose keywords to track"))}
       <div className="flex items-center justify-between">
         <p className="text-sm text-base-content/60">
           {t("We found")}{data.length} keywords {domain} ranks for.

@@ -14,6 +14,7 @@ import { captureClientEvent } from "@/client/lib/posthog";
 import { queryClient } from "@/client/tanstack-db";
 import { useSession } from "@/lib/auth-client";
 import { saveOnboardingAnswers } from "@/serverFunctions/onboarding";
+import { t } from "@/client/features/laojin/i18n";
 
 const ONBOARDING_EXISTING_USER_CUTOFF = "2026-05-27T00:00:00.000Z";
 
@@ -135,10 +136,10 @@ function OnboardingFlow({
   return (
     <PostSignupOnboarding
       firstName={firstName}
-      title={isExistingUser ? "Tell us about your work" : undefined}
+      title={isExistingUser ? t("Tell us about your work") : undefined}
       helperText={
         isExistingUser
-          ? "A little context helps us decide where to focus. You can also reach me anytime at ben@openseo.so."
+          ? t("A little context helps us decide where to focus. You can also reach me anytime at ben@openseo.so.")
           : undefined
       }
       step={step}

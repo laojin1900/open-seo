@@ -240,8 +240,7 @@ export function DimensionTable({
       wrapperClassName="overflow-x-auto"
       empty={
         <p className="p-6 text-sm text-base-content/60">
-          No data for this period yet. Search Console data trails by a few days.
-        </p>
+          {t("No data for this period yet. Search Console data trails by a few days.")}</p>
       }
     />
   );
@@ -359,8 +358,7 @@ export function StrikingDistanceTable({
               icon={<Copy className="size-3.5" />}
               onClick={() => void copyKeywords()}
             >
-              Copy keywords
-            </TableBulkActionButton>
+              {t("Copy keywords")}</TableBulkActionButton>
             <TableBulkActionButton
               icon={
                 save.isPending ? (
@@ -372,8 +370,7 @@ export function StrikingDistanceTable({
               onClick={() => save.mutate(selectedQueries)}
               disabled={save.isPending}
             >
-              Save as keywords
-            </TableBulkActionButton>
+              {t("Save as keywords")}</TableBulkActionButton>
           </div>
         }
       />

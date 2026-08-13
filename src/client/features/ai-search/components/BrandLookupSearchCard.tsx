@@ -85,7 +85,7 @@ export function BrandLookupSearchCard({
               className="btn btn-primary shrink-0 px-6"
               disabled={isLoading}
             >
-              {isLoading ? "Looking up..." : "Look up"}
+              {isLoading ? t("Looking up...") : t("Look up")}
             </button>
           </div>
 

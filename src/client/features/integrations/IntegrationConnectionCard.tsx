@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { t } from "@/client/features/laojin/i18n";
 
 type IntegrationConnectionStatus =
   | "connected"
@@ -66,10 +67,10 @@ function ConnectionStatusPill({
         ].join(" ")}
       />
       {connected
-        ? "Connected"
+        ? t("Connected")
         : setupRequired
-          ? "Setup required"
-          : "Not connected"}
+          ? t("Setup required")
+          : t("Not connected")}
     </span>
   );
 }

@@ -163,20 +163,18 @@ function SignUpPage() {
                 google.clearError();
               }}
             >
-              Back to signup
-            </button>
+              {t("Back to signup")}</button>
           ) : (
             <div className="space-y-4">
               <p className="text-sm leading-relaxed text-base-content/60">
-                By signing up, you agree to our{" "}
+                {t("By signing up, you agree to our")}{" "}
                 <a
                   href="https://openseo.so/terms-and-conditions"
                   target="_blank"
                   rel="noreferrer"
                   className="text-base-content underline underline-offset-2 hover:text-base-content/80 transition-colors"
                 >
-                  Terms
-                </a>{" "}
+                  {t("Terms")}</a>{" "}
                 and{" "}
                 <a
                   href="https://openseo.so/privacy"
@@ -184,20 +182,18 @@ function SignUpPage() {
                   rel="noreferrer"
                   className="text-base-content underline underline-offset-2 hover:text-base-content/80 transition-colors"
                 >
-                  Privacy Policy
-                </a>
+                  {t("Privacy Policy")}</a>
                 .
               </p>
 
               <p className="text-sm text-base-content/50">
-                Already have an account?{" "}
+                {t("Already have an account?")}{" "}
                 <Link
                   to="/sign-in"
                   search={getSignInSearch(redirectTo)}
                   className="text-base-content underline underline-offset-2 hover:text-base-content/80 transition-colors"
                 >
-                  Sign in
-                </Link>
+                  {t("Sign in")}</Link>
               </p>
             </div>
           )
@@ -357,7 +353,7 @@ function SignUpPage() {
                       (isTurnstileEnabled && !captcha.hasToken)
                     }
                   >
-                    {isSubmitting ? "Creating account..." : "Create account"}
+                    {isSubmitting ? t("Creating account...") : t("Create account")}
                   </button>
                 </>
               );

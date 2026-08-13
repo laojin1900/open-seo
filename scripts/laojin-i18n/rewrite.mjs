@@ -46,58 +46,84 @@ function main() {
 
   for (const file of targets) {
     const edits = [];
-    const walk = (node) => {
-      if (node.getKind() === SyntaxKind.JsxText) {
-        const tsNode = node.compilerNode;
-        if (ts.isJsxText(tsNode)) {
-          const text = tsNode.getText().replace(/\{\/\*[\s\S]*?\*\/\}/g, "").trim();
-          if (candidates.has(text)) {
+    // JSX 文本节点
+    for (const node of file.getDescendantsOfKind(SyntaxKind.JsxText)) {
+      const tsNode = node.compilerNode;
+      if (!ts.isJsxText(tsNode)) continue;
+      const text = tsNode.getText().replace(/\{\/\*[\s\S]*?\*\/\}/g, "").trim();
+      if (candidates.has(text)) {
+        edits.push({
+          start: node.getStart(),
+          end: node.getEnd(),
+          newText: `{t(${JSON.stringify(text)})}`,
+          original: node.getText(),
+        });
+      }
+    }
+    // JSX 表达式容器内的字符串字面量
+    for (const node of file.getDescendantsOfKind(SyntaxKind.JsxExpression)) {
+      const tsNode = node.compilerNode;
+      if (!ts.isJsxExpression(tsNode)) continue;
+      const strNodes = [];
+      const collect = (n, parent) => {
+        if (ts.isStringLiteral(n)) {
+          const insideT = parent && ts.isCallExpression(parent) && ts.isIdentifier(parent.expression) && parent.expression.text === "t";
+          if (!insideT) strNodes.push(n);
+          return;
+        }
+        if (ts.isJsxElement(n) || ts.isJsxSelfClosingElement(n) || ts.isJsxAttribute(n) || ts.isJsxExpression(n)) return;
+        n.forEachChild((c) => collect(c, n));
+      };
+      tsNode.expression && collect(tsNode.expression, undefined);
+      for (const strNode of strNodes) {
+        const text = strNode.text.trim();
+        if (candidates.has(text)) {
+          const morphNode = node.getDescendantsOfKind(SyntaxKind.StringLiteral).find((d) => d.getStart() === strNode.getStart());
+          if (morphNode) {
             edits.push({
-              start: node.getStart(),
-              end: node.getEnd(),
-              newText: `{t(${JSON.stringify(text)})}`,
-              original: node.getText(),
+              start: morphNode.getStart(),
+              end: morphNode.getEnd(),
+              newText: `t(${JSON.stringify(text)})`,
+              original: morphNode.getText(),
             });
           }
         }
-        return;
       }
-      if (node.getKind() === SyntaxKind.JsxAttribute) {
-        const tsNode = node.compilerNode;
-        if (ts.isJsxAttribute(tsNode)) {
-          const name = tsNode.name.getText();
-          if (!ATTR_WHITELIST.has(name)) return;
-          const init = tsNode.initializer;
-          if (init && ts.isStringLiteral(init)) {
-            const text = init.text.trim();
-            if (candidates.has(text)) {
-              // 只替换 initializer（字符串字面量，含引号）的 span，保留属性名与 =
-              const initNode = node.getChildren().find((c) => c.getKind() === SyntaxKind.StringLiteral);
-              edits.push({
-                start: initNode.getStart(),
-                end: initNode.getEnd(),
-                newText: `{t(${JSON.stringify(text)})}`,
-                original: initNode.getText(),
-              });
-            }
-          }
+    }
+    // JSX 属性（白名单）
+    for (const node of file.getDescendantsOfKind(SyntaxKind.JsxAttribute)) {
+      const tsNode = node.compilerNode;
+      if (!ts.isJsxAttribute(tsNode)) continue;
+      const name = tsNode.name.getText();
+      if (!ATTR_WHITELIST.has(name)) continue;
+      const init = tsNode.initializer;
+      if (init && ts.isStringLiteral(init)) {
+        const text = init.text.trim();
+        if (candidates.has(text)) {
+          const initNode = node.getChildren().find((c) => c.getKind() === SyntaxKind.StringLiteral);
+          edits.push({
+            start: initNode.getStart(),
+            end: initNode.getEnd(),
+            newText: `{t(${JSON.stringify(text)})}`,
+            original: initNode.getText(),
+          });
         }
-        return;
       }
-      node.forEachChild(walk);
-    };
-    walk(file);
+    }
     if (edits.length) editsByFile.set(file.getFilePath(), edits);
   }
 
   let totalRewrites = 0;
   const changedFiles = [];
   for (const [fp, edits] of editsByFile) {
-    // 从后往前应用，避免位置漂移；每个 edit 校验原文再替换
-    edits.sort((a, b) => b.start - a.start);
+    // 去重（同 start 保留一个）+ 从后往前应用，避免位置漂移
+    const seen = new Set();
+    const unique = edits.filter((e) => (seen.has(e.start) ? false : (seen.add(e.start), true)));
+    const edits2 = unique;
+    edits2.sort((a, b) => b.start - a.start);
     let content = fs.readFileSync(fp, "utf8");
     let applied = 0;
-    for (const e of edits) {
+    for (const e of edits2) {
       const actual = content.slice(e.start, e.end);
       if (actual !== e.original) {
         console.warn(`  ⚠ 跳过（原文不匹配）: ${path.relative(ROOT, fp)} @${e.start}: ${JSON.stringify(e.original.slice(0, 40))}`);

@@ -77,7 +77,7 @@ function BillingPage() {
         <p className="text-sm text-base-content/70">
           {getStandardErrorMessage(
             customerQuery.error,
-            "We couldn't load your billing details right now. Please try again.",
+            t("We couldn't load your billing details right now. Please try again."),
           )}
         </p>
         <button
@@ -154,15 +154,15 @@ function BillingPage() {
               <p className="mt-2 text-xs text-error">
                 {t("You&rsquo;ve used all your credits.")}{" "}
                 {isFreePlan
-                  ? "Upgrade your plan to continue."
-                  : "Buy more credits below to continue."}
+                  ? t("Upgrade your plan to continue.")
+                  : t("Buy more credits below to continue.")}
               </p>
             ) : totalRemaining < LOW_CREDITS_THRESHOLD_USD ? (
               <p className="mt-2 text-xs text-amber-600">
                 {t("You&rsquo;re running low on credits.")}{" "}
                 {isFreePlan
                   ? "Upgrade to get $10/month."
-                  : "Buy more credits below."}
+                  : t("Buy more credits below.")}
               </p>
             ) : null}
           </div>
@@ -170,7 +170,7 @@ function BillingPage() {
           <div className="text-sm">
             <span className="font-medium">{t("Plan")}</span>{" "}
             <span className="text-base-content/50">
-              {isFreePlan ? "Free Plan" : "Base Plan"}
+              {isFreePlan ? t("Free Plan") : t("Base Plan")}
             </span>
           </div>
 
@@ -184,7 +184,7 @@ function BillingPage() {
               </div>
               <ul className="space-y-1.5">
                 {[
-                  "Access to all OpenSEO features",
+                  t("Access to all OpenSEO features"),
                   "Includes $10.00 of Usage Credits each month",
                 ].map((item) => (
                   <li
@@ -204,7 +204,7 @@ function BillingPage() {
                 onClick={() =>
                   void runAction(
                     startUpgradeCheckout,
-                    "We couldn't start the checkout. Please try again.",
+                    t("We couldn't start the checkout. Please try again."),
                   )
                 }
               >
@@ -220,7 +220,7 @@ function BillingPage() {
                     customerQuery.openCustomerPortal({
                       returnUrl: window.location.href,
                     }),
-                  "We couldn't open the billing portal. Please try again.",
+                  t("We couldn't open the billing portal. Please try again."),
                 )
               }
             >
@@ -276,7 +276,7 @@ function BillingPage() {
                         },
                       ],
                     }),
-                  "We couldn't start the checkout. Please try again.",
+                  t("We couldn't start the checkout. Please try again."),
                 )
               }
             >

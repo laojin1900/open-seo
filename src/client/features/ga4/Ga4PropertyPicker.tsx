@@ -140,7 +140,7 @@ export function Ga4PropertyPicker({
           {usableAccounts.map((account) => (
             <optgroup
               key={account.accountId}
-              label={account.email ?? "Google account"}
+              label={account.email ?? t("Google account")}
             >
               {account.properties.length === 0 ? (
                 <option disabled>{t("No properties")}</option>
@@ -173,7 +173,7 @@ export function Ga4PropertyPicker({
           onClick={onSave}
           disabled={selectedIndex < 0 || saving}
         >
-          {saving ? "Saving…" : "Save property"}
+          {saving ? t("Saving…") : t("Save property")}
         </button>
         <button
           type="button"

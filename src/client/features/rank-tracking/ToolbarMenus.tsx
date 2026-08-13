@@ -109,7 +109,7 @@ export function MoreMenu({
       {!checkDisabled && (
         <MenuItem
           icon={<Play className="size-3.5" />}
-          label={checkBusy ? "Running..." : "Check rankings"}
+          label={checkBusy ? t("Running...") : t("Check rankings")}
           description={t("Fetch current Google positions")}
           onClick={onCheckNow}
           disabled={checkBusy}
@@ -121,7 +121,7 @@ export function MoreMenu({
             className={`size-3.5 ${metricsRefreshing ? "animate-spin" : ""}`}
           />
         }
-        label={metricsRefreshing ? "Refreshing..." : "Update keyword stats"}
+        label={metricsRefreshing ? t("Refreshing...") : t("Update keyword stats")}
         description={t("Volume, difficulty & CPC — not rankings")}
         onClick={onRefreshMetrics}
         disabled={metricsRefreshing || !hasData}

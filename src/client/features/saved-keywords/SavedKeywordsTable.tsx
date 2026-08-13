@@ -196,8 +196,8 @@ function SavedKeywordsEmptyState({
       <Search className="mx-auto mb-2 size-8 opacity-40" />
       <p>
         {hasActiveFilters
-          ? "No saved keywords match the current filters."
-          : "No saved keywords yet. Use the Keyword Research page to find and save keywords."}
+          ? t("No saved keywords match the current filters.")
+          : t("No saved keywords yet. Use the Keyword Research page to find and save keywords.")}
       </p>
     </div>
   );

@@ -132,7 +132,7 @@ export function SitePicker({
           {healthyAccounts.map((account) => (
             <optgroup
               key={account.accountId}
-              label={account.email ?? "Google account"}
+              label={account.email ?? t("Google account")}
             >
               {account.sites.length === 0 ? (
                 <option disabled>{t("No properties")}</option>
@@ -166,7 +166,7 @@ export function SitePicker({
           onClick={onSave}
           disabled={selectedIndex < 0 || saving}
         >
-          {saving ? "Saving…" : "Save property"}
+          {saving ? t("Saving…") : t("Save property")}
         </button>
         <button
           type="button"

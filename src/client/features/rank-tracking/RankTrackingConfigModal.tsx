@@ -187,7 +187,7 @@ function RankTrackingConfigModalContent({
     >
       <div className="flex items-center justify-between">
         <h2 id="rank-config-modal-title" className="text-lg font-semibold">
-          {isEdit ? "Edit Domain Config" : "Add Domain"}
+          {isEdit ? t("Edit Domain Config") : t("Add Domain")}
         </h2>
         <button className="btn btn-ghost btn-sm btn-square" onClick={onClose}>
           <X className="size-4" />
@@ -382,7 +382,7 @@ function RankTrackingConfigModalContent({
             disabled={isPending || !domain.trim()}
           >
             {isPending && <Loader2 className="size-3.5 animate-spin" />}
-            {isEdit ? "Save Changes" : "Add Domain"}
+            {isEdit ? t("Save Changes") : t("Add Domain")}
           </button>
         </div>
       </form>

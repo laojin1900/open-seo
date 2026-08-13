@@ -64,7 +64,7 @@ export function LaunchFormCard({
                   <>
                     <Loader2 className="size-4 animate-spin" /> {t("Starting...")}</>
                 ) : (
-                  "Start Audit"
+                  t("Start Audit")
                 )}
               </button>
             )}

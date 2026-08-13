@@ -74,7 +74,7 @@ function ProjectsPage() {
                       ) : null}
                     </span>
                     <span className="truncate text-xs text-base-content/50">
-                      {project.domain ?? "No domain set"}
+                      {project.domain ?? t("No domain set")}
                     </span>
                   </span>
                   <ChevronRight className="size-4 shrink-0 text-base-content/40" />
@@ -130,7 +130,7 @@ function ArchivedProjects() {
                 {project.name}
               </span>
               <span className="truncate text-xs text-base-content/50">
-                {project.domain ?? "No domain set"}
+                {project.domain ?? t("No domain set")}
               </span>
             </span>
             <button

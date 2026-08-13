@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import type { KeywordIntent } from "@/types/keywords";
 import { FloatingTooltip, useFloatingTooltip } from "./FloatingTooltip";
+import { t } from "@/client/features/laojin/i18n";
 
 const COLORS: Record<KeywordIntent, string> = {
   informational: "border-info/30 bg-info/15 text-info",
@@ -74,7 +75,7 @@ export function IntentBadge({ intent }: { intent: KeywordIntent }) {
       onFocus={tooltip.open}
       onBlur={tooltip.close}
       onKeyDown={(e) => {
-        if (e.key === "Escape") tooltip.close();
+        if (e.key === t("Escape")) tooltip.close();
       }}
     >
       {SHORT_LABELS[intent]}

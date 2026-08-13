@@ -45,7 +45,7 @@ export function SavedKeywordsHeader({
             <RefreshCw
               className={`size-4 ${metricsRefreshing ? "animate-spin" : ""}`}
             />
-            {metricsRefreshing ? "Updating..." : "Actions"}
+            {metricsRefreshing ? t("Updating...") : t("Actions")}
             <ChevronDown className="size-3 opacity-60" />
           </button>
           <ul

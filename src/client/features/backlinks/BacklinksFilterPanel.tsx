@@ -38,28 +38,28 @@ export function BacklinksFilterPanel({
         textFields={[
           {
             key: "include",
-            label: "Source URL Contains",
+            label: t("Source URL Contains"),
             placeholder: "example.com, blog",
           },
           {
             key: "exclude",
-            label: "Source URL Excludes",
+            label: t("Source URL Excludes"),
             placeholder: "spam, forum",
           },
         ]}
         rangeFields={[
           {
-            title: "Domain Authority",
+            title: t("Domain Authority"),
             minKey: "minDomainRank",
             maxKey: "maxDomainRank",
           },
           {
-            title: "Link Authority",
+            title: t("Link Authority"),
             minKey: "minLinkAuthority",
             maxKey: "maxLinkAuthority",
           },
           {
-            title: "Spam Score",
+            title: t("Spam Score"),
             minKey: "minSpamScore",
             maxKey: "maxSpamScore",
             step: "0.1",
@@ -93,24 +93,24 @@ export function BacklinksFilterPanel({
         textFields={[
           {
             key: "include",
-            label: "Domain Contains",
+            label: t("Domain Contains"),
             placeholder: "example.com, blog",
           },
           {
             key: "exclude",
-            label: "Domain Excludes",
+            label: t("Domain Excludes"),
             placeholder: "spam, forum",
           },
         ]}
         rangeFields={[
           {
-            title: "Backlinks",
+            title: t("Backlinks"),
             minKey: "minBacklinks",
             maxKey: "maxBacklinks",
           },
-          { title: "Rank", minKey: "minRank", maxKey: "maxRank" },
+          { title: t("Rank"), minKey: "minRank", maxKey: "maxRank" },
           {
-            title: "Spam Score",
+            title: t("Spam Score"),
             minKey: "minSpamScore",
             maxKey: "maxSpamScore",
             step: "0.1",
@@ -140,23 +140,23 @@ export function BacklinksFilterPanel({
       textFields={[
         {
           key: "include",
-          label: "Page URL Contains",
+          label: t("Page URL Contains"),
           placeholder: "/blog, /products",
         },
         {
           key: "exclude",
-          label: "Page URL Excludes",
+          label: t("Page URL Excludes"),
           placeholder: "/tag, /author",
         },
       ]}
       rangeFields={[
-        { title: "Backlinks", minKey: "minBacklinks", maxKey: "maxBacklinks" },
+        { title: t("Backlinks"), minKey: "minBacklinks", maxKey: "maxBacklinks" },
         {
-          title: "Referring Domains",
+          title: t("Referring Domains"),
           minKey: "minReferringDomains",
           maxKey: "maxReferringDomains",
         },
-        { title: "Rank", minKey: "minRank", maxKey: "maxRank" },
+        { title: t("Rank"), minKey: "minRank", maxKey: "maxRank" },
       ]}
       onApply={(values) => {
         state.apply(values);
@@ -191,10 +191,10 @@ function BacklinksToggleControls({
               onClick={() => setValue("linkType", value)}
             >
               {value === ""
-                ? "All"
+                ? t("All")
                 : value === "dofollow"
-                  ? "Dofollow"
-                  : "Nofollow"}
+                  ? t("Dofollow")
+                  : t("Nofollow")}
             </button>
           ))}
         </div>

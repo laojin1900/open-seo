@@ -123,7 +123,7 @@ export function BacklinksSearchCard({
                     className="btn btn-primary shrink-0 px-6"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Loading..." : "Search"}
+                    {isSubmitting ? t("Loading...") : t("Search")}
                   </button>
                 )}
               </form.Subscribe>

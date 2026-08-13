@@ -129,7 +129,7 @@ export function ApiKeySettings() {
               {apiKeys.map((key) => (
                 <tr key={key.id} className="hover">
                   <td className="max-w-[220px] truncate font-medium">
-                    {key.name || "Unnamed key"}
+                    {key.name || t("Unnamed key")}
                   </td>
                   <td className="font-mono text-xs text-base-content/70">
                     {key.start || "oseo_"}…
@@ -140,11 +140,11 @@ export function ApiKeySettings() {
                   <td className="text-xs text-base-content/70">
                     {key.lastRequest
                       ? key.lastRequest.toLocaleDateString()
-                      : "Never"}
+                      : t("Never")}
                   </td>
                   <td>
                     <PortalMenu
-                      ariaLabel={`Actions for ${key.name || "API key"}`}
+                      ariaLabel={`Actions for ${key.name || t("API key")}`}
                     >
                       {(close) => (
                         <li>
@@ -158,7 +158,7 @@ export function ApiKeySettings() {
                               close();
                               if (
                                 window.confirm(
-                                  `Revoke "${key.name || "Unnamed key"}"? Clients using it will stop working.`,
+                                  `Revoke "${key.name || t("Unnamed key")}"? Clients using it will stop working.`,
                                 )
                               ) {
                                 revokeMutation.mutate(key.id);
@@ -242,7 +242,7 @@ export function ApiKeySettings() {
                     className="btn btn-primary btn-sm"
                     disabled={createMutation.isPending || !name.trim()}
                   >
-                    {createMutation.isPending ? "Creating…" : "Create"}
+                    {createMutation.isPending ? t("Creating…") : t("Create")}
                   </button>
                 </div>
               </form>

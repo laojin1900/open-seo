@@ -1,4 +1,5 @@
 import { Copy, FileDown, Sheet, Tags, Trash2 } from "lucide-react";
+import { t } from "@/client/features/laojin/i18n";
 import {
   TableBulkActionBar,
   TableBulkActionButton,
@@ -38,24 +39,23 @@ export function SavedKeywordsBulkActionBar({
               icon={<Tags className="size-3.5" />}
               onClick={onOpenTags}
             >
-              Tag
-            </TableBulkActionButton>
+              {t("Tag")}</TableBulkActionButton>
 
             <TableBulkExportMenu
               busy={exportBusy}
               actions={[
                 {
-                  label: "Copy keywords",
+                  label: t("Copy keywords"),
                   icon: <Copy className="size-4" />,
                   onClick: onCopy,
                 },
                 {
-                  label: "Export to Sheets",
+                  label: t("Export to Sheets"),
                   icon: <Sheet className="size-4" />,
                   onClick: onExportSheets,
                 },
                 {
-                  label: "Export CSV",
+                  label: t("Export CSV"),
                   icon: <FileDown className="size-4" />,
                   onClick: onExportCsv,
                 },
@@ -69,8 +69,7 @@ export function SavedKeywordsBulkActionBar({
               onClick={onDelete}
               variant="danger"
             >
-              Delete
-            </TableBulkActionButton>
+              {t("Delete")}</TableBulkActionButton>
           </div>
         </>
       }

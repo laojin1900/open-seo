@@ -171,7 +171,7 @@ function KeywordsCell({
           onClick={() => setExpanded((current) => !current)}
           className="text-xs text-base-content/50 hover:text-base-content"
         >
-          {expanded ? "Show less" : `+${remaining} more`}
+          {expanded ? t("Show less") : `+${remaining} more`}
         </button>
       ) : null}
     </div>

@@ -56,12 +56,12 @@ export function RankTrackingTableToolbar({
             {
               value: "table" as const,
               icon: <Table className="size-3.5" />,
-              label: "Latest",
+              label: t("Latest"),
             },
             {
               value: "history" as const,
               icon: <CalendarDays className="size-3.5" />,
-              label: "History",
+              label: t("History"),
             },
           ]}
           value={viewMode}
@@ -87,7 +87,7 @@ export function RankTrackingTableToolbar({
           <Loader2 className="size-3.5 animate-spin text-primary" />
           <span>
             {latestRun.status === "pending"
-              ? "Preparing..."
+              ? t("Preparing...")
               : `Getting rankings for ${latestRun.keywordsTotal || "?"} keyword${latestRun.keywordsTotal !== 1 ? "s" : ""}...`}{" "}
             {latestRun.keywordsChecked}/{latestRun.keywordsTotal || "?"}
           </span>

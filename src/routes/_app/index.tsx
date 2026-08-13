@@ -63,7 +63,7 @@ function IndexRedirect() {
           <AuthConfigErrorCard
             message={getStandardErrorMessage(
               error,
-              "An unexpected error occurred. Please check server logs.",
+              t("An unexpected error occurred. Please check server logs."),
             )}
             onRetry={() => {
               void refetch();
@@ -103,7 +103,7 @@ function IndexRedirect() {
           <p className="text-error text-center">
             {getStandardErrorMessage(
               error,
-              "An unexpected error occurred. Please check server logs.",
+              t("An unexpected error occurred. Please check server logs."),
             )}
           </p>
         </div>

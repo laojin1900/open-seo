@@ -72,7 +72,7 @@ function makeVolumeColumn(locationLabel?: string): ColumnDef<RankTrackingRow> {
     header: ({ column }) => (
       <SortableHeader
         column={column}
-        label={locationLabel ? "Local volume" : "Volume"}
+        label={locationLabel ? t("Local volume") : t("Volume")}
         id="volume"
         tooltip={
           locationLabel

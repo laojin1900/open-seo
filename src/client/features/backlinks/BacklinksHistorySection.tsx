@@ -68,7 +68,7 @@ export function BacklinksHistorySection({
                   {item.target}
                 </p>
                 <p className="text-sm text-base-content/60 truncate">
-                  {item.scope === "domain" ? "Site-wide" : "Exact page"}
+                  {item.scope === "domain" ? t("Site-wide") : t("Exact page")}
                 </p>
               </div>
             </Link>

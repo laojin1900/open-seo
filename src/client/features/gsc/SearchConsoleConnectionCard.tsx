@@ -183,9 +183,9 @@ export function SearchConsoleConnectionCard({
           onReconnect={handleConnect}
           secondaryAction={
             connected
-              ? { label: "Cancel", onClick: () => setPicking(false) }
+              ? { label: t("Cancel"), onClick: () => setPicking(false) }
               : {
-                  label: "Disconnect",
+                  label: t("Disconnect"),
                   destructive: true,
                   disabled: disconnectMutation.isPending,
                   onClick: () => disconnectMutation.mutate(),

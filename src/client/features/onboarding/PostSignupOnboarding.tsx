@@ -72,10 +72,10 @@ export function PostSignupOnboarding({
           {title ??
             (firstName
               ? `Welcome to OpenSEO, ${firstName}!`
-              : "Welcome to OpenSEO!")}
+              : t("Welcome to OpenSEO!"))}
         </h1>
         <p className="text-sm text-base-content/60">
-          {helperText ?? "A few quick answers to set things up."}
+          {helperText ?? t("A few quick answers to set things up.")}
         </p>
       </div>
 
@@ -108,7 +108,7 @@ export function PostSignupOnboarding({
             onOtherChange={(workForOther) => updateAnswers({ workForOther })}
             followUp={{
               showForValue: CLIENT_WORK_FOR,
-              label: "About how many client sites do you work on?",
+              label: t("About how many client sites do you work on?"),
               options: [...CLIENT_WEBSITE_COUNT_OPTIONS],
               value: answers.clientWebsiteCount,
               onChange: (clientWebsiteCount) =>
@@ -287,7 +287,7 @@ function OnboardingChoiceGroup({
         <input
           type="text"
           className="input input-bordered w-full"
-          placeholder={multiple ? "Tell us what else..." : "Tell us more..."}
+          placeholder={multiple ? t("Tell us what else...") : t("Tell us more...")}
           value={otherValue}
           onChange={(event) => onOtherChange(event.target.value)}
         />

@@ -113,7 +113,7 @@ export function LocationSelect({
         aria-expanded={open}
         onClick={() => setOpen((prev) => !prev)}
       >
-        <span className="truncate">{selected?.label ?? "Select country"}</span>
+        <span className="truncate">{selected?.label ?? t("Select country")}</span>
       </button>
 
       {open ? (

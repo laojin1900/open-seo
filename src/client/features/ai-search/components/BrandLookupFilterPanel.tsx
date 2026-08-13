@@ -109,7 +109,7 @@ function PlatformToggle({ form }: { form: AnyForm }) {
                 className={`btn btn-xs ${field.state.value === value ? "btn-soft" : "btn-ghost"}`}
                 onClick={() => field.handleChange(value)}
               >
-                {value === "" ? "All" : formatPlatformLabel(value)}
+                {value === "" ? t("All") : formatPlatformLabel(value)}
               </button>
             ))}
           </div>

@@ -27,6 +27,7 @@ import { isHostedClientAuthMode } from "@/lib/auth-mode";
 import { Toaster } from "sonner";
 import { queryClient } from "@/client/tanstack-db";
 import { getActiveOrganizationId } from "@/lib/auth-session";
+import { t } from "@/client/features/laojin/i18n";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -156,7 +157,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                     eventBusConfig={{ connectToServerBus: true }}
                     plugins={[
                       {
-                        name: "TanStack Router",
+                        name: t("TanStack Router"),
                         render: <TanStackRouterDevtoolsPanel />,
                         defaultOpen: true,
                       },

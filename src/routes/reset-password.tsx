@@ -179,8 +179,7 @@ function ResetPasswordPage() {
                     search={getSignInSearch(redirectTo)}
                     className="text-base-content/50 hover:text-base-content transition-colors"
                   >
-                    Sign in
-                  </Link>
+                    {t("Sign in")}</Link>
                 </p>
               }
             >
@@ -270,7 +269,7 @@ function ResetPasswordPage() {
                     className="btn btn-soft w-full"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Updating password..." : "Update password"}
+                    {isSubmitting ? t("Updating password...") : t("Update password")}
                   </button>
                 </form>
               )}

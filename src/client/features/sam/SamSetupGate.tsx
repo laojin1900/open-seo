@@ -41,7 +41,7 @@ export function SamSetupGate({
             onClick={onRetry}
             disabled={isRefetching}
           >
-            {isRefetching ? "Confirming..." : "Confirm API Key"}
+            {isRefetching ? t("Confirming...") : t("Confirm API Key")}
           </button>
           <a
             className="btn"

@@ -34,6 +34,7 @@ import type { DomainOverviewRouteState } from "@/client/features/domain/domainRo
 import { buildCsv, downloadCsv } from "@/client/lib/csv";
 import { exportTableToSheets } from "@/client/lib/exportToSheets";
 import { captureClientEvent } from "@/client/lib/posthog";
+import { t } from "@/client/features/laojin/i18n";
 import {
   MAX_DATAFORSEO_FILTER_CONDITIONS,
   type DomainSearchParams,
@@ -255,17 +256,16 @@ export function KeywordsTab({
               onClick={handleSaveKeywords}
               disabled={!canSaveKeywords}
             >
-              Save Keywords
-            </TableBulkActionButton>
+              {t("Save Keywords")}</TableBulkActionButton>
             <TableBulkExportMenu
               actions={[
                 {
-                  label: "Export to Sheets",
+                  label: t("Export to Sheets"),
                   icon: <Sheet className="size-4" />,
                   onClick: handleExportSelectionToSheets,
                 },
                 {
-                  label: "Download CSV",
+                  label: t("Download CSV"),
                   icon: <Download className="size-4" />,
                   onClick: handleDownloadSelectionCsv,
                 },
@@ -286,22 +286,22 @@ export function KeywordsTab({
         showTableLoading={showTableLoading}
         exportActions={[
           {
-            label: "Export to Sheets",
+            label: t("Export to Sheets"),
             icon: <Sheet className="size-4" />,
             onClick: handleExportToSheets,
           },
           {
-            label: "Copy data (JSON)",
+            label: t("Copy data (JSON)"),
             icon: <Copy className="size-4" />,
             onClick: handleCopy,
           },
           {
-            label: "Download CSV",
+            label: t("Download CSV"),
             icon: <Download className="size-4" />,
             onClick: () => handleDownload("csv"),
           },
           {
-            label: "Download Excel",
+            label: t("Download Excel"),
             icon: <FileSpreadsheet className="size-4" />,
             onClick: () => handleDownload("xls"),
           },

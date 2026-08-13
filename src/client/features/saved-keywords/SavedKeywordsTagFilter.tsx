@@ -209,8 +209,8 @@ function TagFilterPopover({
         {filteredTags.length === 0 ? (
           <div className="px-3 py-6 text-center text-xs text-base-content/55">
             {availableTags.length === 0
-              ? "No tags yet. Add tags from a selection of keywords."
-              : "No tags match that search."}
+              ? t("No tags yet. Add tags from a selection of keywords.")
+              : t("No tags match that search.")}
           </div>
         ) : null}
 

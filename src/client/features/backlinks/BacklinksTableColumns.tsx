@@ -61,8 +61,8 @@ function StatusCell({ status }: { status: "loading" | "error" | "empty" }) {
   return (
     <span className="pl-6 text-sm text-base-content/60">
       {status === "error"
-        ? "Couldn't load this domain's links."
-        : "No other links from this domain."}
+        ? t("Couldn't load this domain's links.")
+        : t("No other links from this domain.")}
     </span>
   );
 }
@@ -98,7 +98,7 @@ function SourceCell({
         <button
           type="button"
           className="btn btn-ghost btn-xs btn-square shrink-0 -ml-1"
-          aria-label={`${expanded ? "Hide" : "Show"} all links from ${domainLabel}`}
+          aria-label={`${expanded ? t("Hide") : t("Show")} all links from ${domainLabel}`}
           aria-expanded={expanded}
           onClick={() => onToggleDomain(row.domainFrom ?? "")}
         >
@@ -172,7 +172,7 @@ function buildBaseColumns(
       minSize: 100,
       cell: linkCell((row) => (
         <div className="space-y-0.5 break-words">
-          <span className="text-sm">{row.anchor || "No anchor text"}</span>
+          <span className="text-sm">{row.anchor || t("No anchor text")}</span>
           {row.itemType ? (
             <div className="text-xs text-base-content/55">{row.itemType}</div>
           ) : null}

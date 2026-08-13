@@ -136,7 +136,7 @@ export function AiVisibilityPage({ projectId }: { projectId: string }) {
               <button
                 className="btn btn-outline btn-sm"
                 onClick={() => {
-                  if (confirm("Delete this query set and all its trials?")) deleteMut.mutate(activeSet);
+                  if (confirm(t("Delete this query set and all its trials?"))) deleteMut.mutate(activeSet);
                 }}
               >
                 <Trash2 className="size-4" />

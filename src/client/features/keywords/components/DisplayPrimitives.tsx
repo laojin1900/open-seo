@@ -43,7 +43,7 @@ export function HeaderHelpLabel({
       onFocus={tooltip.scheduleOpen}
       onBlur={tooltip.close}
       onKeyDown={(e) => {
-        if (e.key === "Escape") tooltip.close();
+        if (e.key === t("Escape")) tooltip.close();
       }}
       aria-describedby={tooltip.isOpen ? tooltip.tooltipId : undefined}
     >
@@ -214,7 +214,7 @@ export function SortHeader({
       onFocus={tooltip.scheduleOpen}
       onBlur={tooltip.close}
       onKeyDown={(e) => {
-        if (e.key === "Escape") tooltip.close();
+        if (e.key === t("Escape")) tooltip.close();
       }}
       aria-describedby={
         tooltip.isOpen && helpText ? tooltip.tooltipId : undefined

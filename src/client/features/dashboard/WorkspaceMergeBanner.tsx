@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { getStandardErrorMessage } from "@/client/lib/error-messages";
 import { isHostedClientAuthMode } from "@/lib/auth-mode";
+import { t } from "@/client/features/laojin/i18n";
 import {
   getWorkspaceMergeStatus,
   mergeLegacyWorkspaces,
@@ -57,7 +58,7 @@ export function WorkspaceMergeBanner() {
         disabled={mergeMutation.isPending}
         onClick={() => mergeMutation.mutate()}
       >
-        {mergeMutation.isPending ? "Migrating…" : "Migrate workspaces"}
+        {mergeMutation.isPending ? t("Migrating…") : t("Migrate workspaces")}
       </button>
     </div>
   );

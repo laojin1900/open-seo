@@ -103,6 +103,29 @@ const dict: Record<string, { en: string; zh: string }> = {
   "common.cancel": { en: "Cancel", zh: "取消" },
   "common.save": { en: "Save", zh: "保存" },
   "common.create": { en: "Create", zh: "创建" },
+  // 产品/功能名修正（自动翻译器误保留原文的）
+  "Site Audit": { en: "Site Audit", zh: "站点审计" },
+  "Rank Tracking": { en: "Rank Tracking", zh: "排名追踪" },
+  "Saved Keywords": { en: "Saved Keywords", zh: "收藏关键词" },
+  "Keyword Research": { en: "Keyword Research", zh: "关键词研究" },
+  "Domain Overview": { en: "Domain Overview", zh: "域名概览" },
+  "Backlinks": { en: "Backlinks", zh: "外链分析" },
+  "Brand Lookup": { en: "Brand Lookup", zh: "品牌查询" },
+  "Prompt Explorer": { en: "Prompt Explorer", zh: "提示词探索" },
+  "GSC Insights": { en: "GSC Insights", zh: "GSC 洞察" },
+  "AI Visibility": { en: "AI Visibility", zh: "AI 可见度" },
+  "Search Performance": { en: "Search Performance", zh: "搜索表现" },
+  "Site audit": { en: "Site audit", zh: "站点审计" },
+  "Domain": { en: "Domain", zh: "域名" },
+  "Keywords": { en: "Keywords", zh: "关键词" },
+  "Backlink pulse": { en: "Backlink pulse", zh: "外链脉搏" },
+  "Onboarding checklist": { en: "Onboarding checklist", zh: "接入清单" },
+  "Connect your AI agent": { en: "Connect your AI agent", zh: "连接你的 AI 助手" },
+  "More details": { en: "More details", zh: "更多详情" },
+  "Add More": { en: "Add More", zh: "添加更多" },
+  "Export to Sheets": { en: "Export to Sheets", zh: "导出到 Sheets" },
+  "Download CSV": { en: "Download CSV", zh: "下载 CSV" },
+
 };
 
 export type I18nKey = keyof typeof dict | (string & {});

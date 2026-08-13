@@ -133,7 +133,7 @@ function OAuthConsentPage() {
           disabled={isSubmitting}
           onClick={() => void respond(true)}
         >
-          {isSubmitting ? "Authorizing..." : "Authorize"}
+          {isSubmitting ? t("Authorizing...") : t("Authorize")}
         </button>
       </div>
 

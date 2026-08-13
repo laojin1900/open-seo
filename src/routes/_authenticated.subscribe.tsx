@@ -165,7 +165,7 @@ function SubscribePage() {
         <p className="text-sm text-center text-base-content/70">
           {getStandardErrorMessage(
             customerQuery.error,
-            "We couldn't verify your billing status right now. Please try again.",
+            t("We couldn't verify your billing status right now. Please try again."),
           )}
         </p>
 
@@ -219,10 +219,10 @@ function SubscribePage() {
         />
         <h1 className="text-xl font-semibold">
           {isUpgradeFlow
-            ? "Upgrade your plan"
+            ? t("Upgrade your plan")
             : firstName
               ? `Welcome to OpenSEO, ${firstName}!`
-              : "Welcome to OpenSEO!"}
+              : t("Welcome to OpenSEO!")}
         </h1>
         <p className="text-sm text-base-content/60">
           {t("SEO on your terms. All your SEO tools in one place at a fair price.")}</p>
@@ -270,7 +270,7 @@ function SubscribePage() {
           disabled={isAttaching}
           onClick={() => void handleSubscribe()}
         >
-          {isAttaching ? "Redirecting..." : "Subscribe"}
+          {isAttaching ? t("Redirecting...") : t("Subscribe")}
         </button>
 
         <p className="text-center text-xs text-base-content/50">

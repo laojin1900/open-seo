@@ -95,7 +95,7 @@ export function DomainSearchCard({
                 className="btn btn-primary shrink-0 px-6"
                 disabled={isLoading || isSubmitting}
               >
-                {isLoading || isSubmitting ? "Loading..." : "Search"}
+                {isLoading || isSubmitting ? t("Loading...") : t("Search")}
               </button>
             )}
           </controlsForm.Subscribe>

@@ -46,7 +46,7 @@ export function SerpAnalysisCard({
           {items.length} organic results
         </div>
         <ExportToSheetsButton
-          headers={["Rank", "Title", "URL", "Domain"]}
+          headers={[t("Rank"), t("Title"), t("URL"), t("Domain")]}
           rows={items.map((item) => [
             item.rank,
             item.title ?? "",

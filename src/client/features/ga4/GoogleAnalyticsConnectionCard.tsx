@@ -169,15 +169,15 @@ export function GoogleAnalyticsConnectionCard({
           onRetry={() => void propertiesQuery.refetch()}
           secondaryAction={
             connected
-              ? { label: "Cancel", onClick: () => setPicking(false) }
+              ? { label: t("Cancel"), onClick: () => setPicking(false) }
               : onDismiss
                 ? {
-                    label: "Dismiss",
+                    label: t("Dismiss"),
                     disabled: dismissing,
                     onClick: onDismiss,
                   }
                 : {
-                    label: "Disconnect",
+                    label: t("Disconnect"),
                     destructive: true,
                     disabled: disconnectMutation.isPending,
                     onClick: () => disconnectMutation.mutate(),
@@ -297,7 +297,7 @@ function ConnectedState({
           onClick={onDisconnect}
           disabled={disconnecting}
         >
-          {disconnecting ? "Disconnecting…" : "Disconnect"}
+          {disconnecting ? t("Disconnecting…") : t("Disconnect")}
         </button>
       </div>
     </div>

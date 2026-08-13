@@ -47,7 +47,7 @@ export function LighthouseIssuesHeader({
         <span className="text-xs text-base-content/60">
           {scannedAt
             ? `Scanned ${new Date(scannedAt).toLocaleString()}`
-            : "Reading latest issues..."}
+            : t("Reading latest issues...")}
         </span>
       </div>
 
@@ -56,7 +56,7 @@ export function LighthouseIssuesHeader({
           <div className="space-y-1">
             <h1 className="text-2xl font-semibold">{t("Lighthouse Issues")}</h1>
             <p className="text-sm text-base-content/70 break-all">
-              {finalUrl ?? "Loading URL..."}
+              {finalUrl ?? t("Loading URL...")}
             </p>
           </div>
           <LighthouseIssuesSummary scores={scores} metrics={metrics} />
@@ -199,8 +199,7 @@ function ExportMenu({
       triggerContent={
         <>
           <Download className="size-4" />
-          Export
-          <ChevronDown className="size-3 opacity-60" />
+          {t("Export")}<ChevronDown className="size-3 opacity-60" />
         </>
       }
       menuClassName="w-72 max-h-[min(30rem,70vh)] flex-nowrap overflow-y-auto"
@@ -256,7 +255,7 @@ function ExportMenu({
               disabled={isBusy}
               onClick={() => {
                 close();
-                onCopy({ mode: "issues" }, "Copied all actionable issues");
+                onCopy({ mode: "issues" }, t("Copied all actionable issues"));
               }}
             >
               <Copy className="size-4" />
@@ -267,7 +266,7 @@ function ExportMenu({
               disabled={isBusy}
               onClick={() => {
                 close();
-                onCopy({ mode: "full" }, "Copied saved Lighthouse payload");
+                onCopy({ mode: "full" }, t("Copied saved Lighthouse payload"));
               }}
             >
               <Copy className="size-4" />
@@ -352,7 +351,7 @@ export function LighthouseIssueList({
   if (!issues.length) {
     return (
       <p className="text-sm text-base-content/60">
-        {emptyMessage ?? "No actionable issues for this category."}
+        {emptyMessage ?? t("No actionable issues for this category.")}
       </p>
     );
   }

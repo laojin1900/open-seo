@@ -279,8 +279,8 @@ function EmptyState({ count }: { count: number }) {
   return (
     <div className="rounded-lg border border-dashed border-base-300 p-10 text-center text-sm text-base-content/60">
       {count === 0
-        ? "No history yet — run a check to start tracking position over time."
-        : "Only 1 check so far — the trend chart fills in after the next check."}
+        ? t("No history yet — run a check to start tracking position over time.")
+        : t("Only 1 check so far — the trend chart fills in after the next check.")}
     </div>
   );
 }
@@ -299,7 +299,7 @@ function ChartTooltip({
   return (
     <div className="rounded-md border border-base-300 bg-base-100 px-3 py-2 shadow-sm space-y-0.5">
       <p className="text-xs text-base-content/60">
-        {new Date(label).toLocaleDateString("en-US", {
+        {new Date(label).toLocaleDateString(t("en-US"), {
           month: "short",
           day: "numeric",
           year: "numeric",

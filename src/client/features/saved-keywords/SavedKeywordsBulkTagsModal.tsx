@@ -162,7 +162,7 @@ export function SavedKeywordsBulkTagsModal({
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 onKeyDown={(event) => {
-                  if (event.key === "Enter" && showCreate) {
+                  if (event.key === t("Enter") && showCreate) {
                     event.preventDefault();
                     handleCreate();
                   }
@@ -190,8 +190,8 @@ export function SavedKeywordsBulkTagsModal({
               {filteredAvailable.length === 0 && !showCreate ? (
                 <div className="px-3 py-6 text-center text-xs text-base-content/55">
                   {availableTags.length === 0
-                    ? "No tags yet. Type a name above to create one."
-                    : "No tags match that search."}
+                    ? t("No tags yet. Type a name above to create one.")
+                    : t("No tags match that search.")}
                 </div>
               ) : null}
 
@@ -243,7 +243,7 @@ export function SavedKeywordsBulkTagsModal({
                       onClick={() => handleToggleRemove(tag)}
                       selected={checked}
                       trailing={checked ? <Check className="size-3" /> : null}
-                      title={checked ? "Will be removed" : "Click to remove"}
+                      title={checked ? t("Will be removed") : t("Click to remove")}
                     />
                   );
                 })}

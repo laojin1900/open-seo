@@ -151,7 +151,7 @@ function ReasoningBlock({
             className={`size-3 transition-transform ${expanded ? "rotate-90" : ""}`}
           />
         )}
-        <span>{isStreaming ? "Thinking…" : "Thought process"}</span>
+        <span>{isStreaming ? t("Thinking…") : t("Thought process")}</span>
       </button>
       {expanded ? (
         <div className="mt-1.5 whitespace-pre-wrap border-l-2 border-base-300 pl-3 text-xs text-base-content/50">
@@ -244,11 +244,11 @@ export function ChatMessage({
             autoFocus
             onChange={(event) => setDraft(event.target.value)}
             onKeyDown={(event) => {
-              if (event.key === "Enter" && !event.shiftKey) {
+              if (event.key === t("Enter") && !event.shiftKey) {
                 event.preventDefault();
                 submit();
               }
-              if (event.key === "Escape") setEditing(false);
+              if (event.key === t("Escape")) setEditing(false);
             }}
           />
           <div className="flex gap-1.5">

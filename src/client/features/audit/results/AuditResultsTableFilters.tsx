@@ -31,11 +31,11 @@ export function PagesFilterBar({
           value={filters.status}
           onChange={(status) => onChange({ ...filters, status })}
           options={[
-            ["all", "All"],
+            ["all", t("All")],
             ["ok", "2xx"],
             ["redirect", "3xx"],
             ["error", "4xx/5xx"],
-            ["missing", "Missing"],
+            ["missing", t("Missing")],
           ]}
         />
         <SelectFilter
@@ -43,9 +43,9 @@ export function PagesFilterBar({
           value={filters.missingAlt}
           onChange={(missingAlt) => onChange({ ...filters, missingAlt })}
           options={[
-            ["all", "All"],
-            ["yes", "Missing alt"],
-            ["no", "No missing alt"],
+            ["all", t("All")],
+            ["yes", t("Missing alt")],
+            ["no", t("No missing alt")],
           ]}
         />
       </div>
@@ -98,9 +98,9 @@ export function PerformanceFilterBar({
           value={filters.device}
           onChange={(device) => onChange({ ...filters, device })}
           options={[
-            ["all", "All"],
-            ["desktop", "Desktop"],
-            ["mobile", "Mobile"],
+            ["all", t("All")],
+            ["desktop", t("Desktop")],
+            ["mobile", t("Mobile")],
           ]}
         />
         <SelectFilter
@@ -108,9 +108,9 @@ export function PerformanceFilterBar({
           value={filters.status}
           onChange={(status) => onChange({ ...filters, status })}
           options={[
-            ["all", "All"],
+            ["all", t("All")],
             ["ok", "OK"],
-            ["failed", "Failed"],
+            ["failed", t("Failed")],
           ]}
         />
         <TextFilter

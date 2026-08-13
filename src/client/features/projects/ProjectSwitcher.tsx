@@ -203,7 +203,7 @@ export function ProjectSwitcher({
       >
         <span className="flex min-w-0 flex-col">
           <span className="truncate text-sm font-medium text-base-content">
-            {activeProject?.name ?? "Select project"}
+            {activeProject?.name ?? t("Select project")}
           </span>
           {activeProject?.domain ? (
             <span className="truncate text-xs font-normal text-base-content/50">

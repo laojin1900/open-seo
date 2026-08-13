@@ -100,8 +100,7 @@ function DomainPagesTableComponent({
       className="table table-sm"
       empty={
         <div className="py-6 text-center text-base-content/60">
-          No pages match this search.
-        </div>
+          {t("No pages match this search.")}</div>
       }
     />
   );

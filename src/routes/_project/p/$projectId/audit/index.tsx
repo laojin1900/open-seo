@@ -141,7 +141,7 @@ function AuditDetail({
           </button>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <h1 className="text-2xl font-semibold">
-              {status ? extractHostname(status.startUrl) : "Site Audit"}
+              {status ? extractHostname(status.startUrl) : t("Site Audit")}
             </h1>
             {status?.status !== "running" && status && (
               <StatusBadge status={status.status} />
@@ -273,8 +273,8 @@ function ProgressCard({
             <h2 className="font-medium flex items-center gap-2">
               <Loader2 className="size-4 animate-spin text-primary" />
               {isLighthousePhase
-                ? "Running Lighthouse checks"
-                : "Crawling pages"}
+                ? t("Running Lighthouse checks")
+                : t("Crawling pages")}
             </h2>
             <span className="badge badge-ghost badge-sm">{phaseLabel}</span>
           </div>

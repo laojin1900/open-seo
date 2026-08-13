@@ -138,16 +138,14 @@ function SignInPage() {
                 search={getSignInSearch(redirectTo)}
                 className="text-base-content underline underline-offset-2 hover:text-base-content/80 transition-colors"
               >
-                Forgot password?
-              </Link>
+                {t("Forgot password?")}</Link>
             ) : null}
             <Link
               to="/sign-up"
               search={getSignInSearch(redirectTo)}
               className="text-base-content underline underline-offset-2 hover:text-base-content/80 transition-colors"
             >
-              Create account
-            </Link>
+              {t("Create account")}</Link>
           </div>
         ) : null
       }
@@ -243,7 +241,7 @@ function SignInPage() {
                     className="btn btn-soft w-full"
                     disabled={!isHostedMode || isSubmitting}
                   >
-                    {isSubmitting ? "Signing in..." : "Sign in"}
+                    {isSubmitting ? t("Signing in...") : t("Sign in")}
                   </button>
                 </>
               );

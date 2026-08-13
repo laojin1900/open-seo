@@ -51,6 +51,11 @@ function isCandidate(s) {
   if (FRAGMENT_ENDS.test(t)) return false;
   if (!/[A-Z]/.test(t)) return false; // 全小写 = 很可能是内联句子残片（按钮/标题都至少有一个大写）
   if (STOPWORDS.has(t.toLowerCase())) return false;
+  if (t.startsWith("/")) return false; // 路由路径
+  if (/[\w]*\.(tsx?|js|json|css)$/.test(t)) return false; // 文件名
+  if (/^[A-Z_]{4,}$/.test(t)) return false; // 纯大写常量/枚举（如 DATAFORSEO_API_KEY）
+  if (t.includes("$")) return false; // 模板变量
+  if (/^[a-z][a-z0-9]*[A-Z]/.test(t)) return false; // camelCase 标识符（表单字段名等）
   return true;
 }
 
@@ -66,32 +71,39 @@ function main() {
 
   const found = new Set();
   for (const file of files) {
-    const walk = (node) => {
-      // JSX 文本节点
-      if (node.getKind() === SyntaxKind.JsxText) {
-        const tsNode = node.compilerNode;
-        if (ts.isJsxText(tsNode)) {
-          const text = tsNode.getText().replace(/\{\/\*[\s\S]*?\*\/\}/g, ""); // 去掉 JSX 注释
-          if (isCandidate(text)) found.add(text.trim());
-        }
-        return;
+    // JSX 文本节点
+    for (const node of file.getDescendantsOfKind(SyntaxKind.JsxText)) {
+      const tsNode = node.compilerNode;
+      if (ts.isJsxText(tsNode)) {
+        const text = tsNode.getText().replace(/\{\/\*[\s\S]*?\*\/\}/g, ""); // 去掉 JSX 注释
+        if (isCandidate(text)) found.add(text.trim());
       }
-      // JSX 属性字符串字面量
-      if (node.getKind() === SyntaxKind.JsxAttribute) {
-        const tsNode = node.compilerNode;
-        if (ts.isJsxAttribute(tsNode)) {
-          const name = tsNode.name.getText();
-          if (!ATTR_WHITELIST.has(name)) return;
-          const init = tsNode.initializer;
-          if (init && ts.isStringLiteral(init)) {
-            if (isCandidate(init.text)) found.add(init.text.trim());
-          }
+    }
+    // JSX 表达式容器内的字符串字面量（条件渲染按钮文案等）
+    for (const node of file.getDescendantsOfKind(SyntaxKind.JsxExpression)) {
+      const tsNode = node.compilerNode;
+      if (!ts.isJsxExpression(tsNode)) continue;
+      const collect = (n, parent) => {
+        if (ts.isStringLiteral(n)) {
+          const insideT = parent && ts.isCallExpression(parent) && ts.isIdentifier(parent.expression) && parent.expression.text === "t";
+          if (!insideT && isCandidate(n.text)) found.add(n.text.trim());
+          return;
         }
-        return;
-      }
-      node.forEachChild(walk);
-    };
-    walk(file);
+        // 不进入嵌套 JSX（元素/属性/子表达式单独提取）
+        if (ts.isJsxElement(n) || ts.isJsxSelfClosingElement(n) || ts.isJsxAttribute(n) || ts.isJsxExpression(n)) return;
+        n.forEachChild((c) => collect(c, n));
+      };
+      tsNode.expression && collect(tsNode.expression, undefined);
+    }
+    // JSX 属性字符串字面量（白名单）
+    for (const node of file.getDescendantsOfKind(SyntaxKind.JsxAttribute)) {
+      const tsNode = node.compilerNode;
+      if (!ts.isJsxAttribute(tsNode)) continue;
+      const name = tsNode.name.getText();
+      if (!ATTR_WHITELIST.has(name)) continue;
+      const init = tsNode.initializer;
+      if (init && ts.isStringLiteral(init) && isCandidate(init.text)) found.add(init.text.trim());
+    }
   }
 
   const sorted = [...found].sort();

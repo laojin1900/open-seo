@@ -69,8 +69,7 @@ export function GscCard({
           params={{ projectId }}
           className={moreDetailsClass}
         >
-          More details
-        </Link>
+          {t("More details")}</Link>
       }
     >
       {reportQuery.isPending ? (
@@ -133,8 +132,7 @@ export function AuditHealthCard({
               params={{ projectId }}
               className="btn btn-primary btn-sm"
             >
-              Run an audit
-            </Link>
+              {t("Run an audit")}</Link>
           }
         />
       </CardShell>
@@ -157,8 +155,7 @@ export function AuditHealthCard({
           params={{ projectId }}
           className={moreDetailsClass}
         >
-          More details
-        </Link>
+          {t("More details")}</Link>
       }
     >
       {audit.topIssues.length === 0 ? (
@@ -246,8 +243,7 @@ export function BacklinkPulseCard({
           search={{ target: backlinks.domain, scope: "domain" }}
           className={moreDetailsClass}
         >
-          More details
-        </Link>
+          {t("More details")}</Link>
       }
     >
       <div className="grid grid-cols-2 gap-3">

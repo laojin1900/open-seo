@@ -55,7 +55,7 @@ export function KeywordResearchSearchBar({ controller }: Props) {
                       // Enter submits. Shift+Enter inserts a newline, so
                       // researching several keywords at once means adding a
                       // line per keyword (or pasting newline-separated ones).
-                      if (event.key === "Enter" && !event.shiftKey) {
+                      if (event.key === t("Enter") && !event.shiftKey) {
                         event.preventDefault();
                         void controlsForm.handleSubmit();
                       }

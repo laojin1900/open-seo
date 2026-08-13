@@ -49,7 +49,7 @@ export function ExportToSheetsButton({
       onClick={handleClick}
       disabled={disabled || rows.length === 0 || busy}
       title={t("Copy table and open a new Google Sheet")}
-      aria-label={iconOnly ? "Export to Sheets" : undefined}
+      aria-label={iconOnly ? t("Export to Sheets") : undefined}
     >
       <Sheet className="size-3.5" />
       {iconOnly ? null : label}

@@ -4,6 +4,7 @@ import {
   getOAuthSignedQuery,
 } from "@/lib/auth-redirect";
 import { isHostedClientAuthMode } from "@/lib/auth-mode";
+import { t } from "@/client/features/laojin/i18n";
 
 export const authRedirectSearchSchema = z.object({
   redirect: z.string().optional(),
@@ -48,7 +49,7 @@ export function AuthMethodChooser({
         disabled={disabled || isBusy}
       >
         <GoogleLogo />
-        {isBusy ? "Opening Google..." : googleLabel}
+        {isBusy ? t("Opening Google...") : googleLabel}
       </button>
 
       <button

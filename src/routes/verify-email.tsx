@@ -199,8 +199,7 @@ function VerifyEmailPage() {
               search={getSignInSearch(redirectTo)}
               className="text-base-content/50 hover:text-base-content transition-colors"
             >
-              Back to sign in
-            </Link>
+              {t("Back to sign in")}</Link>
           </p>
         }
       >
@@ -227,7 +226,7 @@ function VerifyEmailPage() {
             onClick={() => void handleResend()}
             disabled={isResending}
           >
-            {isResending ? "Sending email..." : "Resend email"}
+            {isResending ? t("Sending email...") : t("Resend email")}
           </button>
         ) : null}
       </AuthPageCard>

@@ -116,7 +116,7 @@ function SiteForm({ projectId }: { projectId: string }) {
             className="btn btn-primary w-full"
             disabled={!domain.trim() || save.isPending}
           >
-            {save.isPending ? "Saving…" : "Continue"}
+            {save.isPending ? t("Saving…") : t("Continue")}
           </button>
         </div>
       </form>

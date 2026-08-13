@@ -296,14 +296,14 @@ function AiPage() {
           <ul className="mt-4 space-y-3">
             {[
               {
-                title: "In-app SEO Research Agent",
+                title: t("In-app SEO Research Agent"),
                 description:
-                  "Ask questions and run research without leaving OpenSEO",
+                  t("Ask questions and run research without leaving OpenSEO"),
               },
               {
-                title: "Content Assistant",
+                title: t("Content Assistant"),
                 description:
-                  "Generate drafts using saved keywords and business context",
+                  t("Generate drafts using saved keywords and business context"),
               },
             ].map((item) => (
               <li key={item.title} className="flex gap-2.5 text-sm">

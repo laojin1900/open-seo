@@ -152,11 +152,11 @@ function TermsTokenInput({
             }
           };
           const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-            if (event.key === "Enter" || event.key === ",") {
+            if (event.key === t("Enter") || event.key === ",") {
               event.preventDefault();
               addFromDraft();
             } else if (
-              event.key === "Backspace" &&
+              event.key === t("Backspace") &&
               draft.length === 0 &&
               terms.length > 0
             ) {
