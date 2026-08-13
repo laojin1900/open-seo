@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   Link2,
   MessageSquare,
+  Radar,
   Search,
   Sparkles,
   TrendingUp,
@@ -41,6 +42,12 @@ const projectNavItems = [
     to: "/p/$projectId/search-performance" as const,
     label: "GSC Insights",
     icon: GoogleGlyphMuted,
+  },
+  // 老金定制：AI 可见度（GEO-ROADMAP.md P0）
+  {
+    to: "/p/$projectId/ai-visibility" as const,
+    label: "AI Visibility",
+    icon: Radar,
   },
   {
     to: "/p/$projectId/domain" as const,
