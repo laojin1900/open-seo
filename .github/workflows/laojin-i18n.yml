@@ -1,0 +1,50 @@
+name: Laojin i18n Auto-Translate
+
+# 老金定制：后台自动翻译系统（每周自动跑）
+# 流程：扫描新英文文案 → DeepSeek 翻译 → AST 改写源码 → build 验证 → 提交
+# 依赖 secrets：LLM_API_KEY / LLM_BASE_URL / LLM_MODEL（DeepSeek 兼容接口）
+on:
+  schedule:
+    # 每周日 21:00 UTC = 北京时间周一 05:00（在其它 GHA 管线之前完成）
+    - cron: "0 21 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  i18n:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Scan + Translate + Rewrite + Verify
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+        run: node scripts/laojin-i18n/run.mjs --verify
+        # 翻译 API 不可用时跳过（不阻塞 CI；不设 fail-fast 语义，靠 build 兜底）
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "laojin1900"
+          git config user.email "197999706+laojin1900@users.noreply.github.com"
+          git add src/ || true
+          if git diff --cached --quiet; then
+            echo "无变更"
+          else
+            git commit -m "chore(i18n): 自动翻译更新（laojin-i18n bot）"
+            git push origin main
+          fi

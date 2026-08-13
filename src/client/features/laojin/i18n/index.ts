@@ -3,6 +3,7 @@
 // t(key) 未命中字典时返回 key 本身 —— 未翻译的文案显示英文原文，支持渐进式翻译。
 
 import * as React from "react";
+import { generatedDict } from "./dict.generated";
 
 export type UiLanguage = "en" | "zh";
 
@@ -147,10 +148,12 @@ export function setUiLanguage(lang: UiLanguage) {
 /**
  * 同步翻译函数（组件渲染时调用）。未命中字典返回 key 原文（= 英文），
  * 所以未翻译字段自然显示英文，支持渐进式翻译。
+ * 优先级：手写 dict（人工修正） > generatedDict（自动翻译）。
  */
 export function t(key: I18nKey): string {
-  const entry = dict[key as string];
-  if (!entry) return key as string;
+  const k = key as string;
+  const entry = dict[k] ?? generatedDict[k];
+  if (!entry) return k;
   const lang = readLanguage();
   return entry[lang];
 }
