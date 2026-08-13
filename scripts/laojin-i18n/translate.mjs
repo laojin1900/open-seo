@@ -104,29 +104,38 @@ async function main() {
     fs.writeFileSync(OUT_FILE, out, "utf8");
   };
 
-  let done = 0;
-  for (let i = 0; i < todo.length; i += BATCH) {
-    const batch = todo.slice(i, i + BATCH);
-    let ok = false;
-    for (let attempt = 0; attempt < 3; attempt++) {
-      try {
-        const items = await translateBatch(batch);
-        for (const r of items) {
-          if (r.en && r.zh && typeof r.zh === "string") existing[r.en] = { en: r.en, zh: r.zh };
+  const CONCURRENCY = 3;
+  const batches = [];
+  for (let i = 0; i < todo.length; i += BATCH) batches.push(todo.slice(i, i + BATCH));
+  let cursor = 0;
+  let doneBatches = 0;
+
+  async function worker(id) {
+    while (true) {
+      const idx = cursor++;
+      if (idx >= batches.length) return;
+      const batch = batches[idx];
+      let ok = false;
+      for (let attempt = 0; attempt < 3; attempt++) {
+        try {
+          const items = await translateBatch(batch);
+          for (const r of items) {
+            if (r.en && r.zh && typeof r.zh === "string") existing[r.en] = { en: r.en, zh: r.zh };
+          }
+          writeOut(); // 断点续跑：每批成功立即落盘
+          doneBatches++;
+          console.log(`[i18n-translate] worker${id} 批次 ${idx + 1}/${batches.length} 完成（累计 ${Object.keys(existing).length} 条）`);
+          ok = true;
+          break;
+        } catch (e) {
+          console.warn(`  worker${id} 批次 ${idx + 1} 失败（重试 ${attempt + 1}/3）:`, String(e).slice(0, 120));
+          await new Promise((r) => setTimeout(r, 1500 * (attempt + 1)));
         }
-        writeOut(); // 断点续跑：每批成功立即落盘
-        done += items.length;
-        console.log(`[i18n-translate] 批次 ${i / BATCH + 1}/${Math.ceil(todo.length / BATCH)} 完成（累计 ${Object.keys(existing).length} 条）`);
-        ok = true;
-        break;
-      } catch (e) {
-        console.warn(`  批次 ${i / BATCH + 1} 失败（重试 ${attempt + 1}/3）:`, String(e).slice(0, 150));
-        await new Promise((r) => setTimeout(r, 1500 * (attempt + 1)));
-        if (attempt === 2) throw e;
       }
+      if (!ok) console.warn(`  worker${id} 批次 ${idx + 1} 最终失败，跳过`);
     }
-    if (!ok) break;
   }
+  await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => worker(i + 1)));
   console.log(`[i18n-translate] 完成：共 ${Object.keys(existing).length} 条 → ${OUT_FILE}`);
 }
 
